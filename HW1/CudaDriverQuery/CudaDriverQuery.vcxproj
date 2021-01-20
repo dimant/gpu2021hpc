@@ -14,7 +14,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{ffe5df1c-d524-42b9-8c27-3191e50e3475}</ProjectGuid>
-    <RootNamespace>CUDA</RootNamespace>
+    <RootNamespace>CudaDriverQuery</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>CudaDriverQuery</ProjectName>
   </PropertyGroup>

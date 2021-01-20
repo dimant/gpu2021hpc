@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CudaDriverQuery", "CUDA\CUDA.vcxproj", "{FFE5DF1C-D524-42B9-8C27-3191E50E3475}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CudaDriverQuery", "CudaDriverQuery\CudaDriverQuery.vcxproj", "{FFE5DF1C-D524-42B9-8C27-3191E50E3475}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CudaRuntimeKernel", "RuntimeKernel\RuntimeKernel.vcxproj", "{817DB55C-81CB-4E24-ABBE-339254B85FCA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenCLQuery", "OpenCLQuery\OpenCLQuery.vcxproj", "{E3692A2D-D13A-40CE-8013-09806DB4EB29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,12 @@ Global
 		{817DB55C-81CB-4E24-ABBE-339254B85FCA}.Release|x64.Build.0 = Release|x64
 		{817DB55C-81CB-4E24-ABBE-339254B85FCA}.Release|x86.ActiveCfg = Release|Win32
 		{817DB55C-81CB-4E24-ABBE-339254B85FCA}.Release|x86.Build.0 = Release|Win32
+		{E3692A2D-D13A-40CE-8013-09806DB4EB29}.Debug|x64.ActiveCfg = Debug|x64
+		{E3692A2D-D13A-40CE-8013-09806DB4EB29}.Debug|x64.Build.0 = Debug|x64
+		{E3692A2D-D13A-40CE-8013-09806DB4EB29}.Debug|x86.ActiveCfg = Debug|x64
+		{E3692A2D-D13A-40CE-8013-09806DB4EB29}.Release|x64.ActiveCfg = Release|x64
+		{E3692A2D-D13A-40CE-8013-09806DB4EB29}.Release|x64.Build.0 = Release|x64
+		{E3692A2D-D13A-40CE-8013-09806DB4EB29}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
