@@ -18,7 +18,7 @@
     <CudaCompile Include="vectorAdd.cu">
       <Filter>Source Files</Filter>
     </CudaCompile>
-    <CudaCompile Include="program.cu">
+    <CudaCompile Include="program.cpp">
       <Filter>Source Files</Filter>
     </CudaCompile>
   </ItemGroup>
