@@ -5,11 +5,15 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CudaDriverQuery", "CudaDriverQuery\CudaDriverQuery.vcxproj", "{FFE5DF1C-D524-42B9-8C27-3191E50E3475}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CudaRuntimeKernel", "RuntimeKernel\RuntimeKernel.vcxproj", "{817DB55C-81CB-4E24-ABBE-339254B85FCA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CudaRuntimeKernel", "CudaRuntimeKernel\CudaRuntimeKernel.vcxproj", "{817DB55C-81CB-4E24-ABBE-339254B85FCA}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenCLQuery", "OpenCLQuery\OpenCLQuery.vcxproj", "{E3692A2D-D13A-40CE-8013-09806DB4EB29}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenCLKernel", "OpenCLKernel\OpenCLKernel.vcxproj", "{EF3C7403-32FF-46A6-90DE-15FB3B59DC76}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenCLRun", "OpenCLRun\OpenCLRun.vcxproj", "{6CC0F583-7248-4B7B-9D98-C7927B55D253}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CudaRun", "CudaRun\CudaRun.vcxproj", "{174E3DE8-2238-4911-8652-896754C6554C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,18 @@ Global
 		{EF3C7403-32FF-46A6-90DE-15FB3B59DC76}.Release|x64.ActiveCfg = Release|x64
 		{EF3C7403-32FF-46A6-90DE-15FB3B59DC76}.Release|x64.Build.0 = Release|x64
 		{EF3C7403-32FF-46A6-90DE-15FB3B59DC76}.Release|x86.ActiveCfg = Release|x64
+		{6CC0F583-7248-4B7B-9D98-C7927B55D253}.Debug|x64.ActiveCfg = Debug|x64
+		{6CC0F583-7248-4B7B-9D98-C7927B55D253}.Debug|x64.Build.0 = Debug|x64
+		{6CC0F583-7248-4B7B-9D98-C7927B55D253}.Debug|x86.ActiveCfg = Debug|x64
+		{6CC0F583-7248-4B7B-9D98-C7927B55D253}.Release|x64.ActiveCfg = Release|x64
+		{6CC0F583-7248-4B7B-9D98-C7927B55D253}.Release|x64.Build.0 = Release|x64
+		{6CC0F583-7248-4B7B-9D98-C7927B55D253}.Release|x86.ActiveCfg = Release|x64
+		{174E3DE8-2238-4911-8652-896754C6554C}.Debug|x64.ActiveCfg = Debug|x64
+		{174E3DE8-2238-4911-8652-896754C6554C}.Debug|x64.Build.0 = Debug|x64
+		{174E3DE8-2238-4911-8652-896754C6554C}.Debug|x86.ActiveCfg = Debug|x64
+		{174E3DE8-2238-4911-8652-896754C6554C}.Release|x64.ActiveCfg = Release|x64
+		{174E3DE8-2238-4911-8652-896754C6554C}.Release|x64.Build.0 = Release|x64
+		{174E3DE8-2238-4911-8652-896754C6554C}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

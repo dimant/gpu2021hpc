@@ -249,7 +249,7 @@ int main(int argc, char** argv)
     h_c = new double[n];
 
     // Initialize vectors on host
-    for (int i = 0; i < n; i++)
+    for (size_t i = 0; i < n; i++)
     {
         h_a[i] = i;
         h_b[i] = i;
@@ -261,7 +261,7 @@ int main(int argc, char** argv)
     localSize = 64;
 
     // Number of total work items - localSize must be divisor
-    globalSize = ceil(n / (float)localSize) * localSize;
+    globalSize = (size_t) (ceil(n / (float)localSize)) * localSize;
 
     // Create a command queue 
     queue = clCreateCommandQueue(context, clDevices[0], 0, &err);
@@ -291,7 +291,6 @@ int main(int argc, char** argv)
     // Read the results from the device
     clChkErr(clEnqueueReadBuffer(queue, d_c, CL_TRUE, 0, nbytes, h_c, 0, NULL, NULL));
 
-
     // Read the results from the device
     clChkErr(clEnqueueReadBuffer(queue, d_c, CL_TRUE, 0, nbytes, h_c, 0, NULL, NULL));
 
@@ -314,9 +313,9 @@ int main(int argc, char** argv)
     clReleaseContext(context);
 
     //release host memory
-    free(h_a);
-    free(h_b);
-    free(h_c);
+    delete [] h_a;
+    delete [] h_b;
+    delete [] h_c;
 
     return 0;
 }
