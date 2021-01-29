@@ -66,8 +66,8 @@ int main(int argc, char** argv)
     {
         for (int j = 0; j < ncols; j++)
         {
-            h_A[i * ncols + j] = rand() / (float)RAND_MAX;
-            h_B[i * ncols + j] = rand() / (float)RAND_MAX;
+            h_A[i * ncols + j] = i;
+            h_B[i * ncols + j] = j;
         }
     }
 
@@ -78,24 +78,29 @@ int main(int argc, char** argv)
     cudaCheckError(cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice));
     cudaCheckError(cudaMemcpy(d_B, h_B, size, cudaMemcpyHostToDevice));
 
-    dim3 blockSize(3, 3);
-    int bx = (ncols + blockSize.x - 1) / blockSize.x;
-    int by = (nrows + blockSize.y - 1) / blockSize.y;
-    dim3 gridSize = dim3(bx, by);
+    //dim3 blockSize(3, 3);
+    //int bx = (ncols + blockSize.x - 1) / blockSize.x;
+    //int by = (nrows + blockSize.y - 1) / blockSize.y;
+    //dim3 gridSize = dim3(bx, by);
 
+    dim3 blockSize(2, 2);
+    dim3 gridSize(3, 3);
     matAdd CUDA_KERNEL(gridSize, blockSize) ((const float*) d_A, (const float*) d_B, d_C, nrows, ncols);
-
+    cudaCheckError(cudaDeviceSynchronize());
     cudaCheckError(cudaGetLastError());
 
     cudaCheckError(cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost));
 
-    for (int i = 0; i < nrows; ++i)
+    for (int i = 0; i < nrows; i++)
     {
         for (int j = 0; j < ncols; j++)
         {
-            if (fabs(h_A[i * ncols + j] + h_B[i * ncols + j] - h_C[i * ncols + j]) > 1e-5)
+            float a = h_A[i * ncols + j];
+            float b = h_B[i * ncols + j];
+            float c = h_C[i * ncols + j];
+            if (fabs(a + b - c) > 1e-5)
             {
-                fprintf(stderr, "Result verification failed at element %d!\n", i);
+                fprintf(stderr, "Result verification failed at element %d,%d!\n", i, j);
                 exit(EXIT_FAILURE);
             }
         }
