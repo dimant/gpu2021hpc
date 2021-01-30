@@ -15,14 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <CudaCompile Include="vectorAdd.cu">
+    <ClCompile Include="program.cpp">
       <Filter>Source Files</Filter>
-    </CudaCompile>
-    <CudaCompile Include="program.cpp">
+    </ClCompile>
+    <ClCompile Include="cuda_util.cpp">
       <Filter>Source Files</Filter>
-    </CudaCompile>
-    <CudaCompile Include="matAdd.cu">
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cuda_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="matAdd.cu">
       <Filter>Source Files</Filter>
-    </CudaCompile>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="vectorAdd.cu">
+      <Filter>Source Files</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

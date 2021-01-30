@@ -1,5 +1,3 @@
-#include <device_launch_parameters.h>
-
 // https://forums.developer.nvidia.com/t/why-am-i-getting-better-performance-with-per-column-vs-per-row-for-matrix-addition/48774
 //
 // This has to do with memory coalescing in CUDA, i.e. efficient use of the memory subsystem.
@@ -13,7 +11,7 @@
 // It’s necessary to think about what adjacent threads in a warp are doing instruction - by - 
 // instruction, in order to understand coalescing.
 
-__global__ void matAdd(const float* A, const float* B, float* C, int nrows, int ncols)
+extern "C" __global__ void matAdd(const float* A, const float* B, float* C, int nrows, int ncols)
 {
     int stridex = blockDim.x * gridDim.x;
     int stridey = blockDim.y * gridDim.y;
@@ -28,7 +26,7 @@ __global__ void matAdd(const float* A, const float* B, float* C, int nrows, int 
     }
 }
 
-__global__ void matAddRow(const float* A, const float* B, float* C, int nrows, int ncols)
+extern "C" __global__ void matAddRow(const float* A, const float* B, float* C, int nrows, int ncols)
 {
     int stridey = blockDim.y * gridDim.y;
 
@@ -42,7 +40,7 @@ __global__ void matAddRow(const float* A, const float* B, float* C, int nrows, i
     }
 }
 
-__global__ void matAddCol(const float* A, const float* B, float* C, int nrows, int ncols)
+extern "C" __global__ void matAddCol(const float* A, const float* B, float* C, int nrows, int ncols)
 {
     int stridex = blockDim.x * gridDim.x;
 
