@@ -5,16 +5,20 @@
 #include <device_launch_parameters.h>
 #include "cuda_util.h"
 
+template class DotProductOperation<float>;
+template class DotProductOperation<float2>;
+template class DotProductOperation<float4>;
 
-void DotProductFloatOperation::AllocateHost()
+template <class T>
+void DotProductOperation<T>::AllocateHost()
 {
-    h_A = (float*)malloc(elements * sizeof(float));
-    h_B = (float*)malloc(elements * sizeof(float));
-    h_C = (float*)malloc(threadsPerBlock * sizeof(float));
+    h_A = (T*)malloc(elements * sizeof(T));
+    h_B = (T*)malloc(elements * sizeof(T));
+    h_C = (T*)malloc(threadsPerBlock * sizeof(T));
 
     if (h_C != nullptr)
     {
-        h_C = (float*)memset(h_C, 0, threadsPerBlock * sizeof(float));
+        h_C = (T*)memset(h_C, 0, threadsPerBlock * sizeof(T));
     }
 
     if (h_A == nullptr || h_B == nullptr || h_C == nullptr)
@@ -24,15 +28,17 @@ void DotProductFloatOperation::AllocateHost()
     }
 }
 
-void DotProductFloatOperation::AllocateDevice()
+template <class T>
+void DotProductOperation<T>::AllocateDevice()
 {
-    checkCudaError(cuMemAlloc(&d_A, elements * sizeof(float)));
-    checkCudaError(cuMemAlloc(&d_B, elements * sizeof(float)));
-    checkCudaError(cuMemAlloc(&d_C, threadsPerBlock * sizeof(float)));
-    checkCudaError(cuMemsetD8(d_C, 0, threadsPerBlock * sizeof(float)));
+    checkCudaError(cuMemAlloc(&d_A, elements * sizeof(T)));
+    checkCudaError(cuMemAlloc(&d_B, elements * sizeof(T)));
+    checkCudaError(cuMemAlloc(&d_C, threadsPerBlock * sizeof(T)));
+    checkCudaError(cuMemsetD8(d_C, 0, threadsPerBlock * sizeof(T)));
 }
 
-void DotProductFloatOperation::InitData()
+template <>
+void DotProductOperation<float>::InitData()
 {
     for (int i = 0; i < elements; i++)
     {
@@ -41,13 +47,43 @@ void DotProductFloatOperation::InitData()
     }
 }
 
-void DotProductFloatOperation::CopyToDevice()
+template<>
+void DotProductOperation<float2>::InitData()
 {
-    checkCudaError(cuMemcpyHtoD(d_A, h_A, elements * sizeof(float)));
-    checkCudaError(cuMemcpyHtoD(d_B, h_B, elements * sizeof(float)));
+    for (int i = 0; i < elements; i++)
+    {
+        h_A[i].x = 1.0f;
+        h_A[i].y = 1.0f;
+        h_B[i].x = (float)i;
+        h_B[i].y = (float)i;
+    }
 }
 
-void DotProductFloatOperation::Launch()
+template<>
+void DotProductOperation<float4>::InitData()
+{
+    for (int i = 0; i < elements; i++)
+    {
+        h_A[i].x = 1.0f;
+        h_A[i].y = 1.0f;
+        h_A[i].z = 1.0f;
+        h_A[i].w = 1.0f;
+        h_B[i].x = (float)i;
+        h_B[i].y = (float)i;
+        h_B[i].z = (float)i;
+        h_B[i].w = (float)i;
+    }
+}
+
+template <class T>
+void DotProductOperation<T>::CopyToDevice()
+{
+    checkCudaError(cuMemcpyHtoD(d_A, h_A, elements * sizeof(T)));
+    checkCudaError(cuMemcpyHtoD(d_B, h_B, elements * sizeof(T)));
+}
+
+template <class T>
+void DotProductOperation<T>::Launch()
 {
     dim3 blockSize(threadsPerBlock);
     dim3 gridSize(1);
@@ -56,13 +92,14 @@ void DotProductFloatOperation::Launch()
     checkCudaError(cuLaunchKernel(GetFunction(),
         gridSize.x, gridSize.y, gridSize.z,
         blockSize.x, blockSize.y, blockSize.z,
-        threadsPerBlock * 2 * sizeof(float),
+        threadsPerBlock * 2 * sizeof(T),
         NULL, args, NULL));
 }
 
-void DotProductFloatOperation::CopyFromDevice()
+template <class T>
+void DotProductOperation<T>::CopyFromDevice()
 {
-    checkCudaError(cuMemcpyDtoH(reinterpret_cast<void*>(h_C), d_C, threadsPerBlock * sizeof(float)));
+    checkCudaError(cuMemcpyDtoH(reinterpret_cast<void*>(h_C), d_C, threadsPerBlock * sizeof(T)));
 
     for (int i = 1; i < threadsPerBlock; i++)
     {
@@ -70,7 +107,8 @@ void DotProductFloatOperation::CopyFromDevice()
     }
 }
 
-void DotProductFloatOperation::VerifyResult()
+template <class T>
+void DotProductOperation<T>::VerifyResult()
 {
     float c = 0.0;
 
@@ -86,7 +124,8 @@ void DotProductFloatOperation::VerifyResult()
     }
 }
 
-void DotProductFloatOperation::FreeResources()
+template <class T>
+void DotProductOperation<T>::FreeResources()
 {
     free(h_A);
     free(h_B);

@@ -3,23 +3,24 @@
 
 #include "CudaOperation.h"
 
-class DotProductFloatOperation : public CudaOperation
+template <class T>
+class DotProductOperation : public CudaOperation
 {
 private:
 	const int threadsPerBlock = 256;
 
 	size_t elements;
 
-	float* h_A;
-	float* h_B;
-	float* h_C;
+	T* h_A;
+	T* h_B;
+	T* h_C;
 
 	CUdeviceptr d_A;
 	CUdeviceptr d_B;
 	CUdeviceptr d_C;
 
 public:
-	DotProductFloatOperation(size_t e) :
+	DotProductOperation(size_t e) :
 		elements(e),
 		h_A(nullptr), h_B(nullptr), h_C(nullptr),
 		d_A(0), d_B(0), d_C(0)

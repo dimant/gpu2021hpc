@@ -40,7 +40,7 @@ void dotProduct()
     cudaModule.Init();
     cudaModule.Compile(kernelFile);
 
-    DotProductFloatOperation dotProductOperation(1234);
+    DotProductOperation<float> dotProductOperation(1234);
 
     CUfunction dotProduct = cudaModule.GetFunction("dotProductFloat");
     dotProductOperation.Process(dotProduct);
