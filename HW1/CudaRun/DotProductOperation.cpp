@@ -88,7 +88,7 @@ void DotProductOperation<T>::Launch()
     dim3 blockSize(threadsPerBlock);
     dim3 gridSize(blocksPerGrid);
 
-    void* args[5] = { &d_A, &d_B, &d_C, &elements };
+    void* args[4] = { &d_A, &d_B, &d_C, &elements };
     checkCudaError(cuLaunchKernel(GetFunction(),
         gridSize.x, gridSize.y, gridSize.z,
         blockSize.x, blockSize.y, blockSize.z,

@@ -30,6 +30,9 @@
     <ClCompile Include="DotProductOperation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DgemvOperation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cuda_util.h">
@@ -47,12 +50,18 @@
     <ClInclude Include="DotProductOperation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DgemvOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="matAdd.cu">
       <Filter>Source Files</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="dotProduct.cu">
+      <Filter>Source Files</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="dgemv.cu">
       <Filter>Source Files</Filter>
     </CopyFileToFolders>
   </ItemGroup>

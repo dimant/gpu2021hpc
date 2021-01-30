@@ -51,9 +51,9 @@ void MatAddOperation::CopyToDevice()
 
 void MatAddOperation::Launch()
 {
-    unsigned int threads = 1;
+    unsigned int threads = 32;
     dim3 blockSize(threads, threads);
-    dim3 gridSize(1, 1);
+    dim3 gridSize(4, 4);
 
     int inrows = (int)nrows;
     int incols = (int)ncols;
@@ -62,8 +62,7 @@ void MatAddOperation::Launch()
     checkCudaError(cuLaunchKernel(GetFunction(),
         gridSize.x, gridSize.y, gridSize.z,
         blockSize.x, blockSize.y, blockSize.z,
-        threads * threads * sizeof(float),
-        NULL, args, NULL));
+        0, NULL, args, NULL));
 }
 
 void MatAddOperation::CopyFromDevice()
