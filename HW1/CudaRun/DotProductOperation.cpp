@@ -14,11 +14,11 @@ void DotProductOperation<T>::AllocateHost()
 {
     h_A = (T*)malloc(elements * sizeof(T));
     h_B = (T*)malloc(elements * sizeof(T));
-    h_C = (T*)malloc(threadsPerBlock * sizeof(T));
+    h_C = (float*)malloc(blocksPerGrid * sizeof(float));
 
     if (h_C != nullptr)
     {
-        h_C = (T*)memset(h_C, 0, threadsPerBlock * sizeof(T));
+        h_C = (float*)memset(h_C, 0, blocksPerGrid * sizeof(float));
     }
 
     if (h_A == nullptr || h_B == nullptr || h_C == nullptr)
@@ -33,8 +33,8 @@ void DotProductOperation<T>::AllocateDevice()
 {
     checkCudaError(cuMemAlloc(&d_A, elements * sizeof(T)));
     checkCudaError(cuMemAlloc(&d_B, elements * sizeof(T)));
-    checkCudaError(cuMemAlloc(&d_C, threadsPerBlock * sizeof(T)));
-    checkCudaError(cuMemsetD8(d_C, 0, threadsPerBlock * sizeof(T)));
+    checkCudaError(cuMemAlloc(&d_C, threadsPerBlock * sizeof(float)));
+    checkCudaError(cuMemsetD8(d_C, 0, threadsPerBlock * sizeof(float)));
 }
 
 template <>
@@ -86,7 +86,7 @@ template <class T>
 void DotProductOperation<T>::Launch()
 {
     dim3 blockSize(threadsPerBlock);
-    dim3 gridSize(1);
+    dim3 gridSize(blocksPerGrid);
 
     void* args[5] = { &d_A, &d_B, &d_C, &elements };
     checkCudaError(cuLaunchKernel(GetFunction(),
@@ -99,22 +99,60 @@ void DotProductOperation<T>::Launch()
 template <class T>
 void DotProductOperation<T>::CopyFromDevice()
 {
-    checkCudaError(cuMemcpyDtoH(reinterpret_cast<void*>(h_C), d_C, threadsPerBlock * sizeof(T)));
+    checkCudaError(cuMemcpyDtoH(reinterpret_cast<void*>(h_C), d_C, blocksPerGrid * sizeof(float)));
 
-    for (int i = 1; i < threadsPerBlock; i++)
+    for (int i = 1; i < blocksPerGrid; i++)
     {
         h_C[0] += h_C[i];
     }
 }
 
-template <class T>
-void DotProductOperation<T>::VerifyResult()
+template <>
+void DotProductOperation<float>::VerifyResult()
 {
     float c = 0.0;
 
     for (int i = 0; i < elements; i++)
     {
         c += h_A[i] * h_B[i];
+    }
+
+    if (fabs(h_C[0] - c) > 1e-5)
+    {
+        fprintf(stderr, "Result verification failed!\n");
+        exit(EXIT_FAILURE);
+    }
+}
+
+template <>
+void DotProductOperation<float2>::VerifyResult()
+{
+    float c = 0.0;
+
+    for (int i = 0; i < elements; i++)
+    {
+        c += h_A[i].x * h_B[i].x;
+        c += h_A[i].y * h_B[i].y;
+    }
+
+    if (fabs(h_C[0] - c) > 1e-5)
+    {
+        fprintf(stderr, "Result verification failed!\n");
+        exit(EXIT_FAILURE);
+    }
+}
+
+template <>
+void DotProductOperation<float4>::VerifyResult()
+{
+    float c = 0.0;
+
+    for (int i = 0; i < elements; i++)
+    {
+        c += h_A[i].x * h_B[i].x;
+        c += h_A[i].y * h_B[i].y;
+        c += h_A[i].z * h_B[i].z;
+        c += h_A[i].w * h_B[i].w;
     }
 
     if (fabs(h_C[0] - c) > 1e-5)

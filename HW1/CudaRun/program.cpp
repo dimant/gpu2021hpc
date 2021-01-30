@@ -4,6 +4,8 @@
 #include "MatAddOperation.h"
 #include "DotProductOperation.h"
 
+#include <device_launch_parameters.h>
+
 void matAdd()
 {
     const char* kernelFile = "matAdd.cu";
@@ -40,15 +42,25 @@ void dotProduct()
     cudaModule.Init();
     cudaModule.Compile(kernelFile);
 
-    DotProductOperation<float> dotProductOperation(1234);
+    DotProductOperation<float> dotProductFloatOperation(1234);
+    CUfunction dotProductFloat = cudaModule.GetFunction("dotProductFloat");
+    dotProductFloatOperation.Process(dotProductFloat);
+    std::cout << "test passed: dotProduct float" << std::endl;
 
-    CUfunction dotProduct = cudaModule.GetFunction("dotProductFloat");
-    dotProductOperation.Process(dotProduct);
-    std::cout << "test passed: dotProductFloat" << std::endl;
+    DotProductOperation<float2> dotProductFloat2Operation(1234);
+    CUfunction dotProductFloat2 = cudaModule.GetFunction("dotProductFloat2");
+    dotProductFloat2Operation.Process(dotProductFloat2);
+    std::cout << "test passed: dotProduct float2" << std::endl;
+
+    DotProductOperation<float4> dotProductFloat4Operation(1234);
+    CUfunction dotProductFloat4 = cudaModule.GetFunction("dotProductFloat4");
+    dotProductFloat4Operation.Process(dotProductFloat4);
+    std::cout << "test passed: dotProduct float4" << std::endl;
 }
 
 int main(int argc, char** argv)
 {
+    matAdd();
     dotProduct();
 
     return 0;

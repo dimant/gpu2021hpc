@@ -8,12 +8,13 @@ class DotProductOperation : public CudaOperation
 {
 private:
 	const int threadsPerBlock = 256;
+	const int blocksPerGrid = 4;
 
 	size_t elements;
 
 	T* h_A;
 	T* h_B;
-	T* h_C;
+	float* h_C;
 
 	CUdeviceptr d_A;
 	CUdeviceptr d_B;
