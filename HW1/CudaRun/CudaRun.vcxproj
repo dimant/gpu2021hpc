@@ -89,11 +89,16 @@
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CudaModule.cpp" />
     <ClCompile Include="cuda_util.cpp" />
+    <ClCompile Include="MatAddOperation.cpp" />
     <ClCompile Include="program.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CudaModule.h" />
+    <ClInclude Include="CudaOperation.h" />
     <ClInclude Include="cuda_util.h" />
+    <ClInclude Include="MatAddOperation.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="matAdd.cu">
