@@ -91,6 +91,7 @@
   <ItemGroup>
     <ClCompile Include="CudaModule.cpp" />
     <ClCompile Include="cuda_util.cpp" />
+    <ClCompile Include="DotProductOperation.cpp" />
     <ClCompile Include="MatAddOperation.cpp" />
     <ClCompile Include="program.cpp" />
   </ItemGroup>
@@ -98,6 +99,7 @@
     <ClInclude Include="CudaModule.h" />
     <ClInclude Include="CudaOperation.h" />
     <ClInclude Include="cuda_util.h" />
+    <ClInclude Include="DotProductOperation.h" />
     <ClInclude Include="MatAddOperation.h" />
   </ItemGroup>
   <ItemGroup>
@@ -105,7 +107,9 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
       <FileType>Document</FileType>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="vectorAdd.cu">
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="dotProduct.cu">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
       <FileType>Document</FileType>
     </CopyFileToFolders>

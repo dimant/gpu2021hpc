@@ -55,7 +55,10 @@ void MatAddOperation::Launch()
     dim3 blockSize(threads, threads);
     dim3 gridSize(1, 1);
 
-    void* args[5] = { &d_A, &d_B, &d_C, &nrows, &ncols };
+    int inrows = (int)nrows;
+    int incols = (int)ncols;
+
+    void* args[5] = { &d_A, &d_B, &d_C, &inrows, &incols };
     checkCudaError(cuLaunchKernel(GetFunction(),
         gridSize.x, gridSize.y, gridSize.z,
         blockSize.x, blockSize.y, blockSize.z,

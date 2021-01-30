@@ -42,5 +42,4 @@ void CudaModule::Compile(const char* kernelFile)
     checkCudaError(cuModuleLoadData(&cuModule, cubinResult));
 
     delete[] cubinResult;
-
 }

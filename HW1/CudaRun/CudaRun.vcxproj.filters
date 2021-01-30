@@ -27,6 +27,9 @@
     <ClCompile Include="MatAddOperation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DotProductOperation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cuda_util.h">
@@ -41,12 +44,15 @@
     <ClInclude Include="MatAddOperation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DotProductOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="matAdd.cu">
       <Filter>Source Files</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="vectorAdd.cu">
+    <CopyFileToFolders Include="dotProduct.cu">
       <Filter>Source Files</Filter>
     </CopyFileToFolders>
   </ItemGroup>
