@@ -26,6 +26,10 @@ extern "C" __global__ void matAdd(const float* A, const float* B, float* C, size
     }
 }
 
+/// <summary>
+/// row-wise matrix addition.
+/// It is row-wise because every thread iterates over each column of a single row.
+/// </summary>
 extern "C" __global__ void matAddRow(const float* A, const float* B, float* C, size_t nrows, size_t ncols)
 {
     int stridey = blockDim.y * gridDim.y;
@@ -40,6 +44,10 @@ extern "C" __global__ void matAddRow(const float* A, const float* B, float* C, s
     }
 }
 
+/// <summary>
+/// col-wose matrix addition.
+/// It is col-wise because every thread iterates over each row of a single column.
+/// </summary>
 extern "C" __global__ void matAddCol(const float* A, const float* B, float* C, size_t nrows, size_t ncols)
 {
     int stridex = blockDim.x * gridDim.x;

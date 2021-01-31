@@ -6,12 +6,14 @@
 class CudaOperation
 {
 private:
+
 	CUfunction cuFunction;
 
 public:
 	CudaOperation() :
 		cuFunction(nullptr)
 	{
+
 	}
 
 	void SetFunction(CUfunction cuF)
@@ -24,18 +26,8 @@ public:
 		return cuFunction;
 	}
 
-	void Process(CUfunction cuFunction)
-	{
-		SetFunction(cuFunction);
-		AllocateHost();
-		AllocateDevice();
-		InitData();
-		CopyToDevice();
-		Launch();
-		CopyFromDevice();
-		VerifyResult();
-		FreeResources();
-	}
+
+	void Process(CUfunction cuFunction);
 
 	virtual void AllocateHost() = 0;
 	virtual void AllocateDevice() = 0;

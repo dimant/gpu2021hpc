@@ -17,7 +17,7 @@ void matAdd()
 
     cudaModule.Compile(kernelFile);
 
-    MatAddOperation matAddOperation(1024, 1024);
+    MatAddOperation matAddOperation(4096, 4096);
 
     matAdd = cudaModule.GetFunction("matAdd");
     matAddOperation.Process(matAdd);
@@ -47,17 +47,17 @@ void dotProduct()
 
     cudaModule.Compile(kernelFile);
 
-    DotProductOperation<float> dotProductFloatOperation(1024);
+    DotProductOperation<float> dotProductFloatOperation(4096);
     dotProduct = cudaModule.GetFunction("dotProductFloat");
     dotProductFloatOperation.Process(dotProduct);
     std::cout << "test passed: dotProduct float" << std::endl;
 
-    DotProductOperation<float2> dotProductFloat2Operation(1234);
+    DotProductOperation<float2> dotProductFloat2Operation(4096);
     dotProduct = cudaModule.GetFunction("dotProductFloat2");
     dotProductFloat2Operation.Process(dotProduct);
     std::cout << "test passed: dotProduct float2" << std::endl;
 
-    DotProductOperation<float4> dotProductFloat4Operation(1234);
+    DotProductOperation<float4> dotProductFloat4Operation(4096);
     dotProduct = cudaModule.GetFunction("dotProductFloat4");
     dotProductFloat4Operation.Process(dotProduct);
     std::cout << "test passed: dotProduct float4" << std::endl;
@@ -73,7 +73,7 @@ void dgemvOperation()
 
     cudaModule.Compile(kernelFile);
 
-    DgemvOperation dgemvOperation(1024, 1024);
+    DgemvOperation dgemvOperation(4096, 4096*2);
     dgemv = cudaModule.GetFunction("dgemv");
     dgemvOperation.Process(dgemv);
     std::cout << "test passed: dgemv" << std::endl;

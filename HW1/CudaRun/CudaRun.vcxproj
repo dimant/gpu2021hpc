@@ -90,6 +90,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CudaModule.cpp" />
+    <ClCompile Include="CudaOperation.cpp" />
     <ClCompile Include="cuda_util.cpp" />
     <ClCompile Include="DgemvOperation.cpp" />
     <ClCompile Include="DotProductOperation.cpp" />
