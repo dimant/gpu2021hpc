@@ -121,6 +121,9 @@
     <CopyFileToFolders Include="dgemv.cl">
       <Filter>Source Files</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="dotProduct.cl">
+      <Filter>Source Files</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
     <None Include="MatAddOpenCL.h">

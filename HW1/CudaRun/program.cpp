@@ -7,6 +7,7 @@
 #include "MatAddOpenCL.h"
 
 #include "DotProductCuda.h"
+#include "DotProductOpenCL.h"
 
 #include "DgemvCuda.h"
 #include "DgemvOpenCL.h"
@@ -117,14 +118,40 @@ void dgemvOpenCL()
     std::cout << "OpenCL test passed: dgemv" << std::endl;
 }
 
+void dotProductOpenCL()
+{
+    OpenCLModule openclModule;
+    openclModule.Init();
+
+    const char* kernelFile = "dotProduct.cl";
+
+    openclModule.Compile(kernelFile);
+
+    DotProductOpenCL<float> dotProductFloatOperation(16777216);
+    OpenCLContext context = openclModule.GetContext("dotProductFloat");
+    dotProductFloatOperation.Process(context);
+    std::cout << "OpenCL test passed: dotProductFloat" << std::endl;
+
+    DotProductOpenCL<cl_float2> dotProductFloat2Operation(16777216);
+    context = openclModule.GetContext("dotProductFloat2");
+    dotProductFloat2Operation.Process(context);
+    std::cout << "OpenCL test passed: dotProductFloat2" << std::endl;
+
+    DotProductOpenCL<cl_float4> dotProductFloat4Operation(16777216);
+    context = openclModule.GetContext("dotProductFloat4");
+    dotProductFloat4Operation.Process(context);
+    std::cout << "OpenCL test passed: dotProductFloat4" << std::endl;
+}
+
 int main(int argc, char** argv)
 {
-    //matAddCuda();
-    //dotProductCuda();
-    //dgemvCuda();
+    matAddCuda();
+    dotProductCuda();
+    dgemvCuda();
 
-    //matAddOpenCL();
-    //dgemvOpenCL();
+    matAddOpenCL();
+    dgemvOpenCL();
+    dotProductOpenCL();
 
     return 0;
 }
