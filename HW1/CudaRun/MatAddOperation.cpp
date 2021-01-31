@@ -55,14 +55,29 @@ void MatAddOperation::Launch()
     dim3 blockSize(threads, threads);
     dim3 gridSize(4, 4);
 
-    int inrows = (int)nrows;
-    int incols = (int)ncols;
+    int offset = 0;
+    char argBuffer[256];
 
-    void* args[5] = { &d_A, &d_B, &d_C, &inrows, &incols };
+    *(reinterpret_cast<CUdeviceptr*>(&argBuffer[offset])) = d_A;
+    offset += sizeof(d_A);
+    *(reinterpret_cast<CUdeviceptr*>(&argBuffer[offset])) = d_B;
+    offset += sizeof(d_B);
+    *(reinterpret_cast<CUdeviceptr*>(&argBuffer[offset])) = d_C;
+    offset += sizeof(d_C);
+
+    *(reinterpret_cast<CUdeviceptr*>(&argBuffer[offset])) = nrows;
+    offset += sizeof(nrows);
+    *(reinterpret_cast<CUdeviceptr*>(&argBuffer[offset])) = ncols;
+    offset += sizeof(ncols);
+
+    void* config[5] = { CU_LAUNCH_PARAM_BUFFER_POINTER, argBuffer,
+                                     CU_LAUNCH_PARAM_BUFFER_SIZE, &offset,
+                                     CU_LAUNCH_PARAM_END };
+
     checkCudaError(cuLaunchKernel(GetFunction(),
         gridSize.x, gridSize.y, gridSize.z,
         blockSize.x, blockSize.y, blockSize.z,
-        0, NULL, args, NULL));
+        0, NULL, NULL, reinterpret_cast<void**>(&config)));
 }
 
 void MatAddOperation::CopyFromDevice()

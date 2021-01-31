@@ -88,12 +88,28 @@ void DotProductOperation<T>::Launch()
     dim3 blockSize(threadsPerBlock);
     dim3 gridSize(blocksPerGrid);
 
-    void* args[4] = { &d_A, &d_B, &d_C, &elements };
+    int offset = 0;
+    char argBuffer[256];
+
+    *(reinterpret_cast<CUdeviceptr*>(&argBuffer[offset])) = d_A;
+    offset += sizeof(d_A);
+    *(reinterpret_cast<CUdeviceptr*>(&argBuffer[offset])) = d_B;
+    offset += sizeof(d_B);
+    *(reinterpret_cast<CUdeviceptr*>(&argBuffer[offset])) = d_C;
+    offset += sizeof(d_C);
+
+    *(reinterpret_cast<CUdeviceptr*>(&argBuffer[offset])) = elements;
+    offset += sizeof(elements);
+
+    void* config[5] = { CU_LAUNCH_PARAM_BUFFER_POINTER, argBuffer,
+                                     CU_LAUNCH_PARAM_BUFFER_SIZE, &offset,
+                                     CU_LAUNCH_PARAM_END };
+
     checkCudaError(cuLaunchKernel(GetFunction(),
         gridSize.x, gridSize.y, gridSize.z,
         blockSize.x, blockSize.y, blockSize.z,
         threadsPerBlock * 2 * sizeof(T),
-        NULL, args, NULL));
+        NULL, NULL, reinterpret_cast<void**>(&config)));
 }
 
 template <class T>

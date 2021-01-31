@@ -11,7 +11,7 @@
 // It’s necessary to think about what adjacent threads in a warp are doing instruction - by - 
 // instruction, in order to understand coalescing.
 
-extern "C" __global__ void matAdd(const float* A, const float* B, float* C, int nrows, int ncols)
+extern "C" __global__ void matAdd(const float* A, const float* B, float* C, size_t nrows, size_t ncols)
 {
     int stridex = blockDim.x * gridDim.x;
     int stridey = blockDim.y * gridDim.y;
@@ -26,7 +26,7 @@ extern "C" __global__ void matAdd(const float* A, const float* B, float* C, int 
     }
 }
 
-extern "C" __global__ void matAddRow(const float* A, const float* B, float* C, int nrows, int ncols)
+extern "C" __global__ void matAddRow(const float* A, const float* B, float* C, size_t nrows, size_t ncols)
 {
     int stridey = blockDim.y * gridDim.y;
 
@@ -40,7 +40,7 @@ extern "C" __global__ void matAddRow(const float* A, const float* B, float* C, i
     }
 }
 
-extern "C" __global__ void matAddCol(const float* A, const float* B, float* C, int nrows, int ncols)
+extern "C" __global__ void matAddCol(const float* A, const float* B, float* C, size_t nrows, size_t ncols)
 {
     int stridex = blockDim.x * gridDim.x;
 

@@ -62,20 +62,57 @@ void DgemvOperation::CopyToDevice()
     checkCudaError(cuMemcpyHtoD(d_y, h_y, rows * sizeof(double)));
 }
 
+#define ALIGN_UP(offset, alignment) (offset) = ((offset) + (alignment) - 1) & ~((alignment) - 1)
+
 void DgemvOperation::Launch()
 {
     unsigned int threads = 256;
     dim3 blockSize(threads);
     dim3 gridSize(4);
 
-    int irows = (int)rows;
-    int icols = (int)cols;
+    int offset = 0;
+    char argBuffer[1024];
 
-    void* args[8] = { &alpha, &d_A, &d_x, &beta, &d_y, &d_z, &irows, &icols };
+    ALIGN_UP(offset, __alignof(double));
+    memcpy(argBuffer + offset, &(alpha), sizeof(alpha));
+    offset += sizeof(alpha);
+
+    ALIGN_UP(offset, __alignof(CUdeviceptr));
+    memcpy(argBuffer + offset, &(d_A), sizeof(d_A));
+    offset += sizeof(d_A);
+
+    ALIGN_UP(offset, __alignof(CUdeviceptr));
+    memcpy(argBuffer + offset, &(d_x), sizeof(d_x));
+    offset += sizeof(d_x);
+
+    ALIGN_UP(offset, __alignof(double));
+    memcpy(argBuffer + offset, &(beta), sizeof(beta));
+    offset += sizeof(beta);
+
+    ALIGN_UP(offset, __alignof(CUdeviceptr));
+    memcpy(argBuffer + offset, &(d_y), sizeof(d_y));
+    offset += sizeof(d_y);
+
+    ALIGN_UP(offset, __alignof(CUdeviceptr));
+    memcpy(argBuffer + offset, &(d_z), sizeof(d_z));
+    offset += sizeof(d_z);
+
+    ALIGN_UP(offset, __alignof(size_t));
+    memcpy(argBuffer + offset, &(rows), sizeof(rows));
+    offset += sizeof(rows);
+
+    ALIGN_UP(offset, __alignof(size_t));
+    memcpy(argBuffer + offset, &(cols), sizeof(cols));
+    offset += sizeof(cols);
+
+    void* config[5] = { CU_LAUNCH_PARAM_BUFFER_POINTER, argBuffer,
+                                     CU_LAUNCH_PARAM_BUFFER_SIZE, &offset,
+                                     CU_LAUNCH_PARAM_END };
+
     checkCudaError(cuLaunchKernel(GetFunction(),
         gridSize.x, gridSize.y, gridSize.z,
         blockSize.x, blockSize.y, blockSize.z,
-        0, NULL, args, NULL));
+        0, NULL, NULL, reinterpret_cast<void**>(&config)));
 }
 
 void DgemvOperation::CopyFromDevice()

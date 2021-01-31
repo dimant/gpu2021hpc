@@ -1,4 +1,11 @@
-extern "C" __global__ void dgemv(const double alpha, const double* A, const double* x, const double beta, const double* y, double* z, int rows, int cols)
+extern "C" __global__ void dgemv(
+    const double alpha,
+    const double* A,
+    const double* x,
+    const double beta,
+    const double* y,
+    double* z,
+    size_t rows, size_t cols)
 {
     int stride = blockDim.x * gridDim.x;
     double buf;
