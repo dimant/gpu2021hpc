@@ -8,7 +8,7 @@ class DotProductOperation : public CudaOperation
 {
 private:
 	const int threadsPerBlock = 256;
-	const int blocksPerGrid = 4;
+	const int blocksPerGrid = 16;
 
 	size_t elements;
 

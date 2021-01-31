@@ -47,17 +47,17 @@ void dotProduct()
 
     cudaModule.Compile(kernelFile);
 
-    DotProductOperation<float> dotProductFloatOperation(4096);
+    DotProductOperation<float> dotProductFloatOperation(16777216);
     dotProduct = cudaModule.GetFunction("dotProductFloat");
     dotProductFloatOperation.Process(dotProduct);
     std::cout << "test passed: dotProduct float" << std::endl;
 
-    DotProductOperation<float2> dotProductFloat2Operation(4096);
+    DotProductOperation<float2> dotProductFloat2Operation(16777216);
     dotProduct = cudaModule.GetFunction("dotProductFloat2");
     dotProductFloat2Operation.Process(dotProduct);
     std::cout << "test passed: dotProduct float2" << std::endl;
 
-    DotProductOperation<float4> dotProductFloat4Operation(4096);
+    DotProductOperation<float4> dotProductFloat4Operation(16777216);
     dotProduct = cudaModule.GetFunction("dotProductFloat4");
     dotProductFloat4Operation.Process(dotProduct);
     std::cout << "test passed: dotProduct float4" << std::endl;
@@ -81,7 +81,6 @@ void dgemvOperation()
 
 int main(int argc, char** argv)
 {
-
     matAdd();
     dotProduct();
     dgemvOperation();

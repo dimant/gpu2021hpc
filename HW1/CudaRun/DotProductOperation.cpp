@@ -1,6 +1,7 @@
 #include "DotProductOperation.h"
 
 #include <iostream>
+#include <math.h>
 
 #include <device_launch_parameters.h>
 #include "cuda_util.h"
@@ -43,7 +44,7 @@ void DotProductOperation<float>::InitData()
     for (int i = 0; i < elements; i++)
     {
         h_A[i] = 1.0f;
-        h_B[i] = (float) i;
+        h_B[i] = log(float(i));
     }
 }
 
@@ -54,8 +55,8 @@ void DotProductOperation<float2>::InitData()
     {
         h_A[i].x = 1.0f;
         h_A[i].y = 1.0f;
-        h_B[i].x = (float)i;
-        h_B[i].y = (float)i;
+        h_B[i].x = log(float(i));
+        h_B[i].y = log(float(i));
     }
 }
 
@@ -68,10 +69,10 @@ void DotProductOperation<float4>::InitData()
         h_A[i].y = 1.0f;
         h_A[i].z = 1.0f;
         h_A[i].w = 1.0f;
-        h_B[i].x = (float)i;
-        h_B[i].y = (float)i;
-        h_B[i].z = (float)i;
-        h_B[i].w = (float)i;
+        h_B[i].x = log(float(i));
+        h_B[i].y = log(float(i));
+        h_B[i].z = log(float(i));
+        h_B[i].w = log(float(i));
     }
 }
 
@@ -135,7 +136,7 @@ void DotProductOperation<float>::VerifyResult()
 
     if (fabs(h_C[0] - c) > 1e-5)
     {
-        fprintf(stderr, "Result verification failed!\n");
+        fprintf(stderr, "Result verification failed! %f != %f\n", c, h_C[0]);
         exit(EXIT_FAILURE);
     }
 }
