@@ -4,6 +4,8 @@
 #include <string>
 #include <cuda.h>
 
+#define ALIGN_UP(offset, alignment) (offset) = ((offset) + (alignment) - 1) & ~((alignment) - 1)
+
 std::string readFile(const char* fileName);
 
 // Sets the current working directory to be the same as the directory

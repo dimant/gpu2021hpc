@@ -62,8 +62,6 @@ void DgemvOperation::CopyToDevice()
     checkCudaError(cuMemcpyHtoD(d_y, h_y, rows * sizeof(double)));
 }
 
-#define ALIGN_UP(offset, alignment) (offset) = ((offset) + (alignment) - 1) & ~((alignment) - 1)
-
 void DgemvOperation::Launch()
 {
     unsigned int threads = 256;
