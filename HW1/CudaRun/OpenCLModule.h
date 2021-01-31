@@ -10,6 +10,9 @@
 /// <summary>
 /// Porting between CUDA and OpenCL:
 /// https://www.sharcnet.ca/help/index.php/Porting_CUDA_to_OpenCL
+/// 
+/// opencl spec:
+/// https://www.khronos.org/registry/OpenCL/specs/opencl-1.2.pdf
 /// </summary>
 
 struct OpenCLContext
