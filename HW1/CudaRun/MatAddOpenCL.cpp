@@ -25,11 +25,14 @@ void MatAddOpenCL::Launch()
 {
     cl_int err;
 
+    cl_uint cl_nrows = (cl_uint)nrows;
+    cl_uint cl_ncols = (cl_uint)ncols;
+
     clChkErr(clSetKernelArg(GetContext().kernel, 0, sizeof(cl_mem), &d_A));
     clChkErr(clSetKernelArg(GetContext().kernel, 1, sizeof(cl_mem), &d_B));
     clChkErr(clSetKernelArg(GetContext().kernel, 2, sizeof(cl_mem), &d_C));
-    clChkErr(clSetKernelArg(GetContext().kernel, 3, sizeof(nrows), &nrows));
-    clChkErr(clSetKernelArg(GetContext().kernel, 4, sizeof(ncols), &ncols));
+    clChkErr(clSetKernelArg(GetContext().kernel, 3, sizeof(cl_nrows), &cl_nrows));
+    clChkErr(clSetKernelArg(GetContext().kernel, 4, sizeof(cl_ncols), &cl_ncols));
 
     size_t globalSize[3] = { 128, 128, 0 }; // grid size
     size_t localSize[3] = { 8, 8, 0 }; // block size

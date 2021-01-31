@@ -21,7 +21,7 @@ void OpenCLModule::Init()
 
     char cBuffer[1024];
 
-    int selectedPlatform = 1;
+    int selectedPlatform = 0;
     clChkErr(clGetPlatformInfo(clSelectedPlatformIDs[selectedPlatform], CL_PLATFORM_NAME, sizeof(cBuffer), cBuffer, NULL));
     std::cout << "Platform " << selectedPlatform << ": " << cBuffer << std::endl;
 

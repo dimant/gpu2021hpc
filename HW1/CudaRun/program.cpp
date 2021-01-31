@@ -42,10 +42,19 @@ void matAddOpenCL()
 
     openclModule.Compile(kernelFile);
 
-    MatAddOpenCL matAddOperation(10, 10);
+    MatAddOpenCL matAddOperation(4096, 4096);
     OpenCLContext context = openclModule.GetContext("matAdd");
     matAddOperation.Process(context);
     std::cout << "OpenCL test passed: matAdd" << std::endl;
+
+    context = openclModule.GetContext("matAddRow");
+    matAddOperation.Process(context);
+    std::cout << "OpenCL test passed: matAddRow" << std::endl;
+
+    context = openclModule.GetContext("matAddCol");
+    matAddOperation.Process(context);
+    std::cout << "OpenCL test passed: matAddCol" << std::endl;
+
 }
 
 void dotProductCuda()
