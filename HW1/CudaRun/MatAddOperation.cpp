@@ -105,11 +105,15 @@ void MatAddOperation::VerifyResult()
     }
 }
 
-void MatAddOperation::FreeResources()
+void MatAddOperation::FreeHost()
 {
     free(h_A);
     free(h_B);
     free(h_C);
+}
+
+void MatAddOperation::FreeDevice()
+{
     checkCudaError(cuMemFree(d_A));
     checkCudaError(cuMemFree(d_B));
     checkCudaError(cuMemFree(d_C));

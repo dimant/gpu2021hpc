@@ -180,11 +180,16 @@ void DotProductOperation<float4>::VerifyResult()
 }
 
 template <class T>
-void DotProductOperation<T>::FreeResources()
+void DotProductOperation<T>::FreeHost()
 {
     free(h_A);
     free(h_B);
     free(h_C);
+}
+
+template <class T>
+void DotProductOperation<T>::FreeDevice()
+{
     checkCudaError(cuMemFree(d_A));
     checkCudaError(cuMemFree(d_B));
     checkCudaError(cuMemFree(d_C));

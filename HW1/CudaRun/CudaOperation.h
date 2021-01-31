@@ -36,7 +36,8 @@ public:
 	virtual void Launch() = 0;
 	virtual void CopyFromDevice() = 0;
 	virtual void VerifyResult() = 0;
-	virtual void FreeResources() = 0;
+	virtual void FreeHost() = 0;
+	virtual void FreeDevice() = 0;
 };
 
 #endif

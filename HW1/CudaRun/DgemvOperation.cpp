@@ -148,12 +148,16 @@ void DgemvOperation::VerifyResult()
     delete[] z;
 }
 
-void DgemvOperation::FreeResources()
+void DgemvOperation::FreeHost()
 {
     free(h_A);
     free(h_x);
     free(h_y);
     free(h_z);
+}
+
+void DgemvOperation::FreeDevice()
+{
     checkCudaError(cuMemFree(d_A));
     checkCudaError(cuMemFree(d_x));
     checkCudaError(cuMemFree(d_y));

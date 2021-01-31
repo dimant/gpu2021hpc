@@ -47,6 +47,6 @@ void CudaOperation::Process(CUfunction cuFunction)
 	std::cout << "Execution duration: " << counterElapsed << "ms" << std::endl;
 
 	VerifyResult();
-	FreeResources();
-
+	FreeHost();
+	FreeDevice();
 }

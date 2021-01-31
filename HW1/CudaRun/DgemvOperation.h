@@ -40,7 +40,8 @@ public:
 	void Launch();
 	void CopyFromDevice();
 	void VerifyResult();
-	void FreeResources();
+	void FreeHost();
+	void FreeDevice();
 };
 
 #endif
