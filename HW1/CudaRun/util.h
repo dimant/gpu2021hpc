@@ -9,4 +9,6 @@ std::string readFile(const char* fileName);
 // containing the running executable.
 void setCwdToExeDir();
 
+void checkTolerance(double tolerance);
+
 #endif

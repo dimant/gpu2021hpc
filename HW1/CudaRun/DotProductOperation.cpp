@@ -5,6 +5,7 @@
 
 #include <device_launch_parameters.h>
 #include <CL/opencl.h>
+#include "util.h"
 
 template class DotProductOperation<float>;
 template class DotProductOperation<float2>;
@@ -37,7 +38,8 @@ void DotProductOperation<float>::InitData()
     for (int i = 0; i < elements; i++)
     {
         h_A[i] = 1.0f;
-        h_B[i] = log(float(i));
+        //h_B[i] = log(float(i + 1));
+        h_B[i] = 1.0f;
     }
 }
 
@@ -48,8 +50,8 @@ void DotProductOperation<float2>::InitData()
     {
         h_A[i].x = 1.0f;
         h_A[i].y = 1.0f;
-        h_B[i].x = log(float(i));
-        h_B[i].y = log(float(i));
+        h_B[i].x = log(float(i + 1));
+        h_B[i].y = log(float(i + 1));
     }
 }
 
@@ -62,13 +64,12 @@ void DotProductOperation<float4>::InitData()
         h_A[i].y = 1.0f;
         h_A[i].z = 1.0f;
         h_A[i].w = 1.0f;
-        h_B[i].x = log(float(i));
-        h_B[i].y = log(float(i));
-        h_B[i].z = log(float(i));
-        h_B[i].w = log(float(i));
+        h_B[i].x = log(float(i + 1));
+        h_B[i].y = log(float(i + 1));
+        h_B[i].z = log(float(i + 1));
+        h_B[i].w = log(float(i + 1));
     }
 }
-
 
 template<>
 void DotProductOperation<cl_float2>::InitData()
@@ -77,8 +78,8 @@ void DotProductOperation<cl_float2>::InitData()
     {
         h_A[i].x = 1.0f;
         h_A[i].y = 1.0f;
-        h_B[i].x = log(float(i));
-        h_B[i].y = log(float(i));
+        h_B[i].x = log(float(i + 1));
+        h_B[i].y = log(float(i + 1));
     }
 }
 
@@ -91,10 +92,10 @@ void DotProductOperation<cl_float4>::InitData()
         h_A[i].y = 1.0f;
         h_A[i].z = 1.0f;
         h_A[i].w = 1.0f;
-        h_B[i].x = log(float(i));
-        h_B[i].y = log(float(i));
-        h_B[i].z = log(float(i));
-        h_B[i].w = log(float(i));
+        h_B[i].x = log(float(i + 1));
+        h_B[i].y = log(float(i + 1));
+        h_B[i].z = log(float(i + 1));
+        h_B[i].w = log(float(i + 1));
     }
 }
 
@@ -108,11 +109,7 @@ void DotProductOperation<float>::VerifyResult()
         c += h_A[i] * h_B[i];
     }
 
-    if (fabs(h_C[0] - c) > 1e-5)
-    {
-        fprintf(stderr, "Result verification failed! %f != %f\n", c, h_C[0]);
-        exit(EXIT_FAILURE);
-    }
+    checkTolerance(fabs(h_C[0] - c));
 }
 
 template <>
@@ -126,11 +123,7 @@ void DotProductOperation<float2>::VerifyResult()
         c += h_A[i].y * h_B[i].y;
     }
 
-    if (fabs(h_C[0] - c) > 1e-5)
-    {
-        fprintf(stderr, "Result verification failed!\n");
-        exit(EXIT_FAILURE);
-    }
+    checkTolerance(fabs(h_C[0] - c));
 }
 
 template <>
@@ -146,11 +139,7 @@ void DotProductOperation<float4>::VerifyResult()
         c += h_A[i].w * h_B[i].w;
     }
 
-    if (fabs(h_C[0] - c) > 1e-5)
-    {
-        fprintf(stderr, "Result verification failed!\n");
-        exit(EXIT_FAILURE);
-    }
+    checkTolerance(fabs(h_C[0] - c));
 }
 
 
@@ -165,11 +154,7 @@ void DotProductOperation<cl_float2>::VerifyResult()
         c += h_A[i].y * h_B[i].y;
     }
 
-    if (fabs(h_C[0] - c) > 1e-5)
-    {
-        fprintf(stderr, "Result verification failed!\n");
-        exit(EXIT_FAILURE);
-    }
+    checkTolerance(fabs(h_C[0] - c));
 }
 
 template <>
@@ -185,11 +170,7 @@ void DotProductOperation<cl_float4>::VerifyResult()
         c += h_A[i].w * h_B[i].w;
     }
 
-    if (fabs(h_C[0] - c) > 1e-5)
-    {
-        fprintf(stderr, "Result verification failed!\n");
-        exit(EXIT_FAILURE);
-    }
+    checkTolerance(fabs(h_C[0] - c));
 }
 
 template <class T>

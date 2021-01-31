@@ -29,3 +29,15 @@ void setCwdToExeDir()
 
     SetCurrentDirectoryA(path);
 }
+
+void checkTolerance(double tolerance)
+{
+    if (tolerance > 1e-5)
+    {
+        fprintf(stderr, "Result verification failed: %4.3e > 1e-5\n", tolerance);
+    }
+    else
+    {
+        printf("Result tolerance: %4.3e\n", tolerance);
+    }
+}

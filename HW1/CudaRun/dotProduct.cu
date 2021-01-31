@@ -1,6 +1,6 @@
 const int threadsPerBlock = 256;
 
-extern "C" __global__ void dotProductFloat(const float* A, const float* B, float* C, int size)
+extern "C" __global__ void dotProductFloat(const float* A, const float* B, float* C, size_t size)
 {
 	__shared__ float sumBuffer[threadsPerBlock];
 
@@ -34,7 +34,7 @@ extern "C" __global__ void dotProductFloat(const float* A, const float* B, float
 	}
 }
 
-extern "C" __global__ void dotProductFloat2(const float2* A, const float2* B, float* C, int size)
+extern "C" __global__ void dotProductFloat2(const float2* A, const float2* B, float* C, size_t size)
 {
 	__shared__ float sumBuffer[threadsPerBlock];
 
@@ -69,7 +69,7 @@ extern "C" __global__ void dotProductFloat2(const float2* A, const float2* B, fl
 	}
 }
 
-extern "C" __global__ void dotProductFloat4(const float4 * A, const float4 * B, float* C, int size)
+extern "C" __global__ void dotProductFloat4(const float4 * A, const float4 * B, float* C, size_t size)
 {
 	__shared__ float sumBuffer[threadsPerBlock];
 

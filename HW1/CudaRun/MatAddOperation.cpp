@@ -1,9 +1,7 @@
 #include <iostream>
 
-#include <device_launch_parameters.h>
-
-#include "cuda_util.h"
 #include "MatAddOperation.h"
+#include "util.h"
 
 void MatAddOperation::AllocateHost()
 {
@@ -34,6 +32,8 @@ void MatAddOperation::InitData()
 
 void MatAddOperation::VerifyResult()
 {
+    double tolerance = DBL_MIN;
+
     for (int i = 0; i < nrows; i++)
     {
         for (int j = 0; j < ncols; j++)
@@ -41,13 +41,16 @@ void MatAddOperation::VerifyResult()
             double a = h_A[i * ncols + j];
             double b = h_B[i * ncols + j];
             double c = h_C[i * ncols + j];
-            if (fabs(a + b - c) > 1e-5)
+
+            double delta = fabs(a + b - c);
+            if (tolerance < delta)
             {
-                fprintf(stderr, "Result verification failed at element %d,%d!\n", i, j);
-                exit(EXIT_FAILURE);
+                tolerance = delta;
             }
         }
     }
+
+    checkTolerance(tolerance);
 }
 
 void MatAddOperation::FreeHost()

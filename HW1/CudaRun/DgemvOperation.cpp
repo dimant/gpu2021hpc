@@ -4,6 +4,7 @@
 
 #include <device_launch_parameters.h>
 #include "cuda_util.h"
+#include "util.h"
 
 void DgemvOperation::AllocateHost()
 {
@@ -64,14 +65,19 @@ void DgemvOperation::VerifyResult()
         z[row] = buf + beta * h_y[row];
     }
 
+    double tolerance = DBL_MIN;
+
     for (int i = 0; i < rows; i++)
     {
-        if (fabs(h_z[i] - z[i]) > 1e-5)
+        double delta = fabs(h_z[i] - z[i]);
+
+        if (tolerance < delta)
         {
-            fprintf(stderr, "Result verification failed!\n");
-            exit(EXIT_FAILURE);
+            tolerance = delta;
         }
     }
+
+    checkTolerance(tolerance);
 
     delete[] z;
 }
