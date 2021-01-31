@@ -36,6 +36,9 @@
     <ClCompile Include="DotProductCuda.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MatAddCuda.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cuda_util.h">
@@ -57,6 +60,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DotProductCuda.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MatAddCuda.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

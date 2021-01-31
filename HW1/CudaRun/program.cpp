@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "CudaModule.h"
-#include "MatAddOperation.h"
+#include "MatAddCuda.h"
 #include "DotProductCuda.h"
 #include "DgemvOperation.h"
 
@@ -17,7 +17,7 @@ void matAdd()
 
     cudaModule.Compile(kernelFile);
 
-    MatAddOperation matAddOperation(4096, 4096);
+    MatAddCuda matAddOperation(4096, 4096);
 
     matAdd = cudaModule.GetFunction("matAdd");
     matAddOperation.Process(matAdd);

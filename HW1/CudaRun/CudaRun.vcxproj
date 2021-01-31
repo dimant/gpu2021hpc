@@ -94,6 +94,7 @@
     <ClCompile Include="DgemvOperation.cpp" />
     <ClCompile Include="DotProductCuda.cpp" />
     <ClCompile Include="DotProductOperation.cpp" />
+    <ClCompile Include="MatAddCuda.cpp" />
     <ClCompile Include="MatAddOperation.cpp" />
     <ClCompile Include="program.cpp" />
   </ItemGroup>
@@ -104,6 +105,7 @@
     <ClInclude Include="cuda_util.h" />
     <ClInclude Include="DgemvOperation.h" />
     <ClInclude Include="DotProductOperation.h" />
+    <ClInclude Include="MatAddCuda.h" />
     <ClInclude Include="MatAddOperation.h" />
   </ItemGroup>
   <ItemGroup>
