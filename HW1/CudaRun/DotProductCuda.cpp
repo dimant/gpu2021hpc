@@ -9,6 +9,30 @@ template class DotProductCuda<float2>;
 template class DotProductCuda<float4>;
 
 template <class T>
+void DotProductCuda<T>::AllocateHost()
+{
+    DotProductOperation<T>::AllocateHost();
+}
+
+template <class T>
+void DotProductCuda<T>::InitData()
+{
+    DotProductOperation<T>::InitData();
+}
+
+template <class T>
+void DotProductCuda<T>::FreeHost()
+{
+    DotProductOperation<T>::FreeHost();
+}
+
+template <class T>
+void DotProductCuda<T>::VerifyResult()
+{
+    DotProductOperation<T>::VerifyResult();
+}
+
+template <class T>
 void DotProductCuda<T>::AllocateDevice()
 {
     checkCudaError(cuMemAlloc(&d_A, elements * sizeof(T)));

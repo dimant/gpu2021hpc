@@ -111,7 +111,7 @@ void dgemvOpenCL()
 
     openclModule.Compile(kernelFile);
 
-    DgemvOpenCL dgemvOperation(4096, 4096);
+    DgemvOpenCL dgemvOperation(4096, 4096 * 2);
     OpenCLContext context = openclModule.GetContext("dgemv");
     dgemvOperation.Process(context);
     std::cout << "OpenCL test passed: dgemv" << std::endl;
@@ -124,7 +124,7 @@ int main(int argc, char** argv)
     //dgemvCuda();
 
     //matAddOpenCL();
-    dgemvOpenCL();
+    //dgemvOpenCL();
 
     return 0;
 }

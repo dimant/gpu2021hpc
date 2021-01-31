@@ -1,16 +1,14 @@
-#ifndef DOTPRODUCTCUDA_H
-#define DOTPRODUCTCUDA_H
+#ifndef DOTPRODUCTOPENCL_H
+#define DOTPRODUCTOPENCL_H
 
-#include <cuda.h>
+#include <CL/opencl.h>
 
-#include "CudaModule.h"
+#include "OpenCLModule.h"
 #include "HpcOperation.h"
 #include "DotProductOperation.h"
 
-#include <device_launch_parameters.h>
-
 template <class T>
-class DotProductCuda: public HpcOperation<CudaContext>, public DotProductOperation<T>
+class DotProductOpenCL : public HpcOperation<OpenCLContext>, public DotProductOperation<T>
 {
 private:
 	using DotProductOperation<T>::elements;
@@ -18,15 +16,15 @@ private:
 	using DotProductOperation<T>::h_B;
 	using DotProductOperation<T>::h_C;
 
-	const int threadsPerBlock = 256;
-	const int blocksPerGrid = 16;
+	const size_t localSize = 16;
+	const size_t numGroups = 8;
 
-	CUdeviceptr d_A;
-	CUdeviceptr d_B;
-	CUdeviceptr d_C;
+	cl_mem d_A;
+	cl_mem d_B;
+	cl_mem d_C;
 
 public:
-	DotProductCuda(size_t e) :
+	DotProductOpenCL(size_t e) :
 		d_A(0), d_B(0), d_C(0), DotProductOperation<T>(e, 16)
 	{
 	}

@@ -95,6 +95,7 @@
     <ClCompile Include="DgemvOpenCL.cpp" />
     <ClCompile Include="DgemvOperation.cpp" />
     <ClCompile Include="DotProductCuda.cpp" />
+    <ClCompile Include="DotProductOpenCL.cpp" />
     <ClCompile Include="DotProductOperation.cpp" />
     <ClCompile Include="MatAddOpenCL.cpp" />
     <ClCompile Include="MatAddCuda.cpp" />
@@ -109,6 +110,7 @@
     <ClInclude Include="CudaModule.h" />
     <ClInclude Include="DgemvOpenCL.h" />
     <ClInclude Include="DotProductCuda.h" />
+    <ClInclude Include="DotProductOpenCL.h" />
     <ClInclude Include="HpcOperation.h" />
     <ClInclude Include="cuda_util.h" />
     <ClInclude Include="DgemvOperation.h" />
