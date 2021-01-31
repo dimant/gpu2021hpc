@@ -91,6 +91,8 @@
   <ItemGroup>
     <ClCompile Include="CudaModule.cpp" />
     <ClCompile Include="cuda_util.cpp" />
+    <ClCompile Include="DgemvCuda.cpp" />
+    <ClCompile Include="DgemvCuda.h" />
     <ClCompile Include="DgemvOperation.cpp" />
     <ClCompile Include="DotProductCuda.cpp" />
     <ClCompile Include="DotProductOperation.cpp" />

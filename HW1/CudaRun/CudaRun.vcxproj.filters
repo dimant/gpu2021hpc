@@ -39,6 +39,12 @@
     <ClCompile Include="MatAddCuda.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DgemvCuda.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DgemvCuda.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cuda_util.h">

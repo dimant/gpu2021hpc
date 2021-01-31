@@ -3,11 +3,11 @@
 #include "CudaModule.h"
 #include "MatAddCuda.h"
 #include "DotProductCuda.h"
-#include "DgemvOperation.h"
+#include "DgemvCuda.h"
 
 #include <device_launch_parameters.h>
 
-void matAdd()
+void matAddCuda()
 {
     CudaModule cudaModule;
     cudaModule.Init();
@@ -32,7 +32,7 @@ void matAdd()
     std::cout << "test passed: matAddCol" << std::endl;
 }
 
-void dotProduct()
+void dotProductCuda()
 {
     CudaModule cudaModule;
     cudaModule.Init();
@@ -63,7 +63,7 @@ void dotProduct()
     std::cout << "test passed: dotProduct float4" << std::endl;
 }
 
-void dgemvOperation()
+void dgemvCuda()
 {
     CudaModule cudaModule;
     cudaModule.Init();
@@ -73,7 +73,7 @@ void dgemvOperation()
 
     cudaModule.Compile(kernelFile);
 
-    DgemvOperation dgemvOperation(4096, 4096*2);
+    DgemvCuda dgemvOperation(4096, 4096*2);
     dgemv = cudaModule.GetFunction("dgemv");
     dgemvOperation.Process(dgemv);
     std::cout << "test passed: dgemv" << std::endl;
@@ -81,9 +81,9 @@ void dgemvOperation()
 
 int main(int argc, char** argv)
 {
-    matAdd();
-    dotProduct();
-    dgemvOperation();
+    matAddCuda();
+    dotProductCuda();
+    dgemvCuda();
 
     return 0;
 }
