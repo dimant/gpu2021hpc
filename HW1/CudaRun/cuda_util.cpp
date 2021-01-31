@@ -1,14 +1,12 @@
 #include "cuda_util.h"
 
 #include <iostream>
-#include <fstream>
-#include <streambuf>
 #include <string>
-
-#include <windows.h>
 
 #include <cuda.h>
 #include <nvrtc.h>
+
+#include "util.h"
 
 #define checkCudaError(err) __checkCudaError(err, __FILE__, __LINE__)
 void __checkCudaError(CUresult error, const char* file, const int line)
@@ -31,30 +29,6 @@ void __checkNvrtcError(nvrtcResult error, const char* file, const int line)
         fprintf(stderr, "%s:%d Error: %s\n", file, line, nvrtcGetErrorString(error));
         exit(EXIT_FAILURE);
     }
-}
-
-std::string readFile(const char* fileName)
-{
-    std::ifstream t(fileName);
-    std::string str((std::istreambuf_iterator<char>(t)),
-        std::istreambuf_iterator<char>());
-
-    return str;
-}
-
-void setCwdToExeDir()
-{
-    HMODULE hMod = GetModuleHandle(NULL);
-    char path[MAX_PATH];
-    GetModuleFileNameA(hMod, path, MAX_PATH);
-
-    // Find the last '\' or '/' and terminate the path there; it is now
-    // the directory containing the executable.
-    size_t i;
-    for (i = strlen(path) - 1; i > 0 && path[i] != '/' && path[i] != '\\'; --i);
-    path[i] = '\0';
-
-    SetCurrentDirectoryA(path);
 }
 
 void cudaCompileKernel(

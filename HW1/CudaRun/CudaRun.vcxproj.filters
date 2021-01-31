@@ -45,6 +45,15 @@
     <ClCompile Include="DgemvCuda.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ocl_util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenCLModule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cuda_util.h">
@@ -69,6 +78,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MatAddCuda.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenCLModule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ocl_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,9 @@
 #include "CudaModule.h"
 
+#include <iostream>
+
+#include "util.h"
+
 CUfunction CudaModule::GetFunction(const char* kernelName)
 {
     checkCudaError(cuModuleGetFunction(&cuFunction, cuModule, kernelName));

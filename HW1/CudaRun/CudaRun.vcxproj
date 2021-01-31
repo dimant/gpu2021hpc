@@ -61,7 +61,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies);cuda.lib;nvrtc.lib</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies);cuda.lib;nvrtc.lib;OpenCL.lib</AdditionalDependencies>
     </Link>
     <CudaCompile>
       <Include>$(CudaToolkitDir)/include</Include>
@@ -82,7 +82,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies);cuda.lib;nvrtc.lib</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies);cuda.lib;nvrtc.lib;OpenCL.lib</AdditionalDependencies>
     </Link>
     <CudaCompile>
       <Include>$(CudaToolkitDir)/include</Include>
@@ -92,15 +92,18 @@
     <ClCompile Include="CudaModule.cpp" />
     <ClCompile Include="cuda_util.cpp" />
     <ClCompile Include="DgemvCuda.cpp" />
-    <ClCompile Include="DgemvCuda.h" />
     <ClCompile Include="DgemvOperation.cpp" />
     <ClCompile Include="DotProductCuda.cpp" />
     <ClCompile Include="DotProductOperation.cpp" />
     <ClCompile Include="MatAddCuda.cpp" />
     <ClCompile Include="MatAddOperation.cpp" />
+    <ClCompile Include="ocl_util.cpp" />
+    <ClCompile Include="OpenCLModule.cpp" />
     <ClCompile Include="program.cpp" />
+    <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DgemvCuda.h" />
     <ClInclude Include="CudaModule.h" />
     <ClInclude Include="DotProductCuda.h" />
     <ClInclude Include="HpcOperation.h" />
@@ -109,6 +112,9 @@
     <ClInclude Include="DotProductOperation.h" />
     <ClInclude Include="MatAddCuda.h" />
     <ClInclude Include="MatAddOperation.h" />
+    <ClInclude Include="ocl_util.h" />
+    <ClInclude Include="OpenCLModule.h" />
+    <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="matAdd.cu">
