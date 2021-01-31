@@ -1,42 +1,33 @@
 #ifndef DOTPRODUCTOPERATION_H
 #define DOTPRODUCTOPERATION_H
 
-#include "CudaOperation.h"
+#include <cuda.h>
+
+#include "HpcOperation.h"
+
 
 template <class T>
-class DotProductOperation : public CudaOperation
+class DotProductOperation
 {
-private:
-	const int threadsPerBlock = 256;
-	const int blocksPerGrid = 16;
+protected:
+		size_t elements;
+		size_t outputSize;
 
-	size_t elements;
-
-	T* h_A;
-	T* h_B;
-	float* h_C;
-
-	CUdeviceptr d_A;
-	CUdeviceptr d_B;
-	CUdeviceptr d_C;
+		T* h_A;
+		T* h_B;
+		float* h_C;
 
 public:
-	DotProductOperation(size_t e) :
-		elements(e),
-		h_A(nullptr), h_B(nullptr), h_C(nullptr),
-		d_A(0), d_B(0), d_C(0)
+	DotProductOperation(size_t e, size_t os) :
+		elements(e), outputSize(os),
+		h_A(nullptr), h_B(nullptr), h_C(nullptr)
 	{
 	}
 
 	void AllocateHost();
-	void AllocateDevice();
 	void InitData();
-	void CopyToDevice();
-	void Launch();
-	void CopyFromDevice();
-	void VerifyResult();
 	void FreeHost();
-	void FreeDevice();
+	void VerifyResult();
 };
 
 #endif

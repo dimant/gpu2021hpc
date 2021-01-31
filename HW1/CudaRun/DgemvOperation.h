@@ -1,9 +1,11 @@
 #ifndef DGEMOPERATION_H
 #define DGEMOPERATION_H
 
-#include "CudaOperation.h"
+#include <cuda.h>
 
-class DgemvOperation : public CudaOperation
+#include "HpcOperation.h"
+
+class DgemvOperation : public HpcOperation<CUfunction>
 {
 private:
 	size_t cols;

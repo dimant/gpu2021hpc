@@ -2,7 +2,7 @@
 
 #include "CudaModule.h"
 #include "MatAddOperation.h"
-#include "DotProductOperation.h"
+#include "DotProductCuda.h"
 #include "DgemvOperation.h"
 
 #include <device_launch_parameters.h>
@@ -47,19 +47,19 @@ void dotProduct()
 
     cudaModule.Compile(kernelFile);
 
-    DotProductOperation<float> dotProductFloatOperation(16777216);
+    DotProductCuda<float> dotProductFloat(16777216);
     dotProduct = cudaModule.GetFunction("dotProductFloat");
-    dotProductFloatOperation.Process(dotProduct);
+    dotProductFloat.Process(dotProduct);
     std::cout << "test passed: dotProduct float" << std::endl;
 
-    DotProductOperation<float2> dotProductFloat2Operation(16777216);
+    DotProductCuda<float2> dotProductFloat2(16777216);
     dotProduct = cudaModule.GetFunction("dotProductFloat2");
-    dotProductFloat2Operation.Process(dotProduct);
+    dotProductFloat2.Process(dotProduct);
     std::cout << "test passed: dotProduct float2" << std::endl;
 
-    DotProductOperation<float4> dotProductFloat4Operation(16777216);
+    DotProductCuda<float4> dotProductFloat4(16777216);
     dotProduct = cudaModule.GetFunction("dotProductFloat4");
-    dotProductFloat4Operation.Process(dotProduct);
+    dotProductFloat4.Process(dotProduct);
     std::cout << "test passed: dotProduct float4" << std::endl;
 }
 

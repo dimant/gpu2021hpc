@@ -35,8 +35,8 @@ void MatAddOperation::InitData()
     {
         for (int j = 0; j < ncols; j++)
         {
-            h_A[i * ncols + j] = i;
-            h_B[i * ncols + j] = j;
+            h_A[i * ncols + j] = float(i);
+            h_B[i * ncols + j] = float(j);
         }
     }
 }

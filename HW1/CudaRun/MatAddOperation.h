@@ -1,9 +1,11 @@
 #ifndef MATADD_OPERATION_H
 #define MATADD_OPERATION_H
 
-#include "CudaOperation.h"
+#include <cuda.h>
 
-class MatAddOperation : public CudaOperation
+#include "HpcOperation.h"
+
+class MatAddOperation : public HpcOperation<CUfunction>
 {
 private:
 	size_t nrows;

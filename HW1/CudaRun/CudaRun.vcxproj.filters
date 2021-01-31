@@ -33,7 +33,7 @@
     <ClCompile Include="DgemvOperation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CudaOperation.cpp">
+    <ClCompile Include="DotProductCuda.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,9 +44,6 @@
     <ClInclude Include="CudaModule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CudaOperation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MatAddOperation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -54,6 +51,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DgemvOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HpcOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DotProductCuda.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

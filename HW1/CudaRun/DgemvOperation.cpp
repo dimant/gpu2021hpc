@@ -39,8 +39,8 @@ void DgemvOperation::InitData()
     {
         for (int col = 0; col < cols; col++)
         {
-            int idx = row * cols + col;
-            h_A[idx] = idx;
+            size_t idx = row * cols + col;
+            h_A[idx] = double(idx);
         }
     }
 
