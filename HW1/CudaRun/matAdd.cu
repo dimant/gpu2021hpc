@@ -45,7 +45,7 @@ extern "C" __global__ void matAddRow(const float* A, const float* B, float* C, s
 }
 
 /// <summary>
-/// col-wose matrix addition.
+/// col-wise matrix addition.
 /// It is col-wise because every thread iterates over each row of a single column.
 /// </summary>
 extern "C" __global__ void matAddCol(const float* A, const float* B, float* C, size_t nrows, size_t ncols)
