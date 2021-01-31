@@ -54,7 +54,7 @@ void MatAddOpenCL::CopyFromDevice()
 
 void MatAddOpenCL::FreeDevice()
 {
-    clReleaseMemObject(d_A);
-    clReleaseMemObject(d_B);
-    clReleaseMemObject(d_C);
+    clChkErr(clReleaseMemObject(d_A));
+    clChkErr(clReleaseMemObject(d_B));
+    clChkErr(clReleaseMemObject(d_C));
 }

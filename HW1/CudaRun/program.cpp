@@ -9,6 +9,7 @@
 #include "DotProductCuda.h"
 
 #include "DgemvCuda.h"
+#include "DgemvOpenCL.h"
 
 void matAddCuda()
 {
@@ -54,7 +55,6 @@ void matAddOpenCL()
     context = openclModule.GetContext("matAddCol");
     matAddOperation.Process(context);
     std::cout << "OpenCL test passed: matAddCol" << std::endl;
-
 }
 
 void dotProductCuda()
@@ -68,7 +68,6 @@ void dotProductCuda()
     // https://stackoverflow.com/questions/28095261/float4-not-faster-than-float-in-cuda
 
     const char* kernelFile = "dotProduct.cu";
-    CUfunction dotProduct;
 
     cudaModule.Compile(kernelFile);
 
@@ -94,7 +93,6 @@ void dgemvCuda()
     cudaModule.Init();
 
     const char* kernelFile = "dgemv.cu";
-    CUfunction dgemv;
 
     cudaModule.Compile(kernelFile);
 
@@ -104,13 +102,29 @@ void dgemvCuda()
     std::cout << "Cuda test passed: dgemv" << std::endl;
 }
 
+void dgemvOpenCL()
+{
+    OpenCLModule openclModule;
+    openclModule.Init();
+
+    const char* kernelFile = "dgemv.cl";
+
+    openclModule.Compile(kernelFile);
+
+    DgemvOpenCL dgemvOperation(4096, 4096);
+    OpenCLContext context = openclModule.GetContext("dgemv");
+    dgemvOperation.Process(context);
+    std::cout << "OpenCL test passed: dgemv" << std::endl;
+}
+
 int main(int argc, char** argv)
 {
     //matAddCuda();
     //dotProductCuda();
     //dgemvCuda();
 
-    matAddOpenCL();
+    //matAddOpenCL();
+    dgemvOpenCL();
 
     return 0;
 }

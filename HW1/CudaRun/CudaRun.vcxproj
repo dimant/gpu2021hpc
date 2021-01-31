@@ -92,6 +92,7 @@
     <ClCompile Include="CudaModule.cpp" />
     <ClCompile Include="cuda_util.cpp" />
     <ClCompile Include="DgemvCuda.cpp" />
+    <ClCompile Include="DgemvOpenCL.cpp" />
     <ClCompile Include="DgemvOperation.cpp" />
     <ClCompile Include="DotProductCuda.cpp" />
     <ClCompile Include="DotProductOperation.cpp" />
@@ -106,6 +107,7 @@
   <ItemGroup>
     <ClInclude Include="DgemvCuda.h" />
     <ClInclude Include="CudaModule.h" />
+    <ClInclude Include="DgemvOpenCL.h" />
     <ClInclude Include="DotProductCuda.h" />
     <ClInclude Include="HpcOperation.h" />
     <ClInclude Include="cuda_util.h" />
@@ -139,6 +141,10 @@
     <CopyFileToFolders Include="matAdd.cl">
       <FileType>Document</FileType>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="dgemv.cl">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <FileType>Document</FileType>
     </CopyFileToFolders>
     <None Include="MatAddOpenCL.h" />
   </ItemGroup>

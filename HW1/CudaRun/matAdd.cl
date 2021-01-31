@@ -1,5 +1,4 @@
 #pragma OPENCL EXTENSION cl_khr_fp64 : enable
-#pragma OPENCL EXTENSION cl_intel_printf : enable
 
 __kernel void matAdd(__global float* A, __global float* B, __global float* C, const uint nrows, const uint ncols)
 {
