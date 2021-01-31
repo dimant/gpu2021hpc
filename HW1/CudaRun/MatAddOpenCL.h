@@ -1,20 +1,21 @@
-#ifndef MATADDCUDA_H
-#define MATADDCUDA_H
+#ifndef MATADDOPENCL_H
+#define MATADDOPENCL_H
 
-#include <cuda.h>
-#include "CudaModule.h"
+#include <CL/opencl.h>
+
+#include "OpenCLModule.h"
 #include "HpcOperation.h"
 #include "MatAddOperation.h"
 
-class MatAddCuda : public HpcOperation<CudaContext>, public MatAddOperation
+class MatAddOpenCL : public HpcOperation<OpenCLContext>, public MatAddOperation
 {
 private:
-	CUdeviceptr d_A;
-	CUdeviceptr d_B;
-	CUdeviceptr d_C;
+	cl_mem d_A;
+	cl_mem d_B;
+	cl_mem d_C;
 
 public:
-	MatAddCuda(size_t nr, size_t nc) :
+	MatAddOpenCL(size_t nr, size_t nc) :
 		d_A(0), d_B(0), d_C(0), MatAddOperation(nr, nc)
 	{
 	}

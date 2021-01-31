@@ -4,6 +4,11 @@
 #include <cuda.h>
 #include "cuda_util.h"
 
+struct CudaContext
+{
+	CUfunction cuFunction;
+};
+
 class CudaModule
 {
 private:
@@ -30,7 +35,7 @@ public:
 
 	void Compile(const char* kernelFile);
 
-	CUfunction GetFunction(const char* kernelName);
+	CudaContext GetContext(const char* kernelName);
 };
 
 #endif

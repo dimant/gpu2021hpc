@@ -3,10 +3,11 @@
 
 #include <cuda.h>
 
+#include "CudaModule.h"
 #include "HpcOperation.h"
 #include "DgemvOperation.h"
 
-class DgemvCuda: public HpcOperation<CUfunction>, public DgemvOperation
+class DgemvCuda: public HpcOperation<CudaContext>, public DgemvOperation
 {
 private:
 	CUdeviceptr d_A;

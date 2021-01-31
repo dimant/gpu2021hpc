@@ -47,7 +47,7 @@ void MatAddCuda::Launch()
                                      CU_LAUNCH_PARAM_BUFFER_SIZE, &offset,
                                      CU_LAUNCH_PARAM_END };
 
-    checkCudaError(cuLaunchKernel(GetFunction(),
+    checkCudaError(cuLaunchKernel(GetContext().cuFunction,
         gridSize.x, gridSize.y, gridSize.z,
         blockSize.x, blockSize.y, blockSize.z,
         0, NULL, NULL, reinterpret_cast<void**>(&config)));

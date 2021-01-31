@@ -3,13 +3,14 @@
 
 #include <cuda.h>
 
+#include "CudaModule.h"
 #include "HpcOperation.h"
 #include "DotProductOperation.h"
 
 #include <device_launch_parameters.h>
 
 template <class T>
-class DotProductCuda: public HpcOperation<CUfunction>, public DotProductOperation<T>
+class DotProductCuda: public HpcOperation<CudaContext>, public DotProductOperation<T>
 {
 private:
 	using DotProductOperation<T>::elements;

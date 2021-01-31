@@ -7,6 +7,12 @@
 
 #include "ocl_util.h"
 
+struct OpenCLContext
+{
+	cl_kernel kernel;
+	cl_command_queue queue;
+	cl_context context;
+};
 
 class OpenCLModule
 {
@@ -42,7 +48,7 @@ public:
 
 	void Compile(const char* kernelFile);
 
-	cl_kernel GetFunction(const char* kernelName);
+	OpenCLContext GetContext(const char* kernelName);
 };
 
 #endif

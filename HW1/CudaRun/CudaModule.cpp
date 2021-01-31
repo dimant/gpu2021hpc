@@ -4,11 +4,15 @@
 
 #include "util.h"
 
-CUfunction CudaModule::GetFunction(const char* kernelName)
+CudaContext CudaModule::GetContext(const char* kernelName)
 {
     checkCudaError(cuModuleGetFunction(&cuFunction, cuModule, kernelName));
 
-    return cuFunction;
+    CudaContext result;
+
+    result.cuFunction = cuFunction;
+
+    return result;
 }
 
 void CudaModule::Init()

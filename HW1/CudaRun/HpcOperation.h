@@ -10,26 +10,25 @@ class HpcOperation
 {
 private:
 
-	T function;
+	T context;
 
 protected:
-	void SetFunction(T cuF)
+	void SetContext(T cuF)
 	{
-		function = cuF;
+		context = cuF;
 	}
 
-	T GetFunction()
+	T GetContext()
 	{
-		return function;
+		return context;
 	}
 
 public:
-	HpcOperation() :
-		function(nullptr)
+	HpcOperation()
 	{
 	}
 
-	void Process(T function)
+	void Process(T context)
 	{
 		double pcFreq = 0.0;
 		LARGE_INTEGER li;
@@ -44,7 +43,7 @@ public:
 
 		pcFreq = double(li.QuadPart) / 1000.0;;
 
-		SetFunction(function);
+		SetContext(context);
 		AllocateHost();
 		AllocateDevice();
 		InitData();
