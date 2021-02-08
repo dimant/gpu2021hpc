@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -97,6 +97,8 @@
     <ClCompile Include="DotProductCuda.cpp" />
     <ClCompile Include="DotProductOpenCL.cpp" />
     <ClCompile Include="DotProductOperation.cpp" />
+    <ClCompile Include="GemmOpenCL.cpp" />
+    <ClCompile Include="GemmOperation.cpp" />
     <ClCompile Include="MatAddOpenCL.cpp" />
     <ClCompile Include="MatAddCuda.cpp" />
     <ClCompile Include="MatAddOperation.cpp" />
@@ -111,6 +113,8 @@
     <ClInclude Include="DgemvOpenCL.h" />
     <ClInclude Include="DotProductCuda.h" />
     <ClInclude Include="DotProductOpenCL.h" />
+    <ClInclude Include="GemmOpenCL.h" />
+    <ClInclude Include="GemmOperation.h" />
     <ClInclude Include="HpcOperation.h" />
     <ClInclude Include="cuda_util.h" />
     <ClInclude Include="DgemvOperation.h" />
@@ -153,6 +157,20 @@
       <FileType>Document</FileType>
     </CopyFileToFolders>
     <None Include="MatAddOpenCL.h" />
+    <CopyFileToFolders Include="transpose.cu">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="blur.cu">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="gemm.cl">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

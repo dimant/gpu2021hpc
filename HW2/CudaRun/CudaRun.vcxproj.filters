@@ -13,15 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{814fb4d9-9871-4c38-8c3d-bc6989cc7d67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Kernels">
+      <UniqueIdentifier>{458274ba-41bb-4927-8056-514ae0a676e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cuda_util.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CudaModule.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MatAddOperation.cpp">
@@ -42,15 +42,6 @@
     <ClCompile Include="DgemvCuda.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="util.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ocl_util.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OpenCLModule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MatAddOpenCL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -60,14 +51,29 @@
     <ClCompile Include="DotProductOpenCL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OpenCLModule.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="CudaModule.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="cuda_util.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="ocl_util.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="util.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="GemmOperation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GemmOpenCL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cuda_util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CudaModule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MatAddOperation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -77,22 +83,10 @@
     <ClInclude Include="DgemvOperation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HpcOperation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DotProductCuda.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MatAddCuda.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OpenCLModule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ocl_util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DgemvCuda.h">
@@ -104,25 +98,58 @@
     <ClInclude Include="DotProductOpenCL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CudaModule.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="cuda_util.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenCLModule.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="ocl_util.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="HpcOperation.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="GemmOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GemmOpenCL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="matAdd.cu">
-      <Filter>Source Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="dotProduct.cu">
-      <Filter>Source Files</Filter>
+    <CopyFileToFolders Include="dgemv.cl">
+      <Filter>Kernels</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="dgemv.cu">
-      <Filter>Source Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="matAdd.cl">
-      <Filter>Source Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="dgemv.cl">
-      <Filter>Source Files</Filter>
+      <Filter>Kernels</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="dotProduct.cl">
-      <Filter>Source Files</Filter>
+      <Filter>Kernels</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="dotProduct.cu">
+      <Filter>Kernels</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="matAdd.cl">
+      <Filter>Kernels</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="matAdd.cu">
+      <Filter>Kernels</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="blur.cu">
+      <Filter>Kernels</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="gemm.cl">
+      <Filter>Kernels</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="transpose.cu">
+      <Filter>Kernels</Filter>
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>

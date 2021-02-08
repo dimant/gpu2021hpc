@@ -12,6 +12,8 @@
 #include "DgemvCuda.h"
 #include "DgemvOpenCL.h"
 
+#include "GemmOpenCL.h"
+
 void matAddCuda()
 {
     std::cout << std::endl << "[CUDA] MatAdd tests" << std::endl;
@@ -173,15 +175,34 @@ void dgemvOpenCL()
     std::cout << "OpenCL test passed: dgemv" << std::endl;
 }
 
+void gemmOpenCL()
+{
+    std::cout << std::endl << "[OpenCL] GEMM tests" << std::endl;
+
+    OpenCLModule openclModule;
+    openclModule.Init();
+
+    const char* kernelFile = "gemm.cl";
+
+    openclModule.Compile(kernelFile);
+
+    GemmOpenCL dgemvOperation(3, 3, 3, 3);
+    OpenCLContext context = openclModule.GetContext("sgemm");
+    dgemvOperation.Process(context);
+    std::cout << "OpenCL test completed: sgemm" << std::endl;
+}
+
 int main(int argc, char** argv)
 {
-    matAddCuda();
-    dotProductCuda();
-    dgemvCuda();
+    //matAddCuda();
+    //dotProductCuda();
+    //dgemvCuda();
 
-    matAddOpenCL();
-    dgemvOpenCL();
-    dotProductOpenCL();
+    //matAddOpenCL();
+    //dgemvOpenCL();
+    //dotProductOpenCL();
+
+    gemmOpenCL();
 
     return 0;
 }
