@@ -5,6 +5,7 @@
 #include "util.h"
 
 template class GemmOperation<float>;
+template class GemmOperation<double>;
 
 template <class T>
 void GemmOperation<T>::AllocateHost()
@@ -43,7 +44,7 @@ void GemmOperation<T>::InitData()
 template <class T>
 void GemmOperation<T>::VerifyResult()
 {
-    T* c = new float[(size_t)widthB * (size_t)heightA];
+    T* c = new T[(size_t)widthB * (size_t)heightA];
 
     T buf = 0.0;
 

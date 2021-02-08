@@ -4,10 +4,10 @@
 // B is K rows by N columns
 // C is destination
 // C is M rows by N columns
-__kernel void sgemm(
+__kernel void dgemm(
 	__global const double* A,
 	__global const double* B,
-	__global float* C,
+	__global double* C,
 	int widthA,
 	int widthB)
 {
@@ -24,5 +24,28 @@ __kernel void sgemm(
 	}
 
 	if(row < widthB && col < widthA)
+		C[col + row * widthB] = sum;
+}
+
+__kernel void sgemm(
+	__global const float* A,
+	__global const float* B,
+	__global float* C,
+	int widthA,
+	int widthB)
+{
+	const int col = get_global_id(0);
+	const int row = get_global_id(1);
+
+	float sum = 0.0f;
+
+	for (int i = 0; i < widthA; i++)
+	{
+		sum +=
+			A[i + row * widthA] * // walking across A = src0
+			B[col + i * widthB];  // walking down B = src1
+	}
+
+	if (row < widthB && col < widthA)
 		C[col + row * widthB] = sum;
 }

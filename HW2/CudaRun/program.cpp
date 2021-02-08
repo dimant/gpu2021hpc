@@ -187,10 +187,15 @@ void gemmCuda()
 
     cudaModule.Compile(kernelFile);
 
-    GemmCuda<float> dgemvOperation(3, 3, 3, 3);
+    GemmCuda<float> sgemmOperation(3, 3, 3, 3);
     CudaContext context = cudaModule.GetContext("sgemm");
-    dgemvOperation.Process(context);
+    sgemmOperation.Process(context);
     std::cout << "Cuda test completed: sgemm" << std::endl;
+
+    GemmCuda<double> dgemmOperation(3, 3, 3, 3);
+    context = cudaModule.GetContext("dgemm");
+    dgemmOperation.Process(context);
+    std::cout << "Cuda test completed: dgemm" << std::endl;
 }
 
 void gemmOpenCL()
@@ -204,10 +209,15 @@ void gemmOpenCL()
 
     openclModule.Compile(kernelFile);
 
-    GemmOpenCL<float> dgemvOperation(3, 3, 3, 3);
+    GemmOpenCL<float> sgemmOperation(3, 3, 3, 3);
     OpenCLContext context = openclModule.GetContext("sgemm");
-    dgemvOperation.Process(context);
+    sgemmOperation.Process(context);
     std::cout << "OpenCL test completed: sgemm" << std::endl;
+
+    GemmOpenCL<double> dgemmOperation(3, 3, 3, 3);
+    context = openclModule.GetContext("dgemm");
+    dgemmOperation.Process(context);
+    std::cout << "OpenCL test completed: dgemm" << std::endl;
 }
 
 int main(int argc, char** argv)
@@ -220,7 +230,7 @@ int main(int argc, char** argv)
     //dgemvOpenCL();
     //dotProductOpenCL();
 
-    //gemmOpenCL();
+    gemmOpenCL();
     gemmCuda();
 
     return 0;

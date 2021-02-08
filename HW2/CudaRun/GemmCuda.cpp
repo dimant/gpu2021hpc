@@ -6,6 +6,7 @@
 #include "cuda_util.h"
 
 template class GemmCuda<float>;
+template class GemmCuda<double>;
 
 template <class T>
 void GemmCuda<T>::AllocateDevice()

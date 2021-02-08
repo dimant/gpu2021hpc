@@ -33,7 +33,7 @@ extern "C" __global__ void  sgemm(
 extern "C" __global__ void  dgemm(
 	const double* A,
 	const double* B,
-	float* C,
+	double* C,
 	int widthA,
 	int widthB)
 {

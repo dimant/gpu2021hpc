@@ -5,6 +5,7 @@
 #include "ocl_util.h"
 
 template class GemmOpenCL<float>;
+template class GemmOpenCL<double>;
 
 template <class T>
 void GemmOpenCL<T>::AllocateDevice()
