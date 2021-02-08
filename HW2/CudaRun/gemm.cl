@@ -21,7 +21,6 @@ __kernel void sgemm(
 		sum +=
 			A[i + row * widthA] * // walking across A = src0
 			B[col + i * widthB];  // walking down B = src1
-
 	}
 
 	if(row < widthB && col < widthA)

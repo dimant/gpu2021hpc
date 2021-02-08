@@ -72,6 +72,9 @@
     <ClCompile Include="GemmOpenCL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GemmCuda.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MatAddOperation.h">
@@ -122,6 +125,9 @@
     <ClInclude Include="GemmOpenCL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GemmCuda.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="dgemv.cl">
@@ -156,5 +162,10 @@
     <None Include="MatAddOpenCL.h">
       <Filter>Header Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="gemm.cu">
+      <Filter>Kernels</Filter>
+    </CudaCompile>
   </ItemGroup>
 </Project>

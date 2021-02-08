@@ -97,6 +97,7 @@
     <ClCompile Include="DotProductCuda.cpp" />
     <ClCompile Include="DotProductOpenCL.cpp" />
     <ClCompile Include="DotProductOperation.cpp" />
+    <ClCompile Include="GemmCuda.cpp" />
     <ClCompile Include="GemmOpenCL.cpp" />
     <ClCompile Include="GemmOperation.cpp" />
     <ClCompile Include="MatAddOpenCL.cpp" />
@@ -113,6 +114,7 @@
     <ClInclude Include="DgemvOpenCL.h" />
     <ClInclude Include="DotProductCuda.h" />
     <ClInclude Include="DotProductOpenCL.h" />
+    <ClInclude Include="GemmCuda.h" />
     <ClInclude Include="GemmOpenCL.h" />
     <ClInclude Include="GemmOperation.h" />
     <ClInclude Include="HpcOperation.h" />
@@ -169,6 +171,12 @@
     </CopyFileToFolders>
     <CopyFileToFolders Include="gemm.cl">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="gemm.cu">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
       <FileType>Document</FileType>
     </CopyFileToFolders>
   </ItemGroup>

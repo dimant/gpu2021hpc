@@ -13,6 +13,7 @@
 #include "DgemvOpenCL.h"
 
 #include "GemmOpenCL.h"
+#include "GemmCuda.h"
 
 void matAddCuda()
 {
@@ -28,15 +29,15 @@ void matAddCuda()
     MatAddCuda matAddOperation(4096, 4096);
     CudaContext context = cudaModule.GetContext("matAdd");
     matAddOperation.Process(context);
-    std::cout << "Cuda test passed: matAdd" << std::endl;
+    std::cout << "Cuda test completed: matAdd" << std::endl;
 
     context = cudaModule.GetContext("matAddRow");
     matAddOperation.Process(context);
-    std::cout << "Cuda test passed: matAddRow" << std::endl;
+    std::cout << "Cuda test completed: matAddRow" << std::endl;
 
     context = cudaModule.GetContext("matAddCol");
     matAddOperation.Process(context);
-    std::cout << "Cuda test passed: matAddCol" << std::endl;
+    std::cout << "Cuda test completed: matAddCol" << std::endl;
 }
 
 void matAddOpenCL()
@@ -53,15 +54,15 @@ void matAddOpenCL()
     MatAddOpenCL matAddOperation(4096, 4096);
     OpenCLContext context = openclModule.GetContext("matAdd");
     matAddOperation.Process(context);
-    std::cout << "OpenCL test passed: matAdd" << std::endl;
+    std::cout << "OpenCL test completed: matAdd" << std::endl;
 
     context = openclModule.GetContext("matAddRow");
     matAddOperation.Process(context);
-    std::cout << "OpenCL test passed: matAddRow" << std::endl;
+    std::cout << "OpenCL test completed: matAddRow" << std::endl;
 
     context = openclModule.GetContext("matAddCol");
     matAddOperation.Process(context);
-    std::cout << "OpenCL test passed: matAddCol" << std::endl;
+    std::cout << "OpenCL test completed: matAddCol" << std::endl;
 }
 
 void dotProductCuda()
@@ -128,17 +129,17 @@ void dotProductOpenCL()
     DotProductOpenCL<float> dotProductFloatOperation(16777216);
     OpenCLContext context = openclModule.GetContext("dotProductFloat");
     dotProductFloatOperation.Process(context);
-    std::cout << "OpenCL test passed: dotProductFloat" << std::endl;
+    std::cout << "OpenCL test completed: dotProductFloat" << std::endl;
 
     DotProductOpenCL<cl_float2> dotProductFloat2Operation(16777216);
     context = openclModule.GetContext("dotProductFloat2");
     dotProductFloat2Operation.Process(context);
-    std::cout << "OpenCL test passed: dotProductFloat2" << std::endl;
+    std::cout << "OpenCL test completed: dotProductFloat2" << std::endl;
 
     DotProductOpenCL<cl_float4> dotProductFloat4Operation(16777216);
     context = openclModule.GetContext("dotProductFloat4");
     dotProductFloat4Operation.Process(context);
-    std::cout << "OpenCL test passed: dotProductFloat4" << std::endl;
+    std::cout << "OpenCL test completed: dotProductFloat4" << std::endl;
 }
 
 void dgemvCuda()
@@ -155,7 +156,7 @@ void dgemvCuda()
     DgemvCuda dgemvOperation(4096, 4096*2);
     CudaContext context = cudaModule.GetContext("dgemv");
     dgemvOperation.Process(context);
-    std::cout << "Cuda test passed: dgemv" << std::endl;
+    std::cout << "Cuda test completed: dgemv" << std::endl;
 }
 
 void dgemvOpenCL()
@@ -172,7 +173,24 @@ void dgemvOpenCL()
     DgemvOpenCL dgemvOperation(4096, 4096 * 2);
     OpenCLContext context = openclModule.GetContext("dgemv");
     dgemvOperation.Process(context);
-    std::cout << "OpenCL test passed: dgemv" << std::endl;
+    std::cout << "OpenCL test completed: dgemv" << std::endl;
+}
+
+void gemmCuda()
+{
+    std::cout << std::endl << "[Cuda] GEMM tests" << std::endl;
+
+    CudaModule cudaModule;
+    cudaModule.Init();
+
+    const char* kernelFile = "gemm.cu";
+
+    cudaModule.Compile(kernelFile);
+
+    GemmCuda dgemvOperation(3, 3, 3, 3);
+    CudaContext context = cudaModule.GetContext("sgemm");
+    dgemvOperation.Process(context);
+    std::cout << "Cuda test completed: sgemm" << std::endl;
 }
 
 void gemmOpenCL()
@@ -202,7 +220,8 @@ int main(int argc, char** argv)
     //dgemvOpenCL();
     //dotProductOpenCL();
 
-    gemmOpenCL();
+    //gemmOpenCL();
+    gemmCuda();
 
     return 0;
 }

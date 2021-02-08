@@ -52,8 +52,14 @@ void cudaCompileKernel(
         + std::to_string(major)
         + std::to_string(minor);
 
-    compileParams[0] = optionGpuArchitecture.c_str();
-    nCompileParams++;
+#ifdef _DEBUG
+    compileParams[nCompileParams++] = "--device-debug";
+#else
+
+#endif
+
+    compileParams[nCompileParams++] = "--fmad=false";
+    compileParams[nCompileParams++] = optionGpuArchitecture.c_str();
 
     nvrtcProgram program;
 
@@ -88,4 +94,26 @@ void cudaCompileKernel(
 
     *cubinResult = code;
     *cubinResultSize = codeSize;
+}
+
+void cudaMemoryTest()
+{
+    const unsigned int N = 1048576;
+    const unsigned int bytes = N * sizeof(int);
+    int* h_a = (int*)malloc(bytes);
+    CUdeviceptr d_a;
+    checkCudaError(cuMemAlloc(&d_a, bytes));
+
+    if (h_a == nullptr)
+    {
+        std::cerr << "couldn't allocate h_a" << std::endl;
+        exit(1);
+    }
+    else
+    {
+        memset(h_a, 0, bytes);
+    }
+
+    checkCudaError(cuMemcpyHtoD(d_a, h_a, bytes));
+    checkCudaError(cuMemcpyDtoH(h_a, d_a, bytes));
 }

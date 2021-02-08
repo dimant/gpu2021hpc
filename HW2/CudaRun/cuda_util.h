@@ -14,4 +14,6 @@ void cudaCompileKernel(
     char** cubinResult,
     size_t* cubinResultSize);
 
+void cudaMemoryTest();
+
 #endif
