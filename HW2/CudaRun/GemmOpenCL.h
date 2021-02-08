@@ -7,37 +7,46 @@
 #include "HpcOperation.h"
 #include "GemmOperation.h"
 
-class GemmOpenCL : public HpcOperation<OpenCLContext>, public GemmOperation
+template <class T>
+class GemmOpenCL : public HpcOperation<OpenCLContext>, public GemmOperation<T>
 {
 private:
+	using GemmOperation<T>::h_A;
+	using GemmOperation<T>::h_B;
+	using GemmOperation<T>::h_C;
+	using GemmOperation<T>::widthA;
+	using GemmOperation<T>::heightA;
+	using GemmOperation<T>::widthB;
+	using GemmOperation<T>::heightB;
+
 	cl_mem d_A;
 	cl_mem d_B;
 	cl_mem d_C;
 
 public:
-	GemmOpenCL(int widthA, int heightA, int widthB, int heightB) :
-		d_A(0), d_B(0), d_C(0), GemmOperation(widthA, heightA, widthB, heightB)
+	GemmOpenCL<T>(int widthA, int heightA, int widthB, int heightB) :
+		d_A(0), d_B(0), d_C(0), GemmOperation<T>(widthA, heightA, widthB, heightB)
 	{
 	}
 
 	void AllocateHost()
 	{
-		GemmOperation::AllocateHost();
+		GemmOperation<T>::AllocateHost();
 	}
 
 	void InitData()
 	{
-		GemmOperation::InitData();
+		GemmOperation<T>::InitData();
 	}
 
 	void VerifyResult()
 	{
-		GemmOperation::VerifyResult();
+		GemmOperation<T>::VerifyResult();
 	}
 
 	void FreeHost()
 	{
-		GemmOperation::FreeHost();
+		GemmOperation<T>::FreeHost();
 	}
 
 	void Launch();

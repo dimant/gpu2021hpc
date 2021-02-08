@@ -7,38 +7,47 @@
 #include "HpcOperation.h"
 #include "GemmOperation.h"
 
-class GemmCuda : public HpcOperation<CudaContext>, public GemmOperation
+template <class T>
+class GemmCuda : public HpcOperation<CudaContext>, public GemmOperation<T>
 {
 private:
+	using GemmOperation<T>::h_A;
+	using GemmOperation<T>::h_B;
+	using GemmOperation<T>::h_C;
+	using GemmOperation<T>::widthA;
+	using GemmOperation<T>::heightA;
+	using GemmOperation<T>::widthB;
+	using GemmOperation<T>::heightB;
+
 	CUdeviceptr d_A;
 	CUdeviceptr d_B;
 	CUdeviceptr d_C;
 
 public:
-	GemmCuda(int widthA, int heightA, int widthB, int heightB) :
+	GemmCuda<T>(int widthA, int heightA, int widthB, int heightB) :
 		d_A(0), d_B(0), d_C(0),
-		GemmOperation(widthA, heightA, widthB, heightB)
+		GemmOperation<T>(widthA, heightA, widthB, heightB)
 	{
 	}
 
 	void AllocateHost()
 	{
-		GemmOperation::AllocateHost();
+		GemmOperation<T>::AllocateHost();
 	}
 
 	void InitData()
 	{
-		GemmOperation::InitData();
+		GemmOperation<T>::InitData();
 	}
 
 	void VerifyResult()
 	{
-		GemmOperation::VerifyResult();
+		GemmOperation<T>::VerifyResult();
 	}
 
 	void FreeHost()
 	{
-		GemmOperation::FreeHost();
+		GemmOperation<T>::FreeHost();
 	}
 
 	void Launch();

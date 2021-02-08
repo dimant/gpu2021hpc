@@ -5,20 +5,25 @@
 #include <device_launch_parameters.h>
 #include "cuda_util.h"
 
-void GemmCuda::AllocateDevice()
+template class GemmCuda<float>;
+
+template <class T>
+void GemmCuda<T>::AllocateDevice()
 {
-    checkCudaError(cuMemAlloc(&d_A, (size_t)widthA * (size_t)heightA * sizeof(float)));
-    checkCudaError(cuMemAlloc(&d_B, (size_t)widthB * (size_t)heightB * sizeof(float)));
-    checkCudaError(cuMemAlloc(&d_C, (size_t)widthB * (size_t)heightA * sizeof(float)));
+    checkCudaError(cuMemAlloc(&d_A, (size_t)widthA * (size_t)heightA * sizeof(T)));
+    checkCudaError(cuMemAlloc(&d_B, (size_t)widthB * (size_t)heightB * sizeof(T)));
+    checkCudaError(cuMemAlloc(&d_C, (size_t)widthB * (size_t)heightA * sizeof(T)));
 }
 
-void GemmCuda::CopyToDevice()
+template <class T>
+void GemmCuda<T>::CopyToDevice()
 {
-    checkCudaError(cuMemcpyHtoD(d_A, h_A, (size_t)widthA * (size_t)heightA * sizeof(float)));
-    checkCudaError(cuMemcpyHtoD(d_B, h_B, (size_t)widthB * (size_t)heightB * sizeof(float)));
+    checkCudaError(cuMemcpyHtoD(d_A, h_A, (size_t)widthA * (size_t)heightA * sizeof(T)));
+    checkCudaError(cuMemcpyHtoD(d_B, h_B, (size_t)widthB * (size_t)heightB * sizeof(T)));
 }
 
-void GemmCuda::Launch()
+template <class T>
+void GemmCuda<T>::Launch()
 {
     unsigned int threads = 32;
     dim3 blockSize(threads, threads);
@@ -57,12 +62,14 @@ void GemmCuda::Launch()
         0, NULL, NULL, reinterpret_cast<void**>(&config)));
 }
 
-void GemmCuda::CopyFromDevice()
+template <class T>
+void GemmCuda<T>::CopyFromDevice()
 {
-    checkCudaError(cuMemcpyDtoH(h_C, d_C, (size_t)widthB * (size_t)heightA * sizeof(float)));
+    checkCudaError(cuMemcpyDtoH(h_C, d_C, (size_t)widthB * (size_t)heightA * sizeof(T)));
 }
 
-void GemmCuda::FreeDevice()
+template <class T>
+void GemmCuda<T>::FreeDevice()
 {
     checkCudaError(cuMemFree(d_A));
     checkCudaError(cuMemFree(d_B));

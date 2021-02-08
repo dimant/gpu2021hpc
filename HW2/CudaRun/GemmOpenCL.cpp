@@ -4,22 +4,27 @@
 
 #include "ocl_util.h"
 
-void GemmOpenCL::AllocateDevice()
+template class GemmOpenCL<float>;
+
+template <class T>
+void GemmOpenCL<T>::AllocateDevice()
 {
     cl_int err;
 
-    d_A = clCreateBuffer(GetContext().context, CL_MEM_READ_ONLY, (size_t)widthA * (size_t)heightA * sizeof(float), NULL, &err); clChkErr(err);
-    d_B = clCreateBuffer(GetContext().context, CL_MEM_READ_ONLY, (size_t)widthB * (size_t)heightB * sizeof(float), NULL, &err); clChkErr(err);
-    d_C = clCreateBuffer(GetContext().context, CL_MEM_READ_ONLY, (size_t)widthB * (size_t)heightA * sizeof(float), NULL, &err); clChkErr(err);
+    d_A = clCreateBuffer(GetContext().context, CL_MEM_READ_ONLY, (size_t)widthA * (size_t)heightA * sizeof(T), NULL, &err); clChkErr(err);
+    d_B = clCreateBuffer(GetContext().context, CL_MEM_READ_ONLY, (size_t)widthB * (size_t)heightB * sizeof(T), NULL, &err); clChkErr(err);
+    d_C = clCreateBuffer(GetContext().context, CL_MEM_READ_ONLY, (size_t)widthB * (size_t)heightA * sizeof(T), NULL, &err); clChkErr(err);
 }
 
-void GemmOpenCL::CopyToDevice()
+template <class T>
+void GemmOpenCL<T>::CopyToDevice()
 {
-    clChkErr(clEnqueueWriteBuffer(GetContext().queue, d_A, CL_TRUE, 0, (size_t)widthA * (size_t)heightA * sizeof(float), h_A, 0, NULL, NULL));
-    clChkErr(clEnqueueWriteBuffer(GetContext().queue, d_B, CL_TRUE, 0, (size_t)widthB * (size_t)heightB * sizeof(float), h_B, 0, NULL, NULL));
+    clChkErr(clEnqueueWriteBuffer(GetContext().queue, d_A, CL_TRUE, 0, (size_t)widthA * (size_t)heightA * sizeof(T), h_A, 0, NULL, NULL));
+    clChkErr(clEnqueueWriteBuffer(GetContext().queue, d_B, CL_TRUE, 0, (size_t)widthB * (size_t)heightB * sizeof(T), h_B, 0, NULL, NULL));
 }
 
-void GemmOpenCL::Launch()
+template <class T>
+void GemmOpenCL<T>::Launch()
 {
     cl_int err;
 
@@ -43,12 +48,14 @@ void GemmOpenCL::Launch()
     clChkErr(clFinish(GetContext().queue));
 }
 
-void GemmOpenCL::CopyFromDevice()
+template <class T>
+void GemmOpenCL<T>::CopyFromDevice()
 {
-    clChkErr(clEnqueueReadBuffer(GetContext().queue, d_C, CL_TRUE, 0, (size_t)widthB * (size_t)heightA * sizeof(float), h_C, 0, NULL, NULL));
+    clChkErr(clEnqueueReadBuffer(GetContext().queue, d_C, CL_TRUE, 0, (size_t)widthB * (size_t)heightA * sizeof(T), h_C, 0, NULL, NULL));
 }
 
-void GemmOpenCL::FreeDevice()
+template <class T>
+void GemmOpenCL<T>::FreeDevice()
 {
     clChkErr(clReleaseMemObject(d_A));
     clChkErr(clReleaseMemObject(d_B));

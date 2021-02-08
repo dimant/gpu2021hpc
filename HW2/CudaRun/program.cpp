@@ -187,7 +187,7 @@ void gemmCuda()
 
     cudaModule.Compile(kernelFile);
 
-    GemmCuda dgemvOperation(3, 3, 3, 3);
+    GemmCuda<float> dgemvOperation(3, 3, 3, 3);
     CudaContext context = cudaModule.GetContext("sgemm");
     dgemvOperation.Process(context);
     std::cout << "Cuda test completed: sgemm" << std::endl;
@@ -204,7 +204,7 @@ void gemmOpenCL()
 
     openclModule.Compile(kernelFile);
 
-    GemmOpenCL dgemvOperation(3, 3, 3, 3);
+    GemmOpenCL<float> dgemvOperation(3, 3, 3, 3);
     OpenCLContext context = openclModule.GetContext("sgemm");
     dgemvOperation.Process(context);
     std::cout << "OpenCL test completed: sgemm" << std::endl;

@@ -5,8 +5,8 @@
 // C is destination
 // C is M rows by N columns
 __kernel void sgemm(
-	__global const float* A,
-	__global const float* B,
+	__global const double* A,
+	__global const double* B,
 	__global float* C,
 	int widthA,
 	int widthB)

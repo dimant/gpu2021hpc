@@ -1,12 +1,13 @@
 #ifndef GEMMOPERATION_H
 #define GEMMOPERATION_H
 
+template <class T>
 class GemmOperation
 {
 protected:
-	float* h_A;
-	float* h_B;
-	float* h_C;
+	T* h_A;
+	T* h_B;
+	T* h_C;
 
 	int widthA;
 	int heightA;

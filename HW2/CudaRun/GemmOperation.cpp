@@ -4,11 +4,14 @@
 
 #include "util.h"
 
-void GemmOperation::AllocateHost()
+template class GemmOperation<float>;
+
+template <class T>
+void GemmOperation<T>::AllocateHost()
 {
-    h_A = (float*)malloc((size_t)widthA * (size_t)heightA * sizeof(float));
-    h_B = (float*)malloc((size_t)widthB * (size_t)heightB * sizeof(float));
-    h_C = (float*)malloc((size_t)widthB * (size_t)heightA * sizeof(float));
+    h_A = (T*)malloc((size_t)widthA * (size_t)heightA * sizeof(T));
+    h_B = (T*)malloc((size_t)widthB * (size_t)heightB * sizeof(T));
+    h_C = (T*)malloc((size_t)widthB * (size_t)heightA * sizeof(T));
 
     if (h_A == nullptr || h_B == nullptr || h_C == nullptr)
     {
@@ -17,7 +20,8 @@ void GemmOperation::AllocateHost()
     }
 }
 
-void GemmOperation::InitData()
+template <class T>
+void GemmOperation<T>::InitData()
 {
     for (int i = 0; i < heightA; i++)
     {
@@ -36,11 +40,12 @@ void GemmOperation::InitData()
     }
 }
 
-void GemmOperation::VerifyResult()
+template <class T>
+void GemmOperation<T>::VerifyResult()
 {
-    float* c = new float[(size_t)widthB * (size_t)heightA];
+    T* c = new float[(size_t)widthB * (size_t)heightA];
 
-    float buf = 0.0;
+    T buf = 0.0;
 
     int widthC = widthB;
     int heightC = heightA;
@@ -54,9 +59,9 @@ void GemmOperation::VerifyResult()
 
             for (int i = 0; i < widthA; i++)
             {
-                float a = h_A[i + rowC * widthA];
-                float b = h_B[colC + i * widthB];
-                float prod = a * b;
+                T a = h_A[i + rowC * widthA];
+                T b = h_B[colC + i * widthB];
+                T prod = a * b;
 
                 buf += prod;
             }
@@ -86,7 +91,8 @@ void GemmOperation::VerifyResult()
     delete[] c;
 }
 
-void GemmOperation::FreeHost()
+template <class T>
+void GemmOperation<T>::FreeHost()
 {
     free(h_A);
     free(h_B);
