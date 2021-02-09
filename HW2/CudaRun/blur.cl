@@ -55,3 +55,32 @@ __kernel void blur9x9(__global unsigned char* A, __global unsigned char* B, cons
 		B[row * cols + col] = (unsigned char)(pixVal / pixels);
 	}
 }
+
+__kernel void blurMxM(__global unsigned char* A, __global unsigned char* B, const int rows, const int cols, const int M)
+{
+	int col = get_global_id(0);
+	int row = get_global_id(1);
+
+	if (col < cols && row < rows)
+	{
+		int pixVal = 0;
+		int pixels = 0;
+
+		for (int blurRow = -M; blurRow < M + 1; blurRow++)
+		{
+			for (int blurCol = -M; blurCol < M + 1; blurCol++)
+			{
+				int curRow = row + blurRow;
+				int curCol = col + blurCol;
+
+				if (curRow > -1 && curRow < rows && curCol > -1 && curCol < cols)
+				{
+					pixVal += A[curRow * cols + curCol];
+					pixels++;
+				}
+			}
+		}
+
+		B[row * cols + col] = (unsigned char)(pixVal / pixels);
+	}
+}

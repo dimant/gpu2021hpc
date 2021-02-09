@@ -26,11 +26,17 @@ void BlurOpenCL::Launch()
 
     cl_int cl_nrows = (cl_int)rows;
     cl_int cl_ncols = (cl_int)cols;
+    cl_int cl_blurSize = (cl_int)blurSize;
 
     clChkErr(clSetKernelArg(GetContext().kernel, 0, sizeof(cl_mem), &d_A));
     clChkErr(clSetKernelArg(GetContext().kernel, 1, sizeof(cl_mem), &d_B));
     clChkErr(clSetKernelArg(GetContext().kernel, 2, sizeof(cl_nrows), &cl_nrows));
     clChkErr(clSetKernelArg(GetContext().kernel, 3, sizeof(cl_ncols), &cl_ncols));
+
+    if (blurSize != 1 && blurSize != 4)
+    {
+        clChkErr(clSetKernelArg(GetContext().kernel, 4, sizeof(cl_blurSize), &cl_blurSize));
+    }
 
     size_t globalSize[3] = { 128, 128, 0 }; // grid size
     size_t localSize[3] = { 8, 8, 0 }; // block size

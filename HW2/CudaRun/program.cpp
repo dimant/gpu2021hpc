@@ -284,6 +284,12 @@ void blurCuda()
     context = cudaModule.GetContext("blur9x9");
     blurOperation9x9.Process(context);
     std::cout << "Cuda test completed: blur9x9" << std::endl << std::endl;
+
+    std::cout << "Testing: blurMxM" << std::endl;
+    BlurCuda blurOperationMxM(100, 100, 7);
+    context = cudaModule.GetContext("blurMxM");
+    blurOperationMxM.Process(context);
+    std::cout << "Cuda test completed: blurMxM" << std::endl << std::endl;
 }
 
 void blurOpenCL()
@@ -308,6 +314,12 @@ void blurOpenCL()
     context = openclModule.GetContext("blur9x9");
     blurOperation9x9.Process(context);
     std::cout << "OpenCL test completed: blur9x9" << std::endl << std::endl;
+
+    std::cout << "Testing: blurMxM" << std::endl;
+    BlurOpenCL blurOperationMxM(100, 100, 7);
+    context = openclModule.GetContext("blurMxM");
+    blurOperationMxM.Process(context);
+    std::cout << "OpenCL test completed: blurMxM" << std::endl << std::endl;
 }
 
 int main(int argc, char** argv)

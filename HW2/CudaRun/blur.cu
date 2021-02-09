@@ -55,3 +55,32 @@ extern "C" __global__ void blur9x9(unsigned char* A, unsigned char* B, int rows,
 		B[row * cols + col] = (unsigned char)(pixVal / pixels);
 	}
 }
+
+extern "C" __global__ void blurMxM(unsigned char* A, unsigned char* B, int rows, int cols, int M)
+{
+	int col = blockIdx.x * blockDim.x + threadIdx.x;
+	int row = blockIdx.y * blockDim.y + threadIdx.y;
+
+	if (col < cols && row < rows)
+	{
+		int pixVal = 0;
+		int pixels = 0;
+
+		for (int blurRow = -M; blurRow < M + 1; blurRow++)
+		{
+			for (int blurCol = -M; blurCol < M + 1; blurCol++)
+			{
+				int curRow = row + blurRow;
+				int curCol = col + blurCol;
+
+				if (curRow > -1 && curRow < rows && curCol > -1 && curCol < cols)
+				{
+					pixVal += A[curRow * cols + curCol];
+					pixels++;
+				}
+			}
+		}
+
+		B[row * cols + col] = (unsigned char)(pixVal / pixels);
+	}
+}

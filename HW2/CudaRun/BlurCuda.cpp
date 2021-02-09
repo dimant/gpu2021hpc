@@ -26,7 +26,7 @@ void BlurCuda::Launch()
     dim3 blockSize(threads, threads);
     dim3 gridSize(4, 4);
 
-    void* args[4] = { &d_A, &d_B, &rows, &cols };
+    void* args[5] = { &d_A, &d_B, &rows, &cols, &blurSize };
 
     checkCudaError(cuLaunchKernel(
         GetContext().cuFunction,
