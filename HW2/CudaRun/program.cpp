@@ -195,11 +195,19 @@ void gemmCuda()
 
     GemmCuda<float> sgemmOperation(3, 3, 3, 3);
     CudaContext context = cudaModule.GetContext("sgemm");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     sgemmOperation.Process(context);
-    std::cout << "Cuda test completed: sgemm" << std::endl;
+    std::cout << "Cuda test completed: sgemm" << std::endl << std::endl;
 
     GemmCuda<double> dgemmOperation(3, 3, 3, 3);
     context = cudaModule.GetContext("dgemm");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     dgemmOperation.Process(context);
     std::cout << "Cuda test completed: dgemm" << std::endl;
 }
@@ -217,11 +225,19 @@ void gemmOpenCL()
 
     GemmOpenCL<float> sgemmOperation(3, 3, 3, 3);
     OpenCLContext context = openclModule.GetContext("sgemm");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     sgemmOperation.Process(context);
-    std::cout << "OpenCL test completed: sgemm" << std::endl;
+    std::cout << "OpenCL test completed: sgemm" << std::endl << std::endl;
 
     GemmOpenCL<double> dgemmOperation(3, 3, 3, 3);
     context = openclModule.GetContext("dgemm");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     dgemmOperation.Process(context);
     std::cout << "OpenCL test completed: dgemm" << std::endl;
 }
@@ -239,6 +255,10 @@ void transposeCuda()
 
     TransposeCuda transposeOperation(3, 3);
     CudaContext context = cudaModule.GetContext("transpose");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     transposeOperation.Process(context);
 
     std::cout << "Cuda test completed: transpose" << std::endl;
@@ -257,6 +277,10 @@ void transposeOpenCL()
 
     TransposeOpenCL transposeOperation(3, 3);
     OpenCLContext context = openclModule.GetContext("transpose");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     transposeOperation.Process(context);
 
     std::cout << "OpenCL test completed: transpose" << std::endl;
@@ -318,18 +342,30 @@ void blurOpenCL()
     std::cout << "Testing: blur3x3" << std::endl;
     BlurOpenCL blurOperation3x3(100, 100, 1);
     OpenCLContext context = openclModule.GetContext("blur3x3");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     blurOperation3x3.Process(context);
     std::cout << "OpenCL test completed: blur3x3" << std::endl << std::endl;
 
     std::cout << "Testing: blur9x9" << std::endl;
     BlurOpenCL blurOperation9x9(100, 100, 4);
     context = openclModule.GetContext("blur9x9");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     blurOperation9x9.Process(context);
     std::cout << "OpenCL test completed: blur9x9" << std::endl << std::endl;
 
     std::cout << "Testing: blurMxM" << std::endl;
     BlurOpenCL blurOperationMxM(100, 100, 7);
     context = openclModule.GetContext("blurMxM");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     blurOperationMxM.Process(context);
     std::cout << "OpenCL test completed: blurMxM" << std::endl << std::endl;
 }
@@ -345,11 +381,11 @@ int main(int argc, char** argv)
     //dgemvCuda();
     //dgemvOpenCL();
 
-    //gemmCuda();
-    //gemmOpenCL();
+    gemmCuda();
+    gemmOpenCL();
 
-    //transposeCuda();
-    //transposeOpenCL();
+    transposeCuda();
+    transposeOpenCL();
 
     blurCuda();
     blurOpenCL();
