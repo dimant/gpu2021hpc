@@ -16,6 +16,7 @@
 #include "GemmOpenCL.h"
 
 #include "TransposeCuda.h"
+#include "TransposeOpenCL.h"
 
 void matAddCuda()
 {
@@ -240,6 +241,24 @@ void transposeCuda()
     std::cout << "Cuda test completed: transpose" << std::endl;
 }
 
+void transposeOpenCL()
+{
+    std::cout << std::endl << "[OpenCL] transpose tests" << std::endl;
+
+    OpenCLModule openclModule;
+    openclModule.Init();
+
+    const char* kernelFile = "transpose.cl";
+
+    openclModule.Compile(kernelFile);
+
+    TransposeOpenCL transposeOperation(3, 3);
+    OpenCLContext context = openclModule.GetContext("transpose");
+    transposeOperation.Process(context);
+
+    std::cout << "OpenCL test completed: transpose" << std::endl;
+}
+
 int main(int argc, char** argv)
 {
     //matAddCuda();
@@ -254,8 +273,8 @@ int main(int argc, char** argv)
     //gemmCuda();
     //gemmOpenCL();
 
-    transposeCuda();
-
+    //transposeCuda();
+    transposeOpenCL();
 
     return 0;
 }

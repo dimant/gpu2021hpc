@@ -81,6 +81,9 @@
     <ClCompile Include="TransposeCuda.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TransposeOpenCL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MatAddOperation.h">
@@ -140,6 +143,9 @@
     <ClInclude Include="TransposeCuda.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TransposeOpenCL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="dgemv.cl">
@@ -170,6 +176,9 @@
       <Filter>Kernels</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="gemm.cu" />
+    <CopyFileToFolders Include="transpose.cl">
+      <Filter>Kernels</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
     <None Include="MatAddOpenCL.h">
