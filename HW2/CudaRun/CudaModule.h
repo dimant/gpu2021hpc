@@ -3,10 +3,12 @@
 
 #include <cuda.h>
 #include "cuda_util.h"
+#include "util.h"
 
 struct CudaContext
 {
 	CUfunction cuFunction;
+	Work work;
 };
 
 class CudaModule

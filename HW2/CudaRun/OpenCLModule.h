@@ -7,6 +7,8 @@
 
 #include "ocl_util.h"
 
+#include "util.h"
+
 /// <summary>
 /// Porting between CUDA and OpenCL:
 /// https://www.sharcnet.ca/help/index.php/Porting_CUDA_to_OpenCL
@@ -20,6 +22,7 @@ struct OpenCLContext
 	cl_kernel kernel;
 	cl_command_queue queue;
 	cl_context context;
+	Work work;
 };
 
 class OpenCLModule

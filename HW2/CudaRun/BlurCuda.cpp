@@ -22,9 +22,8 @@ void BlurCuda::CopyToDevice()
 
 void BlurCuda::Launch()
 {
-    unsigned int threads = 32;
-    dim3 blockSize(threads, threads);
-    dim3 gridSize(4, 4);
+    dim3 blockSize(GetContext().work.threads.x, GetContext().work.threads.y);
+    dim3 gridSize(GetContext().work.blocks.x, GetContext().work.blocks.y);
 
     void* args[5] = { &d_A, &d_B, &rows, &cols, &blurSize };
 

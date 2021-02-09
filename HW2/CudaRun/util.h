@@ -3,6 +3,16 @@
 
 #include <string>
 
+struct Size3
+{
+	unsigned int x, y, z;
+};
+
+struct Work
+{
+	Size3 threads, blocks;
+};
+
 std::string readFile(const char* fileName);
 
 // Sets the current working directory to be the same as the directory

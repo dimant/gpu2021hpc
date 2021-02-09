@@ -276,18 +276,30 @@ void blurCuda()
     std::cout << "Testing: blur3x3" << std::endl;
     BlurCuda blurOperation3x3(100, 100, 1);
     CudaContext context = cudaModule.GetContext("blur3x3");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     blurOperation3x3.Process(context);
     std::cout << "Cuda test completed: blur3x3" << std::endl << std::endl;
 
     std::cout << "Testing: blur9x9" << std::endl;
     BlurCuda blurOperation9x9(100, 100, 4);
     context = cudaModule.GetContext("blur9x9");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     blurOperation9x9.Process(context);
     std::cout << "Cuda test completed: blur9x9" << std::endl << std::endl;
 
     std::cout << "Testing: blurMxM" << std::endl;
     BlurCuda blurOperationMxM(100, 100, 7);
     context = cudaModule.GetContext("blurMxM");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     blurOperationMxM.Process(context);
     std::cout << "Cuda test completed: blurMxM" << std::endl << std::endl;
 }
