@@ -18,6 +18,9 @@
 #include "TransposeCuda.h"
 #include "TransposeOpenCL.h"
 
+#include "BlurCuda.h"
+#include "BlurOpenCL.h"
+
 void matAddCuda()
 {
     std::cout << std::endl << "[CUDA] MatAdd tests" << std::endl;
@@ -259,6 +262,54 @@ void transposeOpenCL()
     std::cout << "OpenCL test completed: transpose" << std::endl;
 }
 
+void blurCuda()
+{
+    std::cout << std::endl << "[Cuda] blur tests" << std::endl;
+
+    CudaModule cudaModule;
+    cudaModule.Init();
+
+    const char* kernelFile = "blur.cu";
+
+    cudaModule.Compile(kernelFile);
+
+    std::cout << "Testing: blur3x3" << std::endl;
+    BlurCuda blurOperation3x3(10, 10, 1);
+    CudaContext context = cudaModule.GetContext("blur3x3");
+    blurOperation3x3.Process(context);
+    std::cout << "Cuda test completed: blur3x3" << std::endl << std::endl;
+
+    std::cout << "Testing: blur9x9" << std::endl;
+    BlurCuda blurOperation9x9(10, 10, 4);
+    context = cudaModule.GetContext("blur9x9");
+    blurOperation9x9.Process(context);
+    std::cout << "Cuda test completed: blur9x9" << std::endl << std::endl;
+}
+
+void blurOpenCL()
+{
+    std::cout << std::endl << "[OpenCL] blur tests" << std::endl;
+
+    OpenCLModule openclModule;
+    openclModule.Init();
+
+    const char* kernelFile = "blur.cl";
+
+    openclModule.Compile(kernelFile);
+
+    std::cout << "Testing: blur3x3" << std::endl;
+    BlurOpenCL blurOperation3x3(10, 10, 1);
+    OpenCLContext context = openclModule.GetContext("blur3x3");
+    blurOperation3x3.Process(context);
+    std::cout << "OpenCL test completed: blur3x3" << std::endl << std::endl;
+
+    std::cout << "Testing: blur9x9" << std::endl;
+    BlurOpenCL blurOperation9x9(10, 10, 4);
+    context = openclModule.GetContext("blur9x9");
+    blurOperation9x9.Process(context);
+    std::cout << "OpenCL test completed: blur9x9" << std::endl << std::endl;
+}
+
 int main(int argc, char** argv)
 {
     //matAddCuda();
@@ -274,7 +325,10 @@ int main(int argc, char** argv)
     //gemmOpenCL();
 
     //transposeCuda();
-    transposeOpenCL();
+    //transposeOpenCL();
+
+    //blurCuda();
+    blurOpenCL();
 
     return 0;
 }

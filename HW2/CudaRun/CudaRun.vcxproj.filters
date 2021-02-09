@@ -193,17 +193,19 @@
     <CopyFileToFolders Include="transpose.cu">
       <Filter>Kernels</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="gemm.cu" />
     <CopyFileToFolders Include="transpose.cl">
+      <Filter>Kernels</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="gemm.cu">
+      <Filter>Kernels</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="blur.cl">
       <Filter>Kernels</Filter>
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
     <None Include="MatAddOpenCL.h">
       <Filter>Header Files</Filter>
-    </None>
-    <None Include="blur.cl">
-      <Filter>Kernels</Filter>
     </None>
   </ItemGroup>
 </Project>

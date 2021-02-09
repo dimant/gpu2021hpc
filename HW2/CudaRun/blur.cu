@@ -1,86 +1,57 @@
-__global void blurKernel3x3(unsigned char* in, unsigned char* out, int w, int h)
+extern "C" __global__ void blur3x3(unsigned char* A, unsigned char* B, int rows, int cols)
 {
-	int Col = blockIdx.x * blockDim.x + threadIdx.x;
-	int Row = blockIdx.y * blockDim.y + threadIdx.y;
+	int col = blockIdx.x * blockDim.x + threadIdx.x;
+	int row = blockIdx.y * blockDim.y + threadIdx.y;
 
-	if (Col < w && Row < h)
+	if (col < cols && row < rows)
 	{
 		int pixVal = 0;
 		int pixels = 0;
 
-		for (int blurRow = -3; blurRow < -3 + 1; blurRow++)
+		for (int blurRow = -1; blurRow < 1 + 1; blurRow++)
 		{
-			for (int blurCol = -3; blurCol < -3 + 1; blurCol++)
+			for (int blurCol = -1; blurCol < 1 + 1; blurCol++)
 			{
-				int curRow = Row + blurRow;
-				int curCol = Col + blurCol;
+				int curRow = row + blurRow;
+				int curCol = col + blurCol;
 
-				if (curRow > -1 && curRow < h && curCol > -1 && curCol < w)
+				if (curRow > -1 && curRow < rows && curCol > -1 && curCol < cols)
 				{
-					pixVal += in[curRow * w + curCol];
+					pixVal += A[curRow * cols + curCol];
 					pixels++;
 				}
 			}
 		}
 
-		out[Row * w + Col] = (unsigned char)(pixVal / pixels);
+		B[row * cols + col] = (unsigned char)(pixVal / pixels);
 	}
 }
 
-__global void blurKernel9x9(unsigned char* in, unsigned char* out, int w, int h)
+extern "C" __global__ void blur9x9(unsigned char* A, unsigned char* B, int rows, int cols)
 {
-	int Col = blockIdx.x * blockDim.x + threadIdx.x;
-	int Row = blockIdx.y * blockDim.y + threadIdx.y;
+	int col = blockIdx.x * blockDim.x + threadIdx.x;
+	int row = blockIdx.y * blockDim.y + threadIdx.y;
 
-	if (Col < w && Row < h)
+	if (col < cols && row < rows)
 	{
 		int pixVal = 0;
 		int pixels = 0;
 
-		for (int blurRow = -9; blurRow < -9 + 1; blurRow++)
+		for (int blurRow = -4; blurRow < 4 + 1; blurRow++)
 		{
-			for (int blurCol = -9; blurCol < -9 + 1; blurCol++)
+			for (int blurCol = -4; blurCol < 4 + 1; blurCol++)
 			{
-				int curRow = Row + blurRow;
-				int curCol = Col + blurCol;
+				int curRow = row + blurRow;
+				int curCol = col + blurCol;
 
-				if (curRow > -1 && curRow < h && curCol > -1 && curCol < w)
+				if (curRow > -1 && curRow < rows && curCol > -1 && curCol < cols)
 				{
-					pixVal += in[curRow * w + curCol];
+					pixVal += A[curRow * cols + curCol];
 					pixels++;
 				}
 			}
 		}
 
-		out[Row * w + Col] = (unsigned char)(pixVal / pixels);
-	}
-}
-
-__global void blurKernelMxM(unsigned char* in, unsigned char* out, int w, int h, int M)
-{
-	int Col = blockIdx.x * blockDim.x + threadIdx.x;
-	int Row = blockIdx.y * blockDim.y + threadIdx.y;
-
-	if (Col < w && Row < h)
-	{
-		int pixVal = 0;
-		int pixels = 0;
-
-		for (int blurRow = -M; blurRow < -M + 1; blurRow++)
-		{
-			for (int blurCol = -M; blurCol < -M + 1; blurCol++)
-			{
-				int curRow = Row + blurRow;
-				int curCol = Col + blurCol;
-
-				if (curRow > -1 && curRow < h && curCol > -1 && curCol < w)
-				{
-					pixVal += in[curRow * w + curCol];
-					pixels++;
-				}
-			}
-		}
-
-		out[Row * w + Col] = (unsigned char)(pixVal / pixels);
+		B[row * cols + col] = (unsigned char)(pixVal / pixels);
 	}
 }

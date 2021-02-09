@@ -7,7 +7,7 @@
 
 void BlurCuda::AllocateDevice()
 {
-    size_t size = rows * cols * sizeof(char);
+    size_t size = rows * cols * sizeof(unsigned char);
 
     checkCudaError(cuMemAlloc(&d_A, size));
     checkCudaError(cuMemAlloc(&d_B, size));
@@ -37,7 +37,7 @@ void BlurCuda::Launch()
 
 void BlurCuda::CopyFromDevice()
 {
-    size_t size = rows * cols * sizeof(char);
+    size_t size = rows * cols * sizeof(unsigned char);
 
     checkCudaError(cuMemcpyDtoH(h_B, d_B, size));
 }

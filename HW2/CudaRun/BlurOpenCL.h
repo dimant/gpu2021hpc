@@ -14,8 +14,8 @@ private:
 	cl_mem d_B;
 
 public:
-	BlurOpenCL(size_t rows, size_t cols) :
-		d_A(0), d_B(0), BlurOperation(rows, cols)
+	BlurOpenCL(size_t rows, size_t cols, int blurSize) :
+		d_A(0), d_B(0), BlurOperation(rows, cols, blurSize)
 	{
 	}
 
