@@ -1,7 +1,7 @@
 __kernel void blur3x3(__global unsigned char* A, __global unsigned char* B, const int rows, const int cols)
 {
-	int col = get_global_id(0);
-	int row = get_global_id(1);
+	const int col = get_global_id(0);
+	const int row = get_global_id(1);
 
 	if (col < cols && row < rows)
 	{
@@ -29,8 +29,8 @@ __kernel void blur3x3(__global unsigned char* A, __global unsigned char* B, cons
 
 __kernel void blur9x9(__global unsigned char* A, __global unsigned char* B, const int rows, const int cols)
 {
-	int col = get_global_id(0);
-	int row = get_global_id(1);
+	const int col = get_global_id(0);
+	const int row = get_global_id(1);
 
 	if (col < cols && row < rows)
 	{
@@ -58,8 +58,8 @@ __kernel void blur9x9(__global unsigned char* A, __global unsigned char* B, cons
 
 __kernel void blurMxM(__global unsigned char* A, __global unsigned char* B, const int rows, const int cols, const int M)
 {
-	int col = get_global_id(0);
-	int row = get_global_id(1);
+	const int col = get_global_id(0);
+	const int row = get_global_id(1);
 
 	if (col < cols && row < rows)
 	{

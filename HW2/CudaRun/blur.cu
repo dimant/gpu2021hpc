@@ -1,7 +1,7 @@
-extern "C" __global__ void blur3x3(unsigned char* A, unsigned char* B, int rows, int cols)
+extern "C" __global__ void blur3x3(unsigned char* A, unsigned char* B, const int rows, const int cols)
 {
-	int col = blockIdx.x * blockDim.x + threadIdx.x;
-	int row = blockIdx.y * blockDim.y + threadIdx.y;
+	const int col = blockIdx.x * blockDim.x + threadIdx.x;
+	const int row = blockIdx.y * blockDim.y + threadIdx.y;
 
 	if (col < cols && row < rows)
 	{
@@ -27,10 +27,10 @@ extern "C" __global__ void blur3x3(unsigned char* A, unsigned char* B, int rows,
 	}
 }
 
-extern "C" __global__ void blur9x9(unsigned char* A, unsigned char* B, int rows, int cols)
+extern "C" __global__ void blur9x9(unsigned char* A, unsigned char* B, const int rows, const int cols)
 {
-	int col = blockIdx.x * blockDim.x + threadIdx.x;
-	int row = blockIdx.y * blockDim.y + threadIdx.y;
+	const int col = blockIdx.x * blockDim.x + threadIdx.x;
+	const int row = blockIdx.y * blockDim.y + threadIdx.y;
 
 	if (col < cols && row < rows)
 	{
@@ -56,10 +56,10 @@ extern "C" __global__ void blur9x9(unsigned char* A, unsigned char* B, int rows,
 	}
 }
 
-extern "C" __global__ void blurMxM(unsigned char* A, unsigned char* B, int rows, int cols, int M)
+extern "C" __global__ void blurMxM(unsigned char* A, unsigned char* B, const int rows, const int cols, const int M)
 {
-	int col = blockIdx.x * blockDim.x + threadIdx.x;
-	int row = blockIdx.y * blockDim.y + threadIdx.y;
+	const int col = blockIdx.x * blockDim.x + threadIdx.x;
+	const int row = blockIdx.y * blockDim.y + threadIdx.y;
 
 	if (col < cols && row < rows)
 	{

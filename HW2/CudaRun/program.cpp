@@ -193,7 +193,7 @@ void gemmCuda()
 
     cudaModule.Compile(kernelFile);
 
-    GemmCuda<float> sgemmOperation(3, 3, 3, 3);
+    GemmCuda<float> sgemmOperation(100, 100, 100, 100);
     CudaContext context = cudaModule.GetContext("sgemm");
     context.work.threads.x = 32;
     context.work.threads.y = 32;
@@ -202,7 +202,7 @@ void gemmCuda()
     sgemmOperation.Process(context);
     std::cout << "Cuda test completed: sgemm" << std::endl << std::endl;
 
-    GemmCuda<double> dgemmOperation(3, 3, 3, 3);
+    GemmCuda<double> dgemmOperation(100, 100, 100, 100);
     context = cudaModule.GetContext("dgemm");
     context.work.threads.x = 32;
     context.work.threads.y = 32;
@@ -223,7 +223,7 @@ void gemmOpenCL()
 
     openclModule.Compile(kernelFile);
 
-    GemmOpenCL<float> sgemmOperation(3, 3, 3, 3);
+    GemmOpenCL<float> sgemmOperation(100, 100, 100, 100);
     OpenCLContext context = openclModule.GetContext("sgemm");
     context.work.threads.x = 32;
     context.work.threads.y = 32;
@@ -232,7 +232,7 @@ void gemmOpenCL()
     sgemmOperation.Process(context);
     std::cout << "OpenCL test completed: sgemm" << std::endl << std::endl;
 
-    GemmOpenCL<double> dgemmOperation(3, 3, 3, 3);
+    GemmOpenCL<double> dgemmOperation(100, 100, 100, 100);
     context = openclModule.GetContext("dgemm");
     context.work.threads.x = 32;
     context.work.threads.y = 32;
@@ -253,7 +253,7 @@ void transposeCuda()
 
     cudaModule.Compile(kernelFile);
 
-    TransposeCuda transposeOperation(3, 3);
+    TransposeCuda transposeOperation(100, 100);
     CudaContext context = cudaModule.GetContext("transpose");
     context.work.threads.x = 32;
     context.work.threads.y = 32;
@@ -275,7 +275,7 @@ void transposeOpenCL()
 
     openclModule.Compile(kernelFile);
 
-    TransposeOpenCL transposeOperation(3, 3);
+    TransposeOpenCL transposeOperation(100, 100);
     OpenCLContext context = openclModule.GetContext("transpose");
     context.work.threads.x = 32;
     context.work.threads.y = 32;
