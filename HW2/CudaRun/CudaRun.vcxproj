@@ -89,6 +89,9 @@
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlurCuda.cpp" />
+    <ClCompile Include="BlurOpenCL.cpp" />
+    <ClCompile Include="BlurOperation.cpp" />
     <ClCompile Include="CudaModule.cpp" />
     <ClCompile Include="cuda_util.cpp" />
     <ClCompile Include="DgemvCuda.cpp" />
@@ -112,6 +115,9 @@
     <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlurCuda.h" />
+    <ClInclude Include="BlurOpenCL.h" />
+    <ClInclude Include="BlurOperation.h" />
     <ClInclude Include="DgemvCuda.h" />
     <ClInclude Include="CudaModule.h" />
     <ClInclude Include="DgemvOpenCL.h" />
@@ -164,6 +170,7 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
       <FileType>Document</FileType>
     </CopyFileToFolders>
+    <None Include="blur.cl" />
     <None Include="MatAddOpenCL.h" />
     <CopyFileToFolders Include="transpose.cu">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>

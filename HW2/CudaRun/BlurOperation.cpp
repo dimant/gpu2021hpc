@@ -1,13 +1,13 @@
-#include "TransposeOperation.h"
+#include "BlurOperation.h"
 
 #include <iostream>
 
 #include "util.h"
 
-void TransposeOperation::AllocateHost()
+void BlurOperation::AllocateHost()
 {
-    h_A = (int*)malloc(cols * rows * sizeof(int));
-    h_B = (int*)malloc(cols * rows * sizeof(int));
+    h_A = (char*)malloc(cols * rows * sizeof(char));
+    h_B = (char*)malloc(cols * rows * sizeof(char));
 
     if (h_A == nullptr || h_B == nullptr)
     {
@@ -16,30 +16,27 @@ void TransposeOperation::AllocateHost()
     }
 }
 
-void TransposeOperation::InitData()
+void BlurOperation::InitData()
 {
     for (int row = 0; row < rows; row++)
     {
         for (int col = 0; col < cols; col++)
         {
             size_t idx = row * cols + col;
-            h_A[idx] = (int) idx;
+            h_A[idx] = (int)idx;
         }
     }
 }
 
-void TransposeOperation::VerifyResult()
+void BlurOperation::VerifyResult()
 {
-    int* b = new int[rows * cols];
+    char* b = new char[rows * cols];
 
     for (int row = 0; row < rows; row++)
     {
         for (int col = 0; col < cols; col++)
         {
-            size_t index = row * rows + col;
-            size_t transposedIndex = col * rows + row;
 
-            b[index] = h_A[transposedIndex];
         }
     }
 
@@ -55,7 +52,7 @@ void TransposeOperation::VerifyResult()
     delete[] b;
 }
 
-void TransposeOperation::FreeHost()
+void BlurOperation::FreeHost()
 {
     free(h_A);
     free(h_B);
