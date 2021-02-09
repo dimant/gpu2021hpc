@@ -274,13 +274,13 @@ void blurCuda()
     cudaModule.Compile(kernelFile);
 
     std::cout << "Testing: blur3x3" << std::endl;
-    BlurCuda blurOperation3x3(10, 10, 1);
+    BlurCuda blurOperation3x3(100, 100, 1);
     CudaContext context = cudaModule.GetContext("blur3x3");
     blurOperation3x3.Process(context);
     std::cout << "Cuda test completed: blur3x3" << std::endl << std::endl;
 
     std::cout << "Testing: blur9x9" << std::endl;
-    BlurCuda blurOperation9x9(10, 10, 4);
+    BlurCuda blurOperation9x9(100, 100, 4);
     context = cudaModule.GetContext("blur9x9");
     blurOperation9x9.Process(context);
     std::cout << "Cuda test completed: blur9x9" << std::endl << std::endl;
@@ -298,13 +298,13 @@ void blurOpenCL()
     openclModule.Compile(kernelFile);
 
     std::cout << "Testing: blur3x3" << std::endl;
-    BlurOpenCL blurOperation3x3(10, 10, 1);
+    BlurOpenCL blurOperation3x3(100, 100, 1);
     OpenCLContext context = openclModule.GetContext("blur3x3");
     blurOperation3x3.Process(context);
     std::cout << "OpenCL test completed: blur3x3" << std::endl << std::endl;
 
     std::cout << "Testing: blur9x9" << std::endl;
-    BlurOpenCL blurOperation9x9(10, 10, 4);
+    BlurOpenCL blurOperation9x9(100, 100, 4);
     context = openclModule.GetContext("blur9x9");
     blurOperation9x9.Process(context);
     std::cout << "OpenCL test completed: blur9x9" << std::endl << std::endl;
@@ -327,7 +327,7 @@ int main(int argc, char** argv)
     //transposeCuda();
     //transposeOpenCL();
 
-    //blurCuda();
+    blurCuda();
     blurOpenCL();
 
     return 0;

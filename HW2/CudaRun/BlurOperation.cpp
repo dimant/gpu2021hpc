@@ -23,7 +23,7 @@ void BlurOperation::InitData()
         for (int col = 0; col < cols; col++)
         {
             size_t idx = row * cols + col;
-            h_A[idx] = (int)idx;
+            h_A[idx] = (int)idx % blurSize;
         }
     }
 }
