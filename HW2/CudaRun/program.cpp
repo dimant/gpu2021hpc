@@ -12,8 +12,10 @@
 #include "DgemvCuda.h"
 #include "DgemvOpenCL.h"
 
-#include "GemmOpenCL.h"
 #include "GemmCuda.h"
+#include "GemmOpenCL.h"
+
+#include "TransposeCuda.h"
 
 void matAddCuda()
 {
@@ -220,18 +222,40 @@ void gemmOpenCL()
     std::cout << "OpenCL test completed: dgemm" << std::endl;
 }
 
+void transposeCuda()
+{
+    std::cout << std::endl << "[Cuda] transpose tests" << std::endl;
+
+    CudaModule cudaModule;
+    cudaModule.Init();
+
+    const char* kernelFile = "transpose.cu";
+
+    cudaModule.Compile(kernelFile);
+
+    TransposeCuda transposeOperation(3, 3);
+    CudaContext context = cudaModule.GetContext("transpose");
+    transposeOperation.Process(context);
+
+    std::cout << "Cuda test completed: transpose" << std::endl;
+}
+
 int main(int argc, char** argv)
 {
     //matAddCuda();
-    //dotProductCuda();
-    //dgemvCuda();
-
     //matAddOpenCL();
-    //dgemvOpenCL();
+
+    //dotProductCuda();
     //dotProductOpenCL();
 
-    gemmOpenCL();
-    gemmCuda();
+    //dgemvCuda();
+    //dgemvOpenCL();
+
+    //gemmCuda();
+    //gemmOpenCL();
+
+    transposeCuda();
+
 
     return 0;
 }

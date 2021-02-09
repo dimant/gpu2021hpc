@@ -4,8 +4,8 @@
 class TransposeOperation
 {
 protected:
-	size_t cols;
 	size_t rows;
+	size_t cols;
 
 	int* h_A;
 	int* h_B;

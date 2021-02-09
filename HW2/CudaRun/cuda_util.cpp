@@ -63,7 +63,7 @@ void cudaCompileKernel(
 
     nvrtcProgram program;
 
-    std::cerr << std::endl << "Compiling: " << kernelFile;
+    std::cerr << std::endl << "Compiling: " << kernelFile << std::endl;
 
     checkNvrtcError(nvrtcCreateProgram(&program, kernelSource.c_str(), kernelFile, 0, NULL, NULL));
     nvrtcResult compileError = nvrtcCompileProgram(program, nCompileParams, compileParams);
@@ -74,7 +74,8 @@ void cudaCompileKernel(
     checkNvrtcError(nvrtcGetProgramLog(program, log));
     log[logSize] = '\0';
 
-    if (strlen(log) >= 2) {
+    if (strlen(log) >= 2)
+    {
         std::cerr << log;
     }
     else

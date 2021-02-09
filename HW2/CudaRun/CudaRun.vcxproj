@@ -106,6 +106,8 @@
     <ClCompile Include="ocl_util.cpp" />
     <ClCompile Include="OpenCLModule.cpp" />
     <ClCompile Include="program.cpp" />
+    <ClCompile Include="TransposeCuda.cpp" />
+    <ClCompile Include="TransposeOperation.cpp" />
     <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +127,8 @@
     <ClInclude Include="MatAddOperation.h" />
     <ClInclude Include="ocl_util.h" />
     <ClInclude Include="OpenCLModule.h" />
+    <ClInclude Include="TransposeCuda.h" />
+    <ClInclude Include="TransposeOperation.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>

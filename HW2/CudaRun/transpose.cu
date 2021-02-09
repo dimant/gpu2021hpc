@@ -1,9 +1,12 @@
-__global void matrix_transpose_naive(int* input, int* output, int N)
+extern "C" __global__ void transpose(int* A, int* B, int rows, int cols)
 {
-	int indexX = threadIdx.x + blockIdx.x * blockDim.x;
-	int indexY = threadIdx.y + blockIdx.y * blockDim.y;
-	int index = indexY * N + indexX;
-	int transposedIndex = indexX * N + indexY;
+	int col = threadIdx.x + blockIdx.x * blockDim.x;
+	int row = threadIdx.y + blockIdx.y * blockDim.y;
+	int index = row * rows + col;
+	int transposedIndex = col * rows + row;
 
-	output[index] = input[transposedIndex];
+	if (col < cols && row < rows)
+	{
+		B[index] = A[transposedIndex];
+	}
 }
