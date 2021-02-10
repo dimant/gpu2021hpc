@@ -8,9 +8,9 @@ namespace NcuBatch
 {
     class NvprofParser
     {
-        private Regex kernelRuntimeRegex = new Regex("(GPU activities:)? +(?<percent>.+%) +(?<time>\\d.+?[um]?s).+ (?<kernel>.+)$");
-        private Regex memcpyHtoDRegex = new Regex("(GPU activities:)? +(?<percent>\\d.+%) +(?<time>\\d.+?[um]?s).+\\[CUDA memcpy HtoD\\]");
-        private Regex memcpyDtoHRegex = new Regex("(GPU activities:)? +(?<percent>\\d.+%) +(?<time>\\d.+?[um]?s).+\\[CUDA memcpy DtoH\\]");
+        private Regex kernelRuntimeRegex = new Regex(".*(GPU activities:)? +(?<percent>.+%) +(?<time>\\d.+?[um]?s).+ (?<kernel>[a-zA-Z]+)$");
+        private Regex memcpyHtoDRegex = new Regex(".*(GPU activities:)? +(?<percent>\\d.+%) +(?<time>\\d.+?[um]?s).+\\[CUDA memcpy HtoD\\]");
+        private Regex memcpyDtoHRegex = new Regex(".*(GPU activities:)? +(?<percent>\\d.+%) +(?<time>\\d.+?[um]?s).+\\[CUDA memcpy DtoH\\]");
         private Regex fileNameRegex = new Regex("(?<kernel>.+?)-(?<size>\\d+?)-(?<threads>\\d+?)-(?<blocks>\\d+?).txt");
 
         public void ParseNvprof()
@@ -37,31 +37,39 @@ namespace NcuBatch
                 string memcpyDtoHTime = string.Empty;
 
                 var lines = File.ReadLines(txtFile);
+                var parse = false;
                 foreach(var line in lines)
                 {
-                    var kernelRuntimeMatch = kernelRuntimeRegex.Match(line);
-                    var memcpyHtoDMatch = memcpyHtoDRegex.Match(line);
-                    var memcpyDtoHMatch = memcpyDtoHRegex.Match(line);
-
-                    if(i == 36)
+                    if(line.Contains("Type"))
                     {
-
+                        parse = true;
+                    }
+                    else if(line.Contains("API calls"))
+                    {
+                        parse = false;
                     }
 
-                    if(kernelRuntimeMatch.Success)
+                    if(parse)
                     {
-                        kernelRuntimePercent = kernelRuntimeMatch.Groups["percent"].Value;
-                        kernelRuntimeTime = kernelRuntimeMatch.Groups["time"].Value;
-                    }
-                    else if(memcpyHtoDMatch.Success)
-                    {
-                        memcpyHtoDPercent = memcpyHtoDMatch.Groups["percent"].Value;
-                        memcpyHtoDTime = memcpyHtoDMatch.Groups["time"].Value;
-                    }
-                    else if(memcpyDtoHMatch.Success)
-                    {
-                        memcpyDtoHPercent = memcpyDtoHMatch.Groups["percent"].Value;
-                        memcpyDtoHTime = memcpyDtoHMatch.Groups["time"].Value;
+                        var kernelRuntimeMatch = kernelRuntimeRegex.Match(line);
+                        var memcpyHtoDMatch = memcpyHtoDRegex.Match(line);
+                        var memcpyDtoHMatch = memcpyDtoHRegex.Match(line);
+
+                        if(kernelRuntimeMatch.Success)
+                        {
+                            kernelRuntimePercent = kernelRuntimeMatch.Groups["percent"].Value;
+                            kernelRuntimeTime = kernelRuntimeMatch.Groups["time"].Value;
+                        }
+                        else if(memcpyHtoDMatch.Success)
+                        {
+                            memcpyHtoDPercent = memcpyHtoDMatch.Groups["percent"].Value;
+                            memcpyHtoDTime = memcpyHtoDMatch.Groups["time"].Value;
+                        }
+                        else if(memcpyDtoHMatch.Success)
+                        {
+                            memcpyDtoHPercent = memcpyDtoHMatch.Groups["percent"].Value;
+                            memcpyDtoHTime = memcpyDtoHMatch.Groups["time"].Value;
+                        }
                     }
 
                 }
