@@ -34,14 +34,26 @@ void matAddCuda()
 
     MatAddCuda matAddOperation(4096, 4096);
     CudaContext context = cudaModule.GetContext("matAdd");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     matAddOperation.Process(context);
     std::cout << "Cuda test completed: matAdd" << std::endl;
 
     context = cudaModule.GetContext("matAddRow");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     matAddOperation.Process(context);
     std::cout << "Cuda test completed: matAddRow" << std::endl;
 
     context = cudaModule.GetContext("matAddCol");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     matAddOperation.Process(context);
     std::cout << "Cuda test completed: matAddCol" << std::endl;
 }
@@ -59,10 +71,18 @@ void matAddOpenCL()
 
     MatAddOpenCL matAddOperation(4096, 4096);
     OpenCLContext context = openclModule.GetContext("matAdd");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     matAddOperation.Process(context);
     std::cout << "OpenCL test completed: matAdd" << std::endl;
 
     context = openclModule.GetContext("matAddRow");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     matAddOperation.Process(context);
     std::cout << "OpenCL test completed: matAddRow" << std::endl;
 
@@ -161,6 +181,10 @@ void dgemvCuda()
 
     DgemvCuda dgemvOperation(4096, 4096*2);
     CudaContext context = cudaModule.GetContext("dgemv");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     dgemvOperation.Process(context);
     std::cout << "Cuda test completed: dgemv" << std::endl;
 }
@@ -178,6 +202,10 @@ void dgemvOpenCL()
 
     DgemvOpenCL dgemvOperation(4096, 4096 * 2);
     OpenCLContext context = openclModule.GetContext("dgemv");
+    context.work.threads.x = 32;
+    context.work.threads.y = 32;
+    context.work.blocks.x = 4;
+    context.work.blocks.y = 4;
     dgemvOperation.Process(context);
     std::cout << "OpenCL test completed: dgemv" << std::endl;
 }
@@ -372,23 +400,23 @@ void blurOpenCL()
 
 int main(int argc, char** argv)
 {
-    //matAddCuda();
+    matAddCuda();
     //matAddOpenCL();
 
     //dotProductCuda();
     //dotProductOpenCL();
 
-    //dgemvCuda();
+    dgemvCuda();
     //dgemvOpenCL();
 
-    gemmCuda();
-    gemmOpenCL();
+    //gemmCuda();
+    //gemmOpenCL();
 
-    transposeCuda();
-    transposeOpenCL();
+    //transposeCuda();
+    //transposeOpenCL();
 
-    blurCuda();
-    blurOpenCL();
+    //blurCuda();
+    //blurOpenCL();
 
     return 0;
 }
