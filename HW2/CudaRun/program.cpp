@@ -323,10 +323,10 @@ void blurCuda(int rowcols, int threads, int blocks, int blurSize)
     }
     else
     {
-        kernelName = "blur9x9";
+        kernelName = "blurMxM";
     }
 
-    std::cout << "Testing: blur3x3" << std::endl;
+    std::cout << "Testing: " << kernelName << std::endl;
     BlurCuda blurOperation3x3(rowcols, rowcols, 1);
     CudaContext context = cudaModule.GetContext(kernelName.c_str());
     context.work.threads.x = threads;
@@ -334,7 +334,7 @@ void blurCuda(int rowcols, int threads, int blocks, int blurSize)
     context.work.blocks.x = blocks;
     context.work.blocks.y = blocks;
     blurOperation3x3.Process(context);
-    std::cout << "Cuda test completed: blur3x3" << std::endl << std::endl;
+    std::cout << "Cuda test completed: " << kernelName << std::endl << std::endl;
 }
 
 void blurOpenCL()
@@ -420,6 +420,10 @@ int main(int argc, char** argv)
         else if (kernelName.rfind("dgemm", 0) == 0)
         {
             gemmCuda(rowcols, threads, blocks, 2);
+        }
+        else if(kernelName.rfind("transpose", 0) == 0)
+        {
+            transposeCuda(rowcols, threads, blocks);
         }
         else if (kernelName.rfind("blur", 0) == 0)
         {
