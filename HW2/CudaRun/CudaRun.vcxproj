@@ -134,6 +134,7 @@
     <ClInclude Include="MatAddOperation.h" />
     <ClInclude Include="ocl_util.h" />
     <ClInclude Include="OpenCLModule.h" />
+    <ClInclude Include="popl.h" />
     <ClInclude Include="TransposeCuda.h" />
     <ClInclude Include="TransposeOpenCL.h" />
     <ClInclude Include="TransposeOperation.h" />

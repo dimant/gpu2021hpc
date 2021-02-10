@@ -164,6 +164,9 @@
     <ClInclude Include="BlurOpenCL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="popl.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="dgemv.cl">

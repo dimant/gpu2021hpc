@@ -1,5 +1,7 @@
 #include <iostream>
 
+#include "popl.h"
+
 #include "CudaModule.h"
 #include "OpenCLModule.h"
 
@@ -21,41 +23,23 @@
 #include "BlurCuda.h"
 #include "BlurOpenCL.h"
 
-void matAddCuda()
+void matAddCuda(int rowcols, int threads, int blocks, const char* kernelName)
 {
     std::cout << std::endl << "[CUDA] MatAdd tests" << std::endl;
 
     CudaModule cudaModule;
     cudaModule.Init();
 
-    const char* kernelFile = "matAdd.cu";
+    cudaModule.Compile("matAdd.cu");
 
-    cudaModule.Compile(kernelFile);
-
-    MatAddCuda matAddOperation(4096, 4096);
-    CudaContext context = cudaModule.GetContext("matAdd");
-    context.work.threads.x = 32;
-    context.work.threads.y = 32;
-    context.work.blocks.x = 4;
-    context.work.blocks.y = 4;
+    MatAddCuda matAddOperation(rowcols, rowcols);
+    CudaContext context = cudaModule.GetContext(kernelName);
+    context.work.threads.x = threads;
+    context.work.threads.y = threads;
+    context.work.blocks.x = blocks;
+    context.work.blocks.y = blocks;
     matAddOperation.Process(context);
-    std::cout << "Cuda test completed: matAdd" << std::endl;
-
-    context = cudaModule.GetContext("matAddRow");
-    context.work.threads.x = 32;
-    context.work.threads.y = 32;
-    context.work.blocks.x = 4;
-    context.work.blocks.y = 4;
-    matAddOperation.Process(context);
-    std::cout << "Cuda test completed: matAddRow" << std::endl;
-
-    context = cudaModule.GetContext("matAddCol");
-    context.work.threads.x = 32;
-    context.work.threads.y = 32;
-    context.work.blocks.x = 4;
-    context.work.blocks.y = 4;
-    matAddOperation.Process(context);
-    std::cout << "Cuda test completed: matAddCol" << std::endl;
+    std::cout << "Cuda test completed: " << kernelName << std::endl;
 }
 
 void matAddOpenCL()
@@ -168,23 +152,21 @@ void dotProductOpenCL()
     std::cout << "OpenCL test completed: dotProductFloat4" << std::endl;
 }
 
-void dgemvCuda()
+void dgemvCuda(int rowcols, int threads, int blocks)
 {
     std::cout << std::endl << "[Cuda] DGEMV tests" << std::endl;
 
     CudaModule cudaModule;
     cudaModule.Init();
 
-    const char* kernelFile = "dgemv.cu";
+    cudaModule.Compile("dgemv.cu");
 
-    cudaModule.Compile(kernelFile);
-
-    DgemvCuda dgemvOperation(4096, 4096*2);
+    DgemvCuda dgemvOperation(rowcols, rowcols);
     CudaContext context = cudaModule.GetContext("dgemv");
-    context.work.threads.x = 32;
-    context.work.threads.y = 32;
-    context.work.blocks.x = 4;
-    context.work.blocks.y = 4;
+    context.work.threads.x = threads;
+    context.work.threads.y = threads;
+    context.work.blocks.x = blocks;
+    context.work.blocks.y = blocks;
     dgemvOperation.Process(context);
     std::cout << "Cuda test completed: dgemv" << std::endl;
 }
@@ -210,34 +192,38 @@ void dgemvOpenCL()
     std::cout << "OpenCL test completed: dgemv" << std::endl;
 }
 
-void gemmCuda()
+void gemmCuda(int rowcols, int threads, int blocks, int type)
 {
     std::cout << std::endl << "[Cuda] GEMM tests" << std::endl;
 
     CudaModule cudaModule;
     cudaModule.Init();
 
-    const char* kernelFile = "gemm.cu";
+    cudaModule.Compile("gemm.cu");
 
-    cudaModule.Compile(kernelFile);
+    if (type == 1)
+    {
+        GemmCuda<float> sgemmOperation(rowcols, rowcols, rowcols, rowcols);
+        CudaContext context = cudaModule.GetContext("sgemm");
+        context.work.threads.x = threads;
+        context.work.threads.y = threads;
+        context.work.blocks.x = blocks;
+        context.work.blocks.y = blocks;
+        sgemmOperation.Process(context);
+        std::cout << "Cuda test completed: sgemm" << std::endl;
+    }
+    else
+    {
+        GemmCuda<double> sgemmOperation(rowcols, rowcols, rowcols, rowcols);
+        CudaContext context = cudaModule.GetContext("dgemm");
+        context.work.threads.x = threads;
+        context.work.threads.y = threads;
+        context.work.blocks.x = blocks;
+        context.work.blocks.y = blocks;
+        sgemmOperation.Process(context);
+        std::cout << "Cuda test completed: dgemm" << std::endl;
+    }
 
-    GemmCuda<float> sgemmOperation(100, 100, 100, 100);
-    CudaContext context = cudaModule.GetContext("sgemm");
-    context.work.threads.x = 32;
-    context.work.threads.y = 32;
-    context.work.blocks.x = 4;
-    context.work.blocks.y = 4;
-    sgemmOperation.Process(context);
-    std::cout << "Cuda test completed: sgemm" << std::endl << std::endl;
-
-    GemmCuda<double> dgemmOperation(100, 100, 100, 100);
-    context = cudaModule.GetContext("dgemm");
-    context.work.threads.x = 32;
-    context.work.threads.y = 32;
-    context.work.blocks.x = 4;
-    context.work.blocks.y = 4;
-    dgemmOperation.Process(context);
-    std::cout << "Cuda test completed: dgemm" << std::endl;
 }
 
 void gemmOpenCL()
@@ -270,23 +256,21 @@ void gemmOpenCL()
     std::cout << "OpenCL test completed: dgemm" << std::endl;
 }
 
-void transposeCuda()
+void transposeCuda(int rowcols, int threads, int blocks)
 {
     std::cout << std::endl << "[Cuda] transpose tests" << std::endl;
 
     CudaModule cudaModule;
     cudaModule.Init();
 
-    const char* kernelFile = "transpose.cu";
-
-    cudaModule.Compile(kernelFile);
+    cudaModule.Compile("transpose.cu");
 
     TransposeCuda transposeOperation(100, 100);
     CudaContext context = cudaModule.GetContext("transpose");
-    context.work.threads.x = 32;
-    context.work.threads.y = 32;
-    context.work.blocks.x = 4;
-    context.work.blocks.y = 4;
+    context.work.threads.x = threads;
+    context.work.threads.y = threads;
+    context.work.blocks.x = blocks;
+    context.work.blocks.y = blocks;
     transposeOperation.Process(context);
 
     std::cout << "Cuda test completed: transpose" << std::endl;
@@ -314,46 +298,43 @@ void transposeOpenCL()
     std::cout << "OpenCL test completed: transpose" << std::endl;
 }
 
-void blurCuda()
+
+/// <summary>
+/// blurSize: 1 for 3x3, 4 for 9x9 and anything else for MxM
+/// </summary>
+void blurCuda(int rowcols, int threads, int blocks, int blurSize)
 {
     std::cout << std::endl << "[Cuda] blur tests" << std::endl;
 
     CudaModule cudaModule;
     cudaModule.Init();
 
-    const char* kernelFile = "blur.cu";
+    cudaModule.Compile("blur.cu");
 
-    cudaModule.Compile(kernelFile);
+    std::string kernelName;
+
+    if (blurSize == 1)
+    {
+        kernelName = "blur3x3";
+    }
+    else if (blurSize == 4)
+    {
+        kernelName = "blur9x9";
+    }
+    else
+    {
+        kernelName = "blur9x9";
+    }
 
     std::cout << "Testing: blur3x3" << std::endl;
     BlurCuda blurOperation3x3(100, 100, 1);
-    CudaContext context = cudaModule.GetContext("blur3x3");
-    context.work.threads.x = 32;
-    context.work.threads.y = 32;
-    context.work.blocks.x = 4;
-    context.work.blocks.y = 4;
+    CudaContext context = cudaModule.GetContext(kernelName.c_str());
+    context.work.threads.x = threads;
+    context.work.threads.y = threads;
+    context.work.blocks.x = blocks;
+    context.work.blocks.y = blocks;
     blurOperation3x3.Process(context);
     std::cout << "Cuda test completed: blur3x3" << std::endl << std::endl;
-
-    std::cout << "Testing: blur9x9" << std::endl;
-    BlurCuda blurOperation9x9(100, 100, 4);
-    context = cudaModule.GetContext("blur9x9");
-    context.work.threads.x = 32;
-    context.work.threads.y = 32;
-    context.work.blocks.x = 4;
-    context.work.blocks.y = 4;
-    blurOperation9x9.Process(context);
-    std::cout << "Cuda test completed: blur9x9" << std::endl << std::endl;
-
-    std::cout << "Testing: blurMxM" << std::endl;
-    BlurCuda blurOperationMxM(100, 100, 7);
-    context = cudaModule.GetContext("blurMxM");
-    context.work.threads.x = 32;
-    context.work.threads.y = 32;
-    context.work.blocks.x = 4;
-    context.work.blocks.y = 4;
-    blurOperationMxM.Process(context);
-    std::cout << "Cuda test completed: blurMxM" << std::endl << std::endl;
 }
 
 void blurOpenCL()
@@ -400,13 +381,66 @@ void blurOpenCL()
 
 int main(int argc, char** argv)
 {
-    matAddCuda();
+    popl::OptionParser op("Allowed options");
+
+    int threads;
+    int blocks;
+    int rowcols;
+    int blurSize;
+
+    auto help_option = op.add<popl::Switch>("h", "help", "produce help message");
+    auto threads_option = op.add<popl::Value<int>>("t", "threads", "Number of x and y threads", 32, &threads);
+    auto blocks_option = op.add<popl::Value<int>>("b", "blocks", "Number of x and y blocks", 4, &blocks);
+    auto rowcols_option = op.add<popl::Value<int>>("r", "rows-cols", "Number of matrix rows and cols", 128, &rowcols);
+    auto blurSize_option = op.add<popl::Value<int>>("s", "blur-size", "1/2 of blur size", 1, &blurSize);
+    auto kernelName_option = op.add<popl::Value<std::string>>("k", "kernel-name", "Name of kernel.");
+
+    op.parse(argc, argv);
+
+    if (!kernelName_option->is_set() || help_option->is_set())
+    {
+        std::cout << op << "\n";
+    }
+    else
+    {
+        std::string kernelName = kernelName_option->value();
+
+        if (kernelName.rfind("matAdd", 0) == 0)
+        {
+            matAddCuda(rowcols, threads, blocks, kernelName.c_str());
+        }
+        if (kernelName.rfind("dgemv", 0) == 0)
+        {
+            dgemvCuda(rowcols, threads, blocks);
+        }
+        else if (kernelName.rfind("sgemm", 0) == 0)
+        {
+            gemmCuda(rowcols, threads, blocks, 1);
+        }
+        else if (kernelName.rfind("dgemm", 0) == 0)
+        {
+            gemmCuda(rowcols, threads, blocks, 2);
+        }
+        else if (kernelName.rfind("blur", 0) == 0)
+        {
+            if (!blurSize_option->is_set())
+            {
+                std::cout << op << "\n";
+            }
+            else
+            {
+                blurCuda(rowcols, threads, blocks, blurSize);
+            }
+        }
+    }
+
+    //matAddCuda();
     //matAddOpenCL();
 
     //dotProductCuda();
     //dotProductOpenCL();
 
-    dgemvCuda();
+    //dgemvCuda();
     //dgemvOpenCL();
 
     //gemmCuda();

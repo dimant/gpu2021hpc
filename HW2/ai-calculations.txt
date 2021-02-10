@@ -1,0 +1,35 @@
+Worked Example:
+z = ax + y
+a, float scalar
+x, y float Nx1
+
+each thread:
+z(i) = a*x(i) + y(i)
+
+W = 2 ( * & + ) --- 2 flops
+Qr = 4 * 2 = 8 --- reading 8 bytes
+Qw = 4 ---- writing 4 bytes
+Q = Qr + Qw = 8 + 4 = 12 --- bytes total
+
+expected AI = W/Q = 2/12 = 1/6
+
+N is hardcoded to 2048x2048
+
+N = 2^22 number of elements in each vector
+
+FLOPS expected = 2*N
+Bytes expected = 12*N
+
+then do ncu on the right kernel
+open prompt as admin
+
+fma is turned on in release
+
+dram bytes read should 8xN ~38MB
+dram bytes write should 4xN ~ 16MB
+
+-> measured AI
+l1cache access is 2^22 * 12 (total bytes r/w) 
+
+(2* 4.194) / 50.33 ~ 0.166 = 1/6
+number of flops / number of cache access
