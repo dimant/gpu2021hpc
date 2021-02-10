@@ -51,6 +51,7 @@ void DotProductCuda<T>::CopyToDevice()
 template <class T>
 void DotProductCuda<T>::Launch()
 {
+    // not allowing programmable work sizes because the kernel relies on hard-coded values
     dim3 blockSize(threadsPerBlock);
     dim3 gridSize(blocksPerGrid);
 

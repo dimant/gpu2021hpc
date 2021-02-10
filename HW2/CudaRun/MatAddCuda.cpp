@@ -24,9 +24,8 @@ void MatAddCuda::CopyToDevice()
 
 void MatAddCuda::Launch()
 {
-    unsigned int threads = 32;
-    dim3 blockSize(threads, threads);
-    dim3 gridSize(4, 4);
+    dim3 blockSize(GetContext().work.threads.x, GetContext().work.threads.y);
+    dim3 gridSize(GetContext().work.blocks.x, GetContext().work.blocks.y);
 
     int offset = 0;
     char argBuffer[256];

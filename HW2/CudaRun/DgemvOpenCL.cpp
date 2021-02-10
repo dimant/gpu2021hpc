@@ -40,8 +40,10 @@ void DgemvOpenCL::Launch()
     clChkErr(clSetKernelArg(GetContext().kernel, 6, sizeof(cl_rows), &cl_rows));
     clChkErr(clSetKernelArg(GetContext().kernel, 7, sizeof(cl_cols), &cl_cols));
 
-    size_t globalSize[3] = { 128, 128, 0 }; // grid size
-    size_t localSize[3] = { 8, 8, 0 }; // block size
+    unsigned int globalx = GetContext().work.threads.x * GetContext().work.blocks.x;
+    unsigned int globaly = GetContext().work.threads.y * GetContext().work.blocks.y;
+    size_t globalSize[3] = { globalx, globaly, 0 };
+    size_t localSize[3] = { GetContext().work.threads.x, GetContext().work.threads.y, 0 };
 
     err = clEnqueueNDRangeKernel(
         GetContext().queue,
