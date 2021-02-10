@@ -1,0 +1,24 @@
+
+Compiling: dgemv.cu
+ done.
+==3840== NVPROF is profiling process 3840, command: CudaRun.exe dgemv -k dgemv -b 128 -t 32 -r 16
+==3840== Profiling application: CudaRun.exe dgemv -k dgemv -b 128 -t 32 -r 16
+==3840== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   98.08%  233.76us         1  233.76us  233.76us  233.76us  dgemv
+                    0.97%  2.3040us         3     768ns     736ns     832ns  [CUDA memcpy HtoD]
+                    0.51%  1.2160us         1  1.2160us  1.2160us  1.2160us  [CUDA memcpy DtoH]
+                    0.44%  1.0560us         1  1.0560us  1.0560us  1.0560us  [CUDA memset]
+      API calls:   66.80%  169.18ms         1  169.18ms  169.18ms  169.18ms  cuCtxCreate
+                   32.78%  83.015ms         1  83.015ms  83.015ms  83.015ms  cuCtxDestroy
+                    0.13%  336.90us         4  84.225us  3.5000us  324.40us  cuMemAlloc
+                    0.10%  264.10us         1  264.10us  264.10us  264.10us  cuMemcpyDtoH
+                    0.10%  263.40us         4  65.850us  3.8000us  237.20us  cuMemFree
+                    0.03%  79.400us         1  79.400us  79.400us  79.400us  cuModuleLoadData
+                    0.02%  50.000us         1  50.000us  50.000us  50.000us  cuLaunchKernel
+                    0.01%  27.600us         3  9.2000us  5.2000us  16.000us  cuMemcpyHtoD
+                    0.01%  17.700us         1  17.700us  17.700us  17.700us  cuMemsetD8
+                    0.00%  5.6000us         3  1.8660us     300ns  4.8000us  cuDeviceGetCount
+                    0.00%  3.4000us         1  3.4000us  3.4000us  3.4000us  cuModuleGetFunction
+                    0.00%  2.3000us         5     460ns     300ns  1.0000us  cuDeviceGetAttribute
+                    0.00%  1.5000us         2     750ns     700ns     800ns  cuDeviceGet

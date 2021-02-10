@@ -1,0 +1,22 @@
+
+Compiling: matAdd.cu
+ done.
+==7204== NVPROF is profiling process 7204, command: CudaRun.exe matAddRow -k matAddRow -b 4 -t 32 -r 32
+==7204== Profiling application: CudaRun.exe matAddRow -k matAddRow -b 4 -t 32 -r 32
+==7204== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   76.02%  16.032us         1  16.032us  16.032us  16.032us  matAddRow
+                   14.87%  3.1360us         2  1.5680us  1.3760us  1.7600us  [CUDA memcpy HtoD]
+                    9.10%  1.9200us         1  1.9200us  1.9200us  1.9200us  [CUDA memcpy DtoH]
+      API calls:   66.70%  189.18ms         1  189.18ms  189.18ms  189.18ms  cuCtxCreate
+                   32.95%  93.459ms         1  93.459ms  93.459ms  93.459ms  cuCtxDestroy
+                    0.14%  400.30us         3  133.43us  2.3000us  394.00us  cuMemAlloc
+                    0.10%  276.40us         3  92.133us  3.0000us  255.00us  cuMemFree
+                    0.06%  176.60us         1  176.60us  176.60us  176.60us  cuModuleLoadData
+                    0.02%  47.500us         1  47.500us  47.500us  47.500us  cuLaunchKernel
+                    0.01%  36.000us         2  18.000us  10.200us  25.800us  cuMemcpyHtoD
+                    0.01%  31.500us         1  31.500us  31.500us  31.500us  cuMemcpyDtoH
+                    0.00%  6.6000us         3  2.2000us     300ns  5.3000us  cuDeviceGetCount
+                    0.00%  3.9000us         1  3.9000us  3.9000us  3.9000us  cuModuleGetFunction
+                    0.00%  2.1000us         5     420ns     200ns  1.0000us  cuDeviceGetAttribute
+                    0.00%  1.7000us         2     850ns     700ns  1.0000us  cuDeviceGet
