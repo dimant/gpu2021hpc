@@ -1,0 +1,73 @@
+==PROF== Connected to process 1520 (C:\Users\PhotonUser\Desktop\HW2\x64\Release\CudaRun.exe)
+==PROF== Profiling "matAddCol": 0%....50%....100% - 10 passes
+==PROF== Disconnected from process 1520
+[1520] CudaRun.exe@127.0.0.1
+  matAddCol, 2021-Feb-10 08:48:22, Context 1, Stream 7
+    Section: Command line profiler metrics
+    ---------------------------------------------------------------------- --------------- ------------------------------
+    dram__bytes.sum                                                                  Mbyte                           3.15
+    dram__bytes_read.sum                                                             Mbyte                           3.14
+    dram__bytes_write.sum                                                            Kbyte                          10.78
+    l1tex__t_bytes.sum                                                               Mbyte                         402.65
+    lts__t_bytes.sum                                                                 Mbyte                          31.54
+    sm__inst_executed_pipe_alu.avg                                                    inst                         92,672
+    sm__inst_executed_pipe_alu.max                                                    inst                        231,680
+    sm__inst_executed_pipe_alu.min                                                    inst                              0
+    sm__inst_executed_pipe_alu.sum                                                    inst                      3,706,880
+    sm__cycles_elapsed.avg                                                           cycle                     693,616.40
+    sm__cycles_elapsed.avg.per_second                                        cycle/usecond                         584.89
+    smsp__sass_thread_inst_executed_op_dadd_pred_on.sum                               inst                              0
+    smsp__sass_thread_inst_executed_op_dfma_pred_on.sum                               inst                              0
+    smsp__sass_thread_inst_executed_op_dmul_pred_on.sum                               inst                              0
+    smsp__sass_thread_inst_executed_op_fadd_pred_on.sum                               inst                     33,554,432
+    smsp__sass_thread_inst_executed_op_ffma_pred_on.sum                               inst                              0
+    smsp__sass_thread_inst_executed_op_fmul_pred_on.sum                               inst                              0
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum                            inst                    177,799,168
+    ---------------------------------------------------------------------- --------------- ------------------------------
+
+    Section: GPU Speed Of Light
+    ---------------------------------------------------------------------- --------------- ------------------------------
+    DRAM Frequency                                                           cycle/nsecond                           5.00
+    SM Frequency                                                             cycle/usecond                         584.89
+    Elapsed Cycles                                                                   cycle                        693,623
+    Memory [%]                                                                           %                          22.68
+    SOL DRAM                                                                             %                           0.83
+    Duration                                                                       msecond                           1.19
+    SOL L1/TEX Cache                                                                     %                          57.46
+    SOL L2 Cache                                                                         %                           3.04
+    SM Active Cycles                                                                 cycle                     273,787.30
+    SM [%]                                                                               %                          22.68
+    ---------------------------------------------------------------------- --------------- ------------------------------
+    WRN   This kernel grid is too small to fill the available resources on this device, resulting in only 0.4 full      
+          waves across all SMs. Look at Launch Statistics for more details.                                             
+
+    Section: Launch Statistics
+    ---------------------------------------------------------------------- --------------- ------------------------------
+    Block Size                                                                                                      1,024
+    Function Cache Configuration                                                                  cudaFuncCachePreferNone
+    Grid Size                                                                                                          16
+    Registers Per Thread                                                   register/thread                             30
+    Shared Memory Configuration Size                                                 Kbyte                          32.77
+    Driver Shared Memory Per Block                                              byte/block                              0
+    Dynamic Shared Memory Per Block                                             byte/block                              0
+    Static Shared Memory Per Block                                              byte/block                              0
+    Threads                                                                         thread                         16,384
+    Waves Per SM                                                                                                     0.40
+    ---------------------------------------------------------------------- --------------- ------------------------------
+    WRN   The grid for this launch is configured to execute only 16 blocks, which is less than the GPU's 40             
+          multiprocessors. This can underutilize some multiprocessors. If you do not intend to execute this kernel      
+          concurrently with other workloads, consider reducing the block size to have at least one block per            
+          multiprocessor or increase the size of the grid to fully utilize the available hardware resources.            
+
+    Section: Occupancy
+    ---------------------------------------------------------------------- --------------- ------------------------------
+    Block Limit SM                                                                   block                             16
+    Block Limit Registers                                                            block                              2
+    Block Limit Shared Mem                                                           block                             16
+    Block Limit Warps                                                                block                              1
+    Theoretical Active Warps per SM                                                   warp                             32
+    Theoretical Occupancy                                                                %                            100
+    Achieved Occupancy                                                                   %                          99.99
+    Achieved Active Warps Per SM                                                      warp                          32.00
+    ---------------------------------------------------------------------- --------------- ------------------------------
+

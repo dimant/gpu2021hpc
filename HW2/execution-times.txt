@@ -1,0 +1,960 @@
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 4 -t 32 -r 16 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.0489ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 4 -t 32 -r 32 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.0471ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 4 -t 32 -r 64 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.0579ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 4 -t 32 -r 128 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.0663ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 4 -t 32 -r 256 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.253ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 4 -t 32 -r 512 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.9065ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 4 -t 32 -r 1024 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 2.7624ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 4 -t 32 -r 2048 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 11.0354ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 4 -t 32 -r 4096 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 47.336ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 4 -t 32 -r 8192 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 160.358ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 128 -t 32 -r 16 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.2452ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 128 -t 32 -r 32 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.2471ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 128 -t 32 -r 64 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.2671ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 128 -t 32 -r 128 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.3046ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 128 -t 32 -r 256 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.4604ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 128 -t 32 -r 512 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 1.1859ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 128 -t 32 -r 1024 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 3.0037ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 128 -t 32 -r 2048 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 10.9825ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 128 -t 32 -r 4096 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 43.8239ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 128 -t 32 -r 8192 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 165.419ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 1024 -t 32 -r 16 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 11.4585ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 1024 -t 32 -r 32 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 11.3174ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 1024 -t 32 -r 64 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 14.0254ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 1024 -t 32 -r 128 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 14.0977ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 1024 -t 32 -r 256 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 14.2673ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 1024 -t 32 -r 512 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 15.1786ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 1024 -t 32 -r 1024 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 18.465ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 1024 -t 32 -r 2048 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 27.3776ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 1024 -t 32 -r 4096 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 54.4158ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAdd -k matAdd -b 1024 -t 32 -r 8192 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 166.269ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAdd
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 4 -t 32 -r 16 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.0461ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 4 -t 32 -r 32 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.0502ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 4 -t 32 -r 64 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.0702ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 4 -t 32 -r 128 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.1168ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 4 -t 32 -r 256 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.3864ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 4 -t 32 -r 512 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 1.7042ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 4 -t 32 -r 1024 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 5.5301ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 4 -t 32 -r 2048 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 22.8159ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 4 -t 32 -r 4096 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 84.2398ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 4 -t 32 -r 8192 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 325.036ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 128 -t 32 -r 16 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.1588ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 128 -t 32 -r 32 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.1627ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 128 -t 32 -r 64 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.4116ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 128 -t 32 -r 128 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.8621ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 128 -t 32 -r 256 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 2.8326ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 128 -t 32 -r 512 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 10.4457ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 128 -t 32 -r 1024 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 41.5804ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 128 -t 32 -r 2048 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 161.988ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 128 -t 32 -r 4096 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 342.628ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 128 -t 32 -r 8192 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 1190.5ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 1024 -t 32 -r 16 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 5.9878ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 1024 -t 32 -r 32 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 6.0947ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 1024 -t 32 -r 64 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 15.152ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 1024 -t 32 -r 128 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 18.5319ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 1024 -t 32 -r 256 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 32.9834ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 1024 -t 32 -r 512 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 90.8447ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 1024 -t 32 -r 1024 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 236.192ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 1024 -t 32 -r 2048 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 517.068ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 1024 -t 32 -r 4096 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 2059.54ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddRow -k matAddRow -b 1024 -t 32 -r 8192 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 8295.45ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddRow
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 4 -t 32 -r 16 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.046ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 4 -t 32 -r 32 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.0595ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 4 -t 32 -r 64 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.0751ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 4 -t 32 -r 128 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.1376ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 4 -t 32 -r 256 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.45ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 4 -t 32 -r 512 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 1.7824ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 4 -t 32 -r 1024 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 7.3921ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 4 -t 32 -r 2048 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 29.4859ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 4 -t 32 -r 4096 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 116.55ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 4 -t 32 -r 8192 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 387.007ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 128 -t 32 -r 16 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.1494ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 128 -t 32 -r 32 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.1456ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 128 -t 32 -r 64 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.4542ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 128 -t 32 -r 128 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 1.0173ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 128 -t 32 -r 256 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 3.2339ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 128 -t 32 -r 512 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 12.146ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 128 -t 32 -r 1024 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 63.9701ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 128 -t 32 -r 2048 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 246.137ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 128 -t 32 -r 4096 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 668.911ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 128 -t 32 -r 8192 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 2664.54ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 1024 -t 32 -r 16 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 5.9944ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 1024 -t 32 -r 32 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 6.0508ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 1024 -t 32 -r 64 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 15.3442ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 1024 -t 32 -r 128 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 19.3341ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 1024 -t 32 -r 256 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 35.5647ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 1024 -t 32 -r 512 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 101.78ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 1024 -t 32 -r 1024 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 396.694ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 1024 -t 32 -r 2048 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 1267.08ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 1024 -t 32 -r 4096 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 5072.17ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe matAddCol -k matAddCol -b 1024 -t 32 -r 8192 
+
+[CUDA] MatAdd tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 20345.4ms
+Result tolerance: 2.225e-308
+Cuda test completed: matAddCol
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 4 -t 32 -r 16 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.0858ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 4 -t 32 -r 32 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.0787ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 4 -t 32 -r 64 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.245ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 4 -t 32 -r 128 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.639ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 4 -t 32 -r 256 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 1.6574ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 4 -t 32 -r 512 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 6.4445ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 4 -t 32 -r 1024 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 25.6041ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 4 -t 32 -r 2048 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 102.255ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 4 -t 32 -r 4096 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 305.389ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 4 -t 32 -r 8192 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 601.185ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 128 -t 32 -r 16 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.2099ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 128 -t 32 -r 32 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.3009ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 128 -t 32 -r 64 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 0.7289ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 128 -t 32 -r 128 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 6.4806ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 128 -t 32 -r 256 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 25.0543ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 128 -t 32 -r 512 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 100.476ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 128 -t 32 -r 1024 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 283.843ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 128 -t 32 -r 2048 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 589.754ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 128 -t 32 -r 4096 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 2411.96ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 128 -t 32 -r 8192 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 18126.7ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 1024 -t 32 -r 16 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 6.4565ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 1024 -t 32 -r 32 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 7.0515ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 1024 -t 32 -r 64 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 26.1883ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 1024 -t 32 -r 128 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 62.3948ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 1024 -t 32 -r 256 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 194.322ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 1024 -t 32 -r 512 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 338.366ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 1024 -t 32 -r 1024 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 1151.56ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 1024 -t 32 -r 2048 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 4598.22ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 1024 -t 32 -r 4096 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 19614.5ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv
+
+C:\Users\PhotonUser\Desktop\HW2\x64\Release>call CudaRun.exe dgemv -k dgemv -b 1024 -t 32 -r 8192 
+
+[Cuda] DGEMV tests
+Detected 1 CUDA Capable device(s)
+Execution duration: 92852.2ms
+Result tolerance: 2.225e-308
+Cuda test completed: dgemv

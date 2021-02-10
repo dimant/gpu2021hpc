@@ -1,0 +1,69 @@
+==PROF== Connected to process 5196 (C:\Users\PhotonUser\Desktop\HW2\x64\Release\CudaRun.exe)
+==PROF== Profiling "matAddCol": 0%....50%....100% - 10 passes
+==PROF== Disconnected from process 5196
+[5196] CudaRun.exe@127.0.0.1
+  matAddCol, 2021-Feb-10 08:51:52, Context 1, Stream 7
+    Section: Command line profiler metrics
+    ---------------------------------------------------------------------- --------------- ------------------------------
+    dram__bytes.sum                                                                  Mbyte                           3.37
+    dram__bytes_read.sum                                                             Mbyte                           3.36
+    dram__bytes_write.sum                                                            Kbyte                          13.22
+    l1tex__t_bytes.sum                                                               Gbyte                         103.08
+    lts__t_bytes.sum                                                                 Gbyte                           7.94
+    sm__inst_executed_pipe_alu.avg                                                    inst                  26,358,579.20
+    sm__inst_executed_pipe_alu.max                                                    inst                     26,816,224
+    sm__inst_executed_pipe_alu.min                                                    inst                     26,119,488
+    sm__inst_executed_pipe_alu.sum                                                    inst                  1,054,343,168
+    sm__cycles_elapsed.avg                                                           cycle                     58,993,535
+    sm__cycles_elapsed.avg.per_second                                        cycle/usecond                         584.92
+    smsp__sass_thread_inst_executed_op_dadd_pred_on.sum                               inst                              0
+    smsp__sass_thread_inst_executed_op_dfma_pred_on.sum                               inst                              0
+    smsp__sass_thread_inst_executed_op_dmul_pred_on.sum                               inst                              0
+    smsp__sass_thread_inst_executed_op_fadd_pred_on.sum                               inst                  8,589,934,592
+    smsp__sass_thread_inst_executed_op_ffma_pred_on.sum                               inst                              0
+    smsp__sass_thread_inst_executed_op_fmul_pred_on.sum                               inst                              0
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum                            inst                 51,053,068,288
+    ---------------------------------------------------------------------- --------------- ------------------------------
+
+    Section: GPU Speed Of Light
+    ---------------------------------------------------------------------- --------------- ------------------------------
+    DRAM Frequency                                                           cycle/nsecond                           5.00
+    SM Frequency                                                             cycle/usecond                         584.92
+    Elapsed Cycles                                                                   cycle                     58,993,538
+    Memory [%]                                                                           %                          71.10
+    SOL DRAM                                                                             %                           0.01
+    Duration                                                                       msecond                         100.86
+    SOL L1/TEX Cache                                                                     %                          76.61
+    SOL L2 Cache                                                                         %                           8.99
+    SM Active Cycles                                                                 cycle                  54,768,741.95
+    SM [%]                                                                               %                          71.10
+    ---------------------------------------------------------------------- --------------- ------------------------------
+    OK    Compute and Memory are well-balanced: To reduce runtime, both computation and memory traffic must be reduced. 
+          Check both the Compute Workload Analysis and Memory Workload Analysis report sections.                        
+
+    Section: Launch Statistics
+    ---------------------------------------------------------------------- --------------- ------------------------------
+    Block Size                                                                                                      1,024
+    Function Cache Configuration                                                                  cudaFuncCachePreferNone
+    Grid Size                                                                                                   1,048,576
+    Registers Per Thread                                                   register/thread                             30
+    Shared Memory Configuration Size                                                 Kbyte                          32.77
+    Driver Shared Memory Per Block                                              byte/block                              0
+    Dynamic Shared Memory Per Block                                             byte/block                              0
+    Static Shared Memory Per Block                                              byte/block                              0
+    Threads                                                                         thread                  1,073,741,824
+    Waves Per SM                                                                                                26,214.40
+    ---------------------------------------------------------------------- --------------- ------------------------------
+
+    Section: Occupancy
+    ---------------------------------------------------------------------- --------------- ------------------------------
+    Block Limit SM                                                                   block                             16
+    Block Limit Registers                                                            block                              2
+    Block Limit Shared Mem                                                           block                             16
+    Block Limit Warps                                                                block                              1
+    Theoretical Active Warps per SM                                                   warp                             32
+    Theoretical Occupancy                                                                %                            100
+    Achieved Occupancy                                                                   %                          97.09
+    Achieved Active Warps Per SM                                                      warp                          31.07
+    ---------------------------------------------------------------------- --------------- ------------------------------
+

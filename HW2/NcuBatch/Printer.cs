@@ -14,8 +14,9 @@ namespace NcuBatch
             new Tuple<int, int>(1024, 32),
         };
 
-        private string ncuTemplate = @"ncu -k {0} --metrics smsp__sass_thread_inst_executed_op_fadd_pred_on.sum,smsp__sass_thread_inst_executed_op_ffma_pred_on.sum,smsp__sass_thread_inst_executed_op_fmul_pred_on.sum,smsp__sass_thread_inst_executed_op_dadd_pred_on.sum,smsp__sass_thread_inst_executed_op_dfma_pred_on.sum,smsp__sass_thread_inst_executed_op_dmul_pred_on.sum,dram__bytes.sum,dram__bytes_read.sum,dram__bytes_write.sum,l1tex__t_bytes.sum,lts__t_bytes.sum,sm__cycles_elapeed.avg,sm__cycles_elapsed.avg.per_second,smsp__sass_thread_inst_executed_op_integer_pred_on.sum,sm__inst_executed_pipe_alu  --set default CudaRun.exe ";
- 
+        private string ncuTemplate = @"call ncu -k {0} --metrics smsp__sass_thread_inst_executed_op_fadd_pred_on.sum,smsp__sass_thread_inst_executed_op_ffma_pred_on.sum,smsp__sass_thread_inst_executed_op_fmul_pred_on.sum,smsp__sass_thread_inst_executed_op_dadd_pred_on.sum,smsp__sass_thread_inst_executed_op_dfma_pred_on.sum,smsp__sass_thread_inst_executed_op_dmul_pred_on.sum,dram__bytes.sum,dram__bytes_read.sum,dram__bytes_write.sum,l1tex__t_bytes.sum,lts__t_bytes.sum,sm__cycles_elapsed.avg,sm__cycles_elapsed.avg.per_second,smsp__sass_thread_inst_executed_op_integer_pred_on.sum,sm__inst_executed_pipe_alu --log-file {1} --set default CudaRun.exe ";
+        private string runTemplate = "call CudaRun.exe {0} ";
+
         public int ipow2(int e)
         {
             return 1 << e;
@@ -30,8 +31,8 @@ namespace NcuBatch
                     for (int e = 8; e <= 26; e += 2)
                     {
                         var param = $"-k {kernel} -b {size.Item1} -t {size.Item2} -r {ipow2(e/2)}";
-                        var output = $" > {kernel}.txt";
-                        Console.WriteLine(string.Format(ncuTemplate, kernel) + param);
+                        //var output = $"{kernel}-{size.Item1}-{size.Item2}-{ipow2(e / 2)}.txt";
+                        Console.WriteLine(string.Format(runTemplate, kernel) + param + System.Environment.NewLine);
                     }
                 }
             }

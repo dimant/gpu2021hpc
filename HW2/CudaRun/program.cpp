@@ -405,6 +405,8 @@ int main(int argc, char** argv)
     {
         std::string kernelName = kernelName_option->value();
 
+        std::cout << rowcols << " " << threads << " " << blocks << std::endl;
+
         if (kernelName.rfind("matAdd", 0) == 0)
         {
             matAddCuda(rowcols, threads, blocks, kernelName.c_str());

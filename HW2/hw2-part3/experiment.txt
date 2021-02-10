@@ -1,0 +1,240 @@
+
+16 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 895.957ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+32 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 879.843ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+64 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 884.918ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+128 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 833.245ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+256 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 904.717ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+512 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 956.929ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+1024 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 793.048ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+2048 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 850.101ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+4096 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 901.977ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+8192 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1211.78ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+16 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 859.6ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+32 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 864.676ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+64 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 868.347ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+128 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 841.285ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+256 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 972.034ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+512 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 951.604ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+1024 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 899.694ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+2048 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 875.09ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+4096 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 914.398ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+8192 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1224.43ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+16 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1252.63ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+32 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1311.51ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+64 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1326.46ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+128 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1310.3ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+256 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1270.42ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+512 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1332.05ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+1024 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1329.03ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+2048 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1304.7ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+4096 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1425.64ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+8192 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1695.33ms Result tolerance: 2.225e-308 Cuda test completed: matAdd
+
+16 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 854.455ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+32 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 841.712ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+64 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 843.779ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+128 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 857.636ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+256 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 882.637ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+512 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 922.087ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+1024 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 859.719ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+2048 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 970.595ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+4096 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1463.77ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+8192 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 3254.58ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+16 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 878.45ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+32 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 848.854ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+64 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 839.309ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+128 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 857.064ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+256 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 926.916ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+512 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1110.53ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+1024 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1380.56ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+2048 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 3016.84ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+4096 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 9553.59ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+8192 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 35276.6ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+16 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1351.26ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+32 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1537.74ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+64 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1455.19ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+128 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1533.13ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+256 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1948.61ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+512 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 2554.84ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+1024 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 5644.79ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+2048 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 18495.1ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+4096 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 69747.5ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+8192 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 274125ms Result tolerance: 2.225e-308 Cuda test completed: matAddRow
+
+16 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 926.758ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+32 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 794.81ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+64 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1008.59ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+128 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 919.737ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+256 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 879.783ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+512 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 886.393ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+1024 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 914.402ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+2048 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1323.87ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+4096 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 2264.16ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+8192 32 4 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 6327.77ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+16 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1009.79ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+32 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 909.531ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+64 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 894.03ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+128 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 901.497ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+256 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 999.282ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+512 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1149.07ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+1024 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 2153.87ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+2048 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 6269.85ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+4096 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 22596.7ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+8192 32 128 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 86814.6ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+16 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1514.42ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+32 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1417.46ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+64 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1485.11ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+128 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1438.16ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+256 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 1894.12ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+512 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 3792.79ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+1024 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 11903.7ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+2048 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 44160.8ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+4096 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 172893ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+8192 32 1024 [CUDA] MatAdd tests Detected 1 CUDA Capable device(s) Execution duration: 686504ms Result tolerance: 2.225e-308 Cuda test completed: matAddCol
+
+16 32 4 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 874.588ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+32 32 4 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 888.793ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+64 32 4 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 907.562ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+128 32 4 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 879.145ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+256 32 4 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 900.214ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+512 32 4 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 898.196ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+1024 32 4 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 1149.35ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+2048 32 4 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 2040.23ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+4096 32 4 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 5412.79ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+8192 32 4 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 19124ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+16 32 128 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 909.894ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+32 32 128 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 941.622ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+64 32 128 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 900.74ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+128 32 128 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 873.261ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+256 32 128 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 1147.7ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+512 32 128 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 2043.89ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+1024 32 128 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 5381.06ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+2048 32 128 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 18937.8ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+4096 32 128 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 73627.6ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+8192 32 128 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 295685ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+16 32 1024 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 1359.07ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+32 32 1024 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 1332.67ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+64 32 1024 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 1455.82ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+128 32 1024 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 1925.38ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+256 32 1024 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 3821.62ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+512 32 1024 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 10341.6ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+1024 32 1024 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 37498.4ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+2048 32 1024 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 146221ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+4096 32 1024 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s) Execution duration: 582980ms Result tolerance: 2.225e-308 Cuda test completed: dgemv
+
+8192 32 1024 [Cuda] DGEMV tests Detected 1 CUDA Capable device(s)
