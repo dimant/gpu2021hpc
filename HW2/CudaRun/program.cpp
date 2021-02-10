@@ -265,7 +265,7 @@ void transposeCuda(int rowcols, int threads, int blocks)
 
     cudaModule.Compile("transpose.cu");
 
-    TransposeCuda transposeOperation(100, 100);
+    TransposeCuda transposeOperation(rowcols, rowcols);
     CudaContext context = cudaModule.GetContext("transpose");
     context.work.threads.x = threads;
     context.work.threads.y = threads;
@@ -327,7 +327,7 @@ void blurCuda(int rowcols, int threads, int blocks, int blurSize)
     }
 
     std::cout << "Testing: blur3x3" << std::endl;
-    BlurCuda blurOperation3x3(100, 100, 1);
+    BlurCuda blurOperation3x3(rowcols, rowcols, 1);
     CudaContext context = cudaModule.GetContext(kernelName.c_str());
     context.work.threads.x = threads;
     context.work.threads.y = threads;
