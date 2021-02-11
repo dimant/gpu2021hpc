@@ -1,49 +1,42 @@
-
-[Cuda] blur tests
-Detected 1 CUDA Capable device(s)
-Testing: blurMxM
-==PROF== Connected to process 4708 (C:\Users\PhotonUser\Desktop\HW2\x64\Release\CudaRun.exe)
+==PROF== Connected to process 3408 (C:\Users\PhotonUser\Desktop\HW2\x64\Release\CudaRun.exe)
 ==PROF== Profiling "blurMxM": 0%....50%....100% - 10 passes
-Execution duration: 934.476ms
-Cuda test completed: blurMxM
-
-==PROF== Disconnected from process 4708
-[4708] CudaRun.exe@127.0.0.1
-  blurMxM, 2021-Feb-10 06:47:35, Context 1, Stream 7
+==PROF== Disconnected from process 3408
+[3408] CudaRun.exe@127.0.0.1
+  blurMxM, 2021-Feb-10 23:13:15, Context 1, Stream 7
     Section: Command line profiler metrics
     ---------------------------------------------------------------------- --------------- ------------------------------
-    dram__bytes.sum                                                                  Kbyte                         455.10
-    dram__bytes_read.sum                                                             Kbyte                         445.25
-    dram__bytes_write.sum                                                            Kbyte                           9.86
-    l1tex__t_bytes.sum                                                               Mbyte                           4.09
-    lts__t_bytes.sum                                                                 Mbyte                           1.10
-    sm__inst_executed_pipe_alu.avg                                                    inst                         17,200
-    sm__inst_executed_pipe_alu.max                                                    inst                         18,812
-    sm__inst_executed_pipe_alu.min                                                    inst                         16,124
-    sm__inst_executed_pipe_alu.sum                                                    inst                        688,000
-    sm__cycles_elapeed.avg                                                                                        (!) n/a
-    sm__cycles_elapsed.avg.per_second                                        cycle/usecond                         585.66
+    dram__bytes.sum                                                                  Mbyte                          11.02
+    dram__bytes_read.sum                                                             Mbyte                           8.04
+    dram__bytes_write.sum                                                            Mbyte                           2.98
+    l1tex__t_bytes.sum                                                               Mbyte                          66.70
+    lts__t_bytes.sum                                                                 Mbyte                          17.45
+    sm__inst_executed_pipe_alu.avg                                                    inst                     275,238.40
+    sm__inst_executed_pipe_alu.max                                                    inst                        282,224
+    sm__inst_executed_pipe_alu.min                                                    inst                        271,472
+    sm__inst_executed_pipe_alu.sum                                                    inst                     11,009,536
+    sm__cycles_elapsed.avg                                                           cycle                     313,424.60
+    sm__cycles_elapsed.avg.per_second                                        cycle/usecond                         585.73
     smsp__sass_thread_inst_executed_op_dadd_pred_on.sum                               inst                              0
     smsp__sass_thread_inst_executed_op_dfma_pred_on.sum                               inst                              0
     smsp__sass_thread_inst_executed_op_dmul_pred_on.sum                               inst                              0
     smsp__sass_thread_inst_executed_op_fadd_pred_on.sum                               inst                              0
     smsp__sass_thread_inst_executed_op_ffma_pred_on.sum                               inst                              0
     smsp__sass_thread_inst_executed_op_fmul_pred_on.sum                               inst                              0
-    smsp__sass_thread_inst_executed_op_integer_pred_on.sum                            inst                     34,583,054
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum                            inst                    553,568,270
     ---------------------------------------------------------------------- --------------- ------------------------------
 
     Section: GPU Speed Of Light
     ---------------------------------------------------------------------- --------------- ------------------------------
     DRAM Frequency                                                           cycle/nsecond                           5.00
-    SM Frequency                                                             cycle/usecond                         585.66
-    Elapsed Cycles                                                                   cycle                         21,576
-    Memory [%]                                                                           %                          22.76
-    SOL DRAM                                                                             %                           3.86
-    Duration                                                                       usecond                          36.83
-    SOL L1/TEX Cache                                                                     %                          27.11
-    SOL L2 Cache                                                                         %                           3.42
-    SM Active Cycles                                                                 cycle                      18,110.50
-    SM [%]                                                                               %                          52.88
+    SM Frequency                                                             cycle/usecond                         585.73
+    Elapsed Cycles                                                                   cycle                        313,430
+    Memory [%]                                                                           %                          25.09
+    SOL DRAM                                                                             %                           6.44
+    Duration                                                                       usecond                         535.10
+    SOL L1/TEX Cache                                                                     %                          26.65
+    SOL L2 Cache                                                                         %                           3.72
+    SM Active Cycles                                                                 cycle                     295,035.15
+    SM [%]                                                                               %                          58.05
     ---------------------------------------------------------------------- --------------- ------------------------------
     WRN   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
           of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
@@ -53,14 +46,14 @@ Cuda test completed: blurMxM
     ---------------------------------------------------------------------- --------------- ------------------------------
     Block Size                                                                                                      1,024
     Function Cache Configuration                                                                  cudaFuncCachePreferNone
-    Grid Size                                                                                                         256
+    Grid Size                                                                                                       4,096
     Registers Per Thread                                                   register/thread                             23
     Shared Memory Configuration Size                                                 Kbyte                          32.77
     Driver Shared Memory Per Block                                              byte/block                              0
     Dynamic Shared Memory Per Block                                             byte/block                              0
     Static Shared Memory Per Block                                              byte/block                              0
-    Threads                                                                         thread                        262,144
-    Waves Per SM                                                                                                     6.40
+    Threads                                                                         thread                      4,194,304
+    Waves Per SM                                                                                                   102.40
     ---------------------------------------------------------------------- --------------- ------------------------------
 
     Section: Occupancy
@@ -71,7 +64,7 @@ Cuda test completed: blurMxM
     Block Limit Warps                                                                block                              1
     Theoretical Active Warps per SM                                                   warp                             32
     Theoretical Occupancy                                                                %                            100
-    Achieved Occupancy                                                                   %                          85.77
-    Achieved Active Warps Per SM                                                      warp                          27.45
+    Achieved Occupancy                                                                   %                          81.90
+    Achieved Active Warps Per SM                                                      warp                          26.21
     ---------------------------------------------------------------------- --------------- ------------------------------
 

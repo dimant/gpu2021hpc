@@ -6,12 +6,11 @@ namespace NcuBatch
     {
         static void Main(string[] args)
         {
-            //var printer = new Printer();
-            //printer.Print();
+            var printer = new Printer();
+            printer.Print();
 
-            var parser = new NvprofParser();
-
-            parser.ParseNvprof();
+            //var parser = new NvprofParser();
+            //parser.ParseNvprof();
         }
     }
 }

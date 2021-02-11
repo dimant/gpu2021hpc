@@ -33,3 +33,15 @@ l1cache access is 2^22 * 12 (total bytes r/w)
 
 (2* 4.194) / 50.33 ~ 0.166 = 1/6
 number of flops / number of cache access
+
+		float sum = 0.0f;
+
+		for (int i = 0; i < widthA; i++)
+		{
+			sum += 
+				A[i + row * widthA] * 
+				B[col + i * widthB];
+		}
+
+
+		C[col + row * widthB] = sum;
