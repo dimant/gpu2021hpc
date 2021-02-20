@@ -1,56 +1,48 @@
-#ifndef IMGFILTERS_H
-#define IMGFILTERS_H
+#pragma once
 
-const char* gaussianBlur7x7_str = "gaussianBlur7x7";
-const size_t gaussianBlur7x7_x = 7;
-const size_t gaussianBlur7x7_n = 49;
-const float gaussianBlur7x7[gaussianBlur7x7_n] = {
-   0.0086f / 3.0f,    0.0198f / 3.0f,    0.0326f / 3.0f,    0.0386f / 3.0f,    0.0326f / 3.0f,    0.0198f / 3.0f,    0.0086f / 3.0f,
-   0.0198f / 3.0f,    0.0456f / 3.0f,    0.0751f / 3.0f,    0.0887f / 3.0f,    0.0751f / 3.0f,    0.0456f / 3.0f,    0.0198f / 3.0f,
-   0.0326f / 3.0f,    0.0751f / 3.0f,    0.1239f / 3.0f,    0.1463f / 3.0f,    0.1239f / 3.0f,    0.0751f / 3.0f,    0.0326f / 3.0f,
-   0.0386f / 3.0f,    0.0887f / 3.0f,    0.1463f / 3.0f,    0.1729f / 3.0f,    0.1463f / 3.0f,    0.0887f / 3.0f,    0.0386f / 3.0f,
-   0.0326f / 3.0f,    0.0751f / 3.0f,    0.1239f / 3.0f,    0.1463f / 3.0f,    0.1239f / 3.0f,    0.0751f / 3.0f,    0.0326f / 3.0f,
-   0.0198f / 3.0f,    0.0456f / 3.0f,    0.0751f / 3.0f,    0.0887f / 3.0f,    0.0751f / 3.0f,    0.0456f / 3.0f,    0.0198f / 3.0f,
-   0.0086f / 3.0f,    0.0198f / 3.0f,    0.0326f / 3.0f,    0.0386f / 3.0f,    0.0326f / 3.0f,    0.0198f / 3.0f,    0.0086f / 3.0f
+#include <vector>
+#include <string>
+
+enum class ImgFilterType
+{
+    GaussianBlur7x7,
+    GaussianBlur5x5,
+    CompositeLaplacian,
+    BasicLaplacianDiags,
+    SobelEdgeX
 };
 
-const char* gaussianBlur5x5_str = "gaussianBlur5x5";
-const size_t gaussianBlur5x5_x = 5;
-const size_t gaussianBlur5x5_n = 25;
-const float gaussianBlur5x5[gaussianBlur5x5_n] = {
-    1.0f / 273.0f, 4.0f / 273.0f, 7.0f / 273.0f, 4.0f / 273.0f, 1.0f / 273.0f,
-    4.0f / 273.0f, 16.0f / 273.0f, 26.0f / 273.0f, 16.0f / 273.0f, 4.0f / 273.0f,
-    7.0f / 273.0f, 26.0f / 273.0f, 41.0f / 273.0f, 26.0f / 273.0f, 7.0f / 273.0f,
-    4.0f / 273.0f, 16.0f / 273.0f, 26.0f / 273.0f, 16.0f / 273.0f, 4.0f / 273.0f,
-    1.0f / 273.0f, 4.0f / 273.0f, 7.0f / 273.0f, 4.0f / 273.0f, 1.0f / 273.0f
+class ImgFilter
+{
+private:
+    const ImgFilterType type;
+    const float* value;
+
+public:
+    ImgFilter(ImgFilterType type) :
+        type(type), value(nullptr)
+    {}
+
+    const size_t SizeX();
+    const size_t SizeN();
+    const float* Value();
 };
 
-const char* compositeLaplacian_str = "compositeLaplacian";
-const size_t compositeLaplacian_x = 3;
-const size_t compositeLaplacian_n = 9;
-const float compositeLaplacian[compositeLaplacian_n] = {
-    -1.0f, -1.0f, -1.0f,
-    -1.0f, 9.0f, -1.0f,
-    -1.0f, -1.0f, -1.0f
-};
+void constructFiltersFromOption(const char* option, std::vector<ImgFilter*>* filters);
+void parseFilterOption(const char* option, std::vector<ImgFilterType>& filterTypes);
 
-const char* basicLaplacianDiags_str = "basicLaplacianDiags";
-const size_t basicLaplacianDiags_x = 3;
-const size_t basicLaplacianDiags_n = 9;
-const float basicLaplacianDiags[basicLaplacianDiags_n] = {
-    1.0f, 1.0f, 1.0f,
-    1.0f, -8.0f, 1.0f,
-    1.0f, 1.0f, 1.0f
-};
+template <class TContainer>
+void split(const std::string& str, TContainer& container, char delimiter = ',')
+{
+    std::size_t current, previous = 0;
+    current = str.find(delimiter);
 
-const char* sobelEdgeX_str = "sobelEdgeX_str";
-const size_t sobelEdgeX_x = 3;
-const size_t sobelEdgeX_n = 9;
-const float sobelEdgeX[sobelEdgeX_n] = {
-    1.0f, 0.0f, -1.0f,
-    2.0f, 0.0f, -2.0f,
-    1.0f, 0.0f, -1.0f
-};
+    while (current != std::string::npos)
+    {
+        container.push_back(str.substr(previous, current - previous));
+        previous = current + 1;
+        current = str.find(delimiter, previous);
+    }
 
-#include "img_filters_impl.h"
-#endif
+    container.push_back(str.substr(previous, current - previous));
+}

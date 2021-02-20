@@ -24,6 +24,9 @@
     <ClCompile Include="ImageOperation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ImageCuda.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="popl.h">
@@ -38,14 +41,21 @@
     <ClInclude Include="img_filters.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="img_filters_impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ImageOperation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ImageCuda.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="imageFilter.cu">
+      <Filter>Source Files</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\canvas\Big-Gray-Lena_8bit.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

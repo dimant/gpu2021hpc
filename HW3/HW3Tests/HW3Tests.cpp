@@ -1,7 +1,7 @@
 #include <vector>
 #include "CppUnitTest.h"
 
-#include "img_filters_impl.h"
+#include "img_filters.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
