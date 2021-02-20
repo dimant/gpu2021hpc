@@ -17,7 +17,7 @@ void ImageOperation::AllocateHost()
 
 	for (size_t i = 0; i < size; i++)
 	{
-		h_input_float_image[i] = (int)h_input_char_image[i];
+		h_input_float_image[i] = (float)(int)h_input_char_image[i];
 	}
 
 	h_output_char_image = new unsigned char[size];

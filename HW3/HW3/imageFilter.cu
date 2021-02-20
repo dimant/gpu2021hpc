@@ -31,6 +31,9 @@ extern "C" __global__ void imageFilterSingle(
 
         }
 
+        result = (result > 255) ? 255 : result;
+        result = (result < 0) ? 0 : result;
+
         d_output[idx_y * num_col + idx_x] = result;
     }
 }
@@ -46,16 +49,23 @@ extern "C" __global__ void imageFilter(
     if (idx_x < num_col && idx_y < num_row)
     {
         float* cursor = filters;
+        float* left = d_output;
+        float* right = d_input;
+        float* swap;
 
         for (int i = 0; i < nfilters; i++)
         {
             int filterSize = filter_sizes[i];
 
-            imageFilterSingle(d_output, d_input, cursor, num_row, num_col, filterSize);
+            imageFilterSingle(left, right, cursor, num_row, num_col, filterSize);
 
             cursor += filterSize * filterSize;
 
             __syncthreads();
+
+            swap = left;
+            left = right;
+            right = swap;
         }
     }
 }

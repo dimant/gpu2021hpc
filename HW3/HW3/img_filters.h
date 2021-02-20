@@ -9,7 +9,9 @@ enum class ImgFilterType
     GaussianBlur5x5,
     CompositeLaplacian,
     BasicLaplacianDiags,
-    SobelEdgeX
+    SobelEdgeX,
+    Identity,
+    Unknown
 };
 
 class ImgFilter

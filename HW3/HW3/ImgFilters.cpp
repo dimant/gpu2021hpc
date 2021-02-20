@@ -46,7 +46,7 @@ const float basicLaplacianDiags[basicLaplacianDiags_n] = {
     1.0f, 1.0f, 1.0f
 };
 
-const char* sobelEdgeX_str = "sobelEdgeX_str";
+const char* sobelEdgeX_str = "sobelEdgeX";
 const size_t sobelEdgeX_x = 3;
 const size_t sobelEdgeX_n = 9;
 const float sobelEdgeX[sobelEdgeX_n] = {
@@ -55,27 +55,47 @@ const float sobelEdgeX[sobelEdgeX_n] = {
     1.0f, 0.0f, -1.0f
 };
 
+const char* identity_str = "identity";
+const size_t identity_x = 1;
+const size_t identity_n = 1;
+const float identity[identity_n] = { 1.0f };
+
+bool starts_with(const char* str, const char* pre)
+{
+    size_t lenstr = strlen(str);
+    size_t lenpre = strlen(pre);
+    return lenstr < lenpre ? false : memcmp(pre, str, lenpre) == 0;
+}
+
 ImgFilterType filterTypeFromName(const std::string& filterName)
 {
-    if (filterName == gaussianBlur7x7_str)
+    if (starts_with(gaussianBlur7x7_str, filterName.c_str()))
     {
         return ImgFilterType::GaussianBlur7x7;
     }
-    else if (filterName == gaussianBlur5x5_str)
+    else if (starts_with(gaussianBlur5x5_str, filterName.c_str()))
     {
         return ImgFilterType::GaussianBlur5x5;
     }
-    else if (filterName == compositeLaplacian_str)
+    else if (starts_with(compositeLaplacian_str, filterName.c_str()))
     {
         return ImgFilterType::CompositeLaplacian;
     }
-    else if (filterName == basicLaplacianDiags_str)
+    else if (starts_with(basicLaplacianDiags_str, filterName.c_str()))
     {
         return ImgFilterType::BasicLaplacianDiags;
     }
-    else if (filterName == sobelEdgeX_str)
+    else if (starts_with(sobelEdgeX_str, filterName.c_str()))
     {
         return ImgFilterType::SobelEdgeX;
+    }
+    else if (starts_with(identity_str, filterName.c_str()))
+    {
+        return ImgFilterType::Identity;
+    }
+    else
+    {
+        return ImgFilterType::Unknown;
     }
 }
 
@@ -93,6 +113,8 @@ const float* filterValueFromFilterType(ImgFilterType filterType)
         return basicLaplacianDiags;
     case(ImgFilterType::SobelEdgeX):
         return sobelEdgeX;
+    case(ImgFilterType::Identity):
+        return identity;
     default:
         return nullptr;
     }
@@ -112,6 +134,8 @@ const size_t filterSizeXFromFilterType(ImgFilterType filterType)
         return basicLaplacianDiags_x;
     case(ImgFilterType::SobelEdgeX):
         return sobelEdgeX_x;
+    case(ImgFilterType::Identity):
+        return identity_x;
     default:
         return 0;
     }
@@ -131,6 +155,8 @@ const size_t filterSizeNFromFilterType(ImgFilterType filterType)
         return basicLaplacianDiags_n;
     case(ImgFilterType::SobelEdgeX):
         return sobelEdgeX_n;
+    case(ImgFilterType::Identity):
+        return identity_n;
     default:
         return 0;
     }
@@ -158,6 +184,11 @@ void constructFiltersFromOption(const char* option, std::vector<ImgFilter*>* fil
     for (auto type : types)
     {
         filters->push_back(new ImgFilter(type));
+    }
+
+    if (types.size() % 2 == 0)
+    {
+        filters->push_back(new ImgFilter(ImgFilterType::Identity));
     }
 }
 

@@ -54,7 +54,7 @@ void ImageCuda::Launch()
 	memcpy(argBuffer + offset, &(d_filter_sizes), sizeof(d_filter_sizes));
 	offset += sizeof(d_filter_sizes);
 
-	int nfilters = filters->size();
+	int nfilters = (int) filters->size();
 	ALIGN_UP(offset, __alignof(int));
 	memcpy(argBuffer + offset, &(nfilters), sizeof(nfilters));
 	offset += sizeof(nfilters);
