@@ -1,15 +1,5 @@
-#pragma once
-
-#include <vector>
-
-enum ImgFilterType
-{ 
-    GaussianBlur7x7,
-    GaussianBlur5x5,
-    CompositeLaplacian,
-    BasicLaplacianDiags,
-    SobelEdgeX
-};
+#ifndef IMGFILTERS_H
+#define IMGFILTERS_H
 
 const char* gaussianBlur7x7_str = "gaussianBlur7x7";
 const size_t gaussianBlur7x7_x = 7;
@@ -62,23 +52,5 @@ const float sobelEdgeX[sobelEdgeX_n] = {
     1.0f, 0.0f, -1.0f
 };
 
-class ImgFilter
-{
-private:
-    const size_t size_x;
-    const size_t size_n;
-    const char* name;
-    const float* value;
-
-public:
-    ImgFilter(size_t size_x, size_t size_n, const char* name, const float* value) :
-        size_x(size_x), size_n(size_n), name(name), value(value)
-    {}
-
-    const size_t SizeX() { return size_x; }
-    const size_t SizeN() { return size_n; }
-    const char* Name() { return name; }
-    const float* Value() { return value; }
-};
-
-std::vector<ImgFilterType> ParseFilterOption(const char* option);
+#include "img_filters_impl.h"
+#endif
