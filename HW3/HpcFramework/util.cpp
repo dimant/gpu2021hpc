@@ -2,7 +2,8 @@
 #include <fstream>
 #include <streambuf>
 
-#include <windows.h>
+#include <direct.h> // _getcwd
+#include <windows.h> // GetModuleFileNameA
 
 #include "util.h"
 

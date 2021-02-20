@@ -4,7 +4,8 @@
 class ImageOperation
 {
 protected:
-	const char* fname;
+	const char* input_fname;
+	const char* output_fname;
 	int imgRows;
 	int imgCols;
 	int imgChannels;
@@ -14,8 +15,9 @@ protected:
 	float* h_output_float_image;
 
 public:
-	ImageOperation(const char* fname) :
-		fname(fname),
+	ImageOperation(const char* input_fname, const char* output_fname) :
+		input_fname(input_fname),
+		output_fname(output_fname),
 		imgRows(0), imgCols(0), imgChannels(0),
 		h_input_char_image(nullptr),
 		h_input_float_image(nullptr),
