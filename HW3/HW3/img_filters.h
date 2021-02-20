@@ -10,6 +10,9 @@ enum class ImgFilterType
     CompositeLaplacian,
     BasicLaplacianDiags,
     SobelEdgeX,
+    Average,
+    PrewittX,
+    PrewittY,
     Identity,
     Unknown
 };

@@ -60,6 +60,33 @@ const size_t identity_x = 1;
 const size_t identity_n = 1;
 const float identity[identity_n] = { 1.0f };
 
+const char* average_str = "average";
+const size_t average_x = 3;
+const size_t average_n = 9;
+const float average[average_n] = {
+    1.0f / 9.0f, 1.0f / 9.0f, 1.0f / 9.0f,
+    1.0f / 9.0f, 1.0f / 9.0f, 1.0f / 9.0f,
+    1.0f / 9.0f, 1.0f / 9.0f, 1.0f / 9.0f
+};
+
+const char* prewittX_str = "prewittX";
+const size_t prewittX_x = 3;
+const size_t prewittX_n = 9;
+const float prewittX[prewittX_n] = {
+    -1.0f, 0.0, 1.0f,
+    -1.0f, 0.0, 1.0f,
+    -1.0f, 0.0, 1.0f,
+};
+
+const char* prewittY_str = "prewittY";
+const size_t prewittY_x = 3;
+const size_t prewittY_n = 9;
+const float prewittY[prewittY_n] = {
+    -1.0f, -1.0, -1.0f,
+    0.0f, 0.0, 0.0f,
+    1.0f, 1.0, 1.0f,
+};
+
 bool starts_with(const char* str, const char* pre)
 {
     size_t lenstr = strlen(str);
@@ -93,6 +120,18 @@ ImgFilterType filterTypeFromName(const std::string& filterName)
     {
         return ImgFilterType::Identity;
     }
+    else if (starts_with(average_str, filterName.c_str()))
+    {
+        return ImgFilterType::Average;
+    }
+    else if (starts_with(prewittX_str, filterName.c_str()))
+    {
+        return ImgFilterType::PrewittX;
+    }
+    else if (starts_with(prewittY_str, filterName.c_str()))
+    {
+        return ImgFilterType::PrewittY;
+    }
     else
     {
         return ImgFilterType::Unknown;
@@ -115,6 +154,12 @@ const float* filterValueFromFilterType(ImgFilterType filterType)
         return sobelEdgeX;
     case(ImgFilterType::Identity):
         return identity;
+    case(ImgFilterType::Average):
+        return average;
+    case(ImgFilterType::PrewittX):
+        return prewittX;
+    case(ImgFilterType::PrewittY):
+        return prewittY;
     default:
         return nullptr;
     }
@@ -136,6 +181,12 @@ const size_t filterSizeXFromFilterType(ImgFilterType filterType)
         return sobelEdgeX_x;
     case(ImgFilterType::Identity):
         return identity_x;
+    case(ImgFilterType::Average):
+        return average_x;
+    case(ImgFilterType::PrewittX):
+        return prewittX_x;
+    case(ImgFilterType::PrewittY):
+        return prewittY_x;
     default:
         return 0;
     }
@@ -157,6 +208,12 @@ const size_t filterSizeNFromFilterType(ImgFilterType filterType)
         return sobelEdgeX_n;
     case(ImgFilterType::Identity):
         return identity_n;
+    case(ImgFilterType::Average):
+        return average_n;
+    case(ImgFilterType::PrewittX):
+        return prewittX_n;
+    case(ImgFilterType::PrewittY):
+        return prewittY_n;
     default:
         return 0;
     }
