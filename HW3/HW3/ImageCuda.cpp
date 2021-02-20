@@ -6,11 +6,11 @@
 void ImageCuda::AllocateDevice()
 {
 	size_t size = (size_t) imgRows * (size_t) imgCols * sizeof(float);
-	size_t filtersize = filters->at(0)->SizeN() * sizeof(float);
 
 	checkCudaError(cuMemAlloc(&d_input_image, size));
 	checkCudaError(cuMemAlloc(&d_output_image, size));
-	checkCudaError(cuMemAlloc(&d_filter, filtersize));
+	checkCudaError(cuMemAlloc(&d_filters, total_filter_size * sizeof(float)));
+	checkCudaError(cuMemAlloc(&d_filter_sizes, filters->size() * sizeof(int)));
 }
 
 void ImageCuda::CopyToDevice()
@@ -18,11 +18,8 @@ void ImageCuda::CopyToDevice()
 	size_t size = (size_t)imgRows * (size_t)imgCols * sizeof(float);
 
 	checkCudaError(cuMemcpyHtoD(d_input_image, h_input_float_image, size));
-
-	float* filter = const_cast<float*>(filters->at(0)->Value());
-	size_t filtersize = filters->at(0)->SizeN() * sizeof(float);
-
-	checkCudaError(cuMemcpyHtoD(d_filter, filter, filtersize));
+	checkCudaError(cuMemcpyHtoD(d_filters, h_filters, total_filter_size * sizeof(float)));
+	checkCudaError(cuMemcpyHtoD(d_filter_sizes, h_filter_sizes, filters->size() * sizeof(int)));
 }
 
 void ImageCuda::Launch()
@@ -41,10 +38,6 @@ void ImageCuda::Launch()
 	memcpy(argBuffer + offset, &(d_input_image), sizeof(d_input_image));
 	offset += sizeof(d_input_image);
 
-	ALIGN_UP(offset, __alignof(CUdeviceptr));
-	memcpy(argBuffer + offset, &(d_filter), sizeof(d_filter));
-	offset += sizeof(d_filter);
-
 	ALIGN_UP(offset, __alignof(int));
 	memcpy(argBuffer + offset, &(imgRows), sizeof(imgRows));
 	offset += sizeof(imgRows);
@@ -53,10 +46,18 @@ void ImageCuda::Launch()
 	memcpy(argBuffer + offset, &(imgCols), sizeof(imgCols));
 	offset += sizeof(imgCols);
 
-	int filterSize = filters->at(0)->SizeN();
+	ALIGN_UP(offset, __alignof(CUdeviceptr));
+	memcpy(argBuffer + offset, &(d_filters), sizeof(d_filters));
+	offset += sizeof(d_filters);
+
+	ALIGN_UP(offset, __alignof(CUdeviceptr));
+	memcpy(argBuffer + offset, &(d_filter_sizes), sizeof(d_filter_sizes));
+	offset += sizeof(d_filter_sizes);
+
+	int nfilters = filters->size();
 	ALIGN_UP(offset, __alignof(int));
-	memcpy(argBuffer + offset, &(filterSize), sizeof(filterSize));
-	offset += sizeof(filterSize);
+	memcpy(argBuffer + offset, &(nfilters), sizeof(nfilters));
+	offset += sizeof(nfilters);
 
 	void* config[5] = { CU_LAUNCH_PARAM_BUFFER_POINTER, argBuffer,
 								 CU_LAUNCH_PARAM_BUFFER_SIZE, &offset,
@@ -79,5 +80,6 @@ void ImageCuda::FreeDevice()
 {
 	checkCudaError(cuMemFree(d_input_image));
 	checkCudaError(cuMemFree(d_output_image));
-	checkCudaError(cuMemFree(d_filter));
+	checkCudaError(cuMemFree(d_filters));
+	checkCudaError(cuMemFree(d_filter_sizes));
 }

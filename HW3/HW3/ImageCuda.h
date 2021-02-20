@@ -11,7 +11,8 @@ class ImageCuda : public HpcOperation<CudaContext>, public ImageOperation
 private:
 	CUdeviceptr d_input_image;
 	CUdeviceptr d_output_image;
-	CUdeviceptr d_filter;
+	CUdeviceptr d_filters;
+	CUdeviceptr d_filter_sizes;
 
 public:
 	ImageCuda(const char* input_fname, const char* output_fname,
@@ -19,7 +20,8 @@ public:
 		ImageOperation(input_fname, output_fname, filters),
 		d_input_image(0),
 		d_output_image(0),
-		d_filter(0)
+		d_filters(0),
+		d_filter_sizes(0)
 	{
 	}
 

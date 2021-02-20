@@ -22,11 +22,33 @@ void ImageOperation::AllocateHost()
 
 	h_output_char_image = new unsigned char[size];
 	h_output_float_image = new float[size];
+
+	for (auto filter : (*filters))
+	{
+		total_filter_size += filter->SizeN();
+	}
+
+	h_filters = new float[total_filter_size];
+	h_filter_sizes = new int[filters->size()];
 }
 
 void ImageOperation::InitData()
 {
-	// sadly image load, allocate and init are tightly coupled.
+	float* cursor = h_filters;
+
+	for (int i = 0; i < filters->size(); i++)
+	{
+		auto filter = filters->at(i);
+		auto filterSizeX = filter->SizeX();
+		auto filterSizeN = filter->SizeN();
+		auto filterValue = filter->Value();
+
+		h_filter_sizes[i] = (int)filterSizeX;
+
+		memcpy(cursor, filterValue, filterSizeN * sizeof(float));
+
+		cursor += filterSizeN;
+	}
 }
 
 void ImageOperation::VerifyResult()
@@ -52,4 +74,6 @@ void ImageOperation::FreeHost()
 	delete[] h_input_float_image;
 	delete[] h_output_char_image;
 	delete[] h_output_float_image;
+	delete[] h_filters;
+	delete[] h_filter_sizes;
 }

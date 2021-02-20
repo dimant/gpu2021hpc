@@ -17,6 +17,12 @@ protected:
 	float* h_input_float_image;
 	unsigned char* h_output_char_image;
 	float* h_output_float_image;
+	float* h_filters; // the filters which will be applied pasted one after the other
+		// in the order of application
+	size_t total_filter_size; // if you pass 3 filters, this will be the number of
+		// floats for all filters
+	int* h_filter_sizes; // contains the size along X of filter at index i 
+		// (sqrt of total size for a square filter)
 
 protected:
 	std::vector<ImgFilter*>* filters;
@@ -31,7 +37,10 @@ public:
 		h_input_char_image(nullptr),
 		h_input_float_image(nullptr),
 		h_output_char_image(nullptr),
-		h_output_float_image(nullptr)
+		h_output_float_image(nullptr),
+		h_filters(nullptr),
+		total_filter_size(0),
+		h_filter_sizes(nullptr)
 	{
 	}
 

@@ -1,4 +1,4 @@
-extern "C" __global__ void imageFilter(
+extern "C" __global__ void imageFilterSingle(
     float* d_output, float* d_input, float* d_filter,
     int num_row, int num_col, int filter_size)
 {
@@ -32,5 +32,30 @@ extern "C" __global__ void imageFilter(
         }
 
         d_output[idx_y * num_col + idx_x] = result;
+    }
+}
+
+extern "C" __global__ void imageFilter(
+    float* d_output, float* d_input,
+    int num_row, int num_col,
+    float* filters, int* filter_sizes, int nfilters)
+{
+    int idx_x = blockDim.x * blockIdx.x + threadIdx.x;
+    int idx_y = blockDim.y * blockIdx.y + threadIdx.y;
+
+    if (idx_x < num_col && idx_y < num_row)
+    {
+        float* cursor = filters;
+
+        for (int i = 0; i < nfilters; i++)
+        {
+            int filterSize = filter_sizes[i];
+
+            imageFilterSingle(d_output, d_input, cursor, num_row, num_col, filterSize);
+
+            cursor += filterSize * filterSize;
+
+            __syncthreads();
+        }
     }
 }
