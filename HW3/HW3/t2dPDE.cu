@@ -11,21 +11,43 @@ void t2dPDE_center_step(int ncols, int nrows, float alpha, float* temp_in, float
     int col = blockIdx.x * blockDim.x + threadIdx.x;
     int row = blockIdx.y * blockDim.y + threadIdx.y;
 
-    // loop over all points in domain (except boundary)
-    if (col > 0 && col < ncols - 1 && 
-        row > 0 && row < nrows - 1)
+    if (col < ncols && row < nrows)
     {
-        // find indices into linear memory
-        // for central point and neighbours
         i00 = I2D(ncols, col, row);
-        ip10 = I2D(ncols, col + 1, row);
-        im10 = I2D(ncols, col - 1, row);
-        i0p1 = I2D(ncols, col, row + 1);
-        i0m1 = I2D(ncols, col, row - 1);
 
-        // evaluate derivatives
-        d2tdx2 = temp_in[im10] - 2 * temp_in[i00] + temp_in[ip10];
-        d2tdy2 = temp_in[i0m1] - 2 * temp_in[i00] + temp_in[i0p1];
+        if (col == 0)
+        {
+            ip10 = I2D(ncols, col + 1, row);
+            d2tdx2 = 0.0f - 2 * temp_in[i00] + temp_in[ip10];
+        }
+        else if (col == ncols - 1)
+        {
+            im10 = I2D(ncols, col - 1, row);
+            d2tdx2 = temp_in[im10] - 2 * temp_in[i00] + 0.0f;
+        }
+        else
+        {
+            ip10 = I2D(ncols, col + 1, row);
+            im10 = I2D(ncols, col - 1, row);
+            d2tdx2 = temp_in[im10] - 2 * temp_in[i00] + temp_in[ip10];
+        }
+
+        if (row == 0)
+        {
+            i0p1 = I2D(ncols, col, row + 1);
+            d2tdy2 = 0.0f - 2 * temp_in[i00] + temp_in[i0p1];
+        }
+        else if (row == nrows - 1)
+        {
+            i0m1 = I2D(ncols, col, row - 1);
+            d2tdy2 = temp_in[i0m1] - 2 * temp_in[i00] + 0.0f;
+        }
+        else
+        {
+            i0p1 = I2D(ncols, col, row + 1);
+            i0m1 = I2D(ncols, col, row - 1);
+            d2tdy2 = temp_in[i0m1] - 2 * temp_in[i00] + temp_in[i0p1];
+        }
 
         // update temperatures
         temp_out[i00] = temp_in[i00] + alpha * (d2tdx2 + d2tdy2);

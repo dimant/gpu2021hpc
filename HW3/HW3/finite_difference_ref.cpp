@@ -9,20 +9,47 @@ void step_center_diff(int ni, int nj, float fact, float* temp_in, float* temp_ou
     int i00, im10, ip10, i0m1, i0p1;
     float d2tdx2, d2tdy2;
 
-    // loop over all points in domain (except boundary)
-    for (int j = 1; j < nj - 1; j++) {
-        for (int i = 1; i < ni - 1; i++) {
-            // find indices into linear memory
-            // for central point and neighbours
-            i00 = I2D(ni, i, j);
-            im10 = I2D(ni, i - 1, j);
-            ip10 = I2D(ni, i + 1, j);
-            i0m1 = I2D(ni, i, j - 1);
-            i0p1 = I2D(ni, i, j + 1);
+    // padding edges with 0.0f
+    for (int j = 0; j < nj; j++)
+    {
+        for (int i = 0; i < ni; i++)
+        {
 
-            // evaluate derivatives
-            d2tdx2 = temp_in[im10] - 2 * temp_in[i00] + temp_in[ip10];
-            d2tdy2 = temp_in[i0m1] - 2 * temp_in[i00] + temp_in[i0p1];
+            i00 = I2D(ni, i, j);
+
+            if (j == 0)
+            {
+                i0p1 = I2D(ni, i, j + 1);
+                d2tdy2 = 0.0f - 2 * temp_in[i00] + temp_in[i0p1];
+            }
+            else if(j == nj - 1)
+            {
+                i0m1 = I2D(ni, i, j - 1);
+                d2tdy2 = temp_in[i0m1] - 2 * temp_in[i00] + 0.0f;
+            }
+            else
+            {
+                i0m1 = I2D(ni, i, j - 1);
+                i0p1 = I2D(ni, i, j + 1);
+                d2tdy2 = temp_in[i0m1] - 2 * temp_in[i00] + temp_in[i0p1];
+            }
+
+            if (i == 0)
+            {
+                ip10 = I2D(ni, i + 1, j);
+                d2tdx2 = 0.0f - 2 * temp_in[i00] + temp_in[ip10];
+            }
+            else if (i == ni - 1)
+            {
+                im10 = I2D(ni, i - 1, j);
+                d2tdx2 = temp_in[im10] - 2 * temp_in[i00] + 0.0f;
+            }
+            else
+            {
+                im10 = I2D(ni, i - 1, j);
+                ip10 = I2D(ni, i + 1, j);
+                d2tdx2 = temp_in[im10] - 2 * temp_in[i00] + temp_in[ip10];
+            }
 
             // update temperatures
             temp_out[i00] = temp_in[i00] + fact * (d2tdx2 + d2tdy2);
