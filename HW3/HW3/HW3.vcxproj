@@ -119,6 +119,7 @@
     <ClCompile Include="ImageOperation.cpp" />
     <ClCompile Include="ImgFilters.cpp" />
     <ClCompile Include="program.cpp" />
+    <ClCompile Include="T2dPDECuda.cpp" />
     <ClCompile Include="T2dPDEOperation.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +130,7 @@
     <ClInclude Include="popl.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="stb_image_write.h" />
+    <ClInclude Include="T2dPDECuda.h" />
     <ClInclude Include="T2dPDEOperation.h" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +143,12 @@
     <Image Include="..\canvas\Big-Gray-Lena_8bit.png">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="t2dPDE.cu">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

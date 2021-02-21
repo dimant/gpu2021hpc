@@ -1,119 +1,45 @@
 #include "finite_difference_ref.h"
 
+#define I2D(num, c, r) ((r)*(num)+(c))
 
-#define I2D(ncols, col, row) ((row)*(ncols)+(col))
-
-inline float d2tdx2_center(int ncols, int col, int row, float* temp_in)
+void step_center_diff(int ni, int nj, float fact, float* temp_in, float* temp_out)
 {
-	int i00, im10, ip10;
+    int i00, im10, ip10, i0m1, i0p1;
+    float d2tdx2, d2tdy2;
 
-	i00 = I2D(ncols, col, row);
-	im10 = I2D(ncols, col - 1, row);
-	ip10 = I2D(ncols, col + 1, row);
+    // loop over all points in domain (except boundary)
+    for (int j = 1; j < nj - 1; j++) {
+        for (int i = 1; i < ni - 1; i++) {
+            // find indices into linear memory
+            // for central point and neighbours
+            i00 = I2D(ni, i, j);
+            im10 = I2D(ni, i - 1, j);
+            ip10 = I2D(ni, i + 1, j);
+            i0m1 = I2D(ni, i, j - 1);
+            i0p1 = I2D(ni, i, j + 1);
 
-	return temp_in[im10] - 2 * temp_in[i00] + temp_in[ip10];
+            // evaluate derivatives
+            d2tdx2 = temp_in[im10] - 2 * temp_in[i00] + temp_in[ip10];
+            d2tdy2 = temp_in[i0m1] - 2 * temp_in[i00] + temp_in[i0p1];
+
+            // update temperatures
+            temp_out[i00] = temp_in[i00] + fact * (d2tdx2 + d2tdy2);
+        }
+    }
 }
 
-inline float d2tdy2_center(int ncols, int col, int row, float* temp_in)
+void center_diff(int nstep, int ni, int nj, float tfac, float* temp1_ref, float* temp2_ref)
 {
-	int i00, i0m1, i0p1;
+    float* temp_tmp;
 
-	i00 = I2D(ncols, col, row);
-	i0m1 = I2D(ncols, col, row - 1);
-	i0p1 = I2D(ncols, col, row + 1);
+    // Execute the CPU-only reference version
+    for (int istep = 0; istep < nstep; istep++)
+    {
+        step_center_diff(ni, nj, tfac, temp1_ref, temp2_ref);
 
-	return temp_in[i0m1] - 2 * temp_in[i00] + temp_in[i0p1];
-}
-
-inline float d2tdx2_forward(int ncols, int col, int row, float* temp_in)
-{
-	int ip20, ip10, i00;
-
-	i00 = I2D(ncols, col, row);
-	ip20 = I2D(ncols, col + 2, row);
-	ip10 = I2D(ncols, col + 1, row);
-
-	return temp_in[ip20] - 2 * temp_in[ip10] + temp_in[i00];
-}
-
-inline float d2tdy2_forward(int ncols, int col, int row, float* temp_in)
-{
-	int i00, i0p2, i0p1;
-
-	i00 = I2D(ncols, col, row);
-	i0p2 = I2D(ncols, col, row + 2);
-	i0p1 = I2D(ncols, col, row + 1);
-
-	return temp_in[i0p2] - 2 * temp_in[i0p1] + temp_in[i00];
-}
-
-inline float d2tdx2_backward(int ncols, int col, int row, float* temp_in)
-{
-	int i00, im10, im20;
-
-	i00 = I2D(ncols, col, row);
-	im10 = I2D(ncols, col - 1, row);
-	im20 = I2D(ncols, col - 2, row);
-
-	return temp_in[i00] - 2 * temp_in[im10] + temp_in[im20];
-}
-
-inline float d2tdy2_backward(int ncols, int col, int row, float* temp_in)
-{
-	int i00, i0m1, i0m2;
-
-	i00 = I2D(ncols, col, row);
-	i0m1 = I2D(ncols, col, row - 1);
-	i0m2 = I2D(ncols, col, row - 2);
-
-	return temp_in[i00] - 2 * temp_in[i0m1] + temp_in[i0m2];
-}
-
-void step_center(int nrows, int ncols, float alpha, float* temp_in, float* temp_out)
-{
-	int i00;
-
-	for (int row = 1; row < nrows - 1; row++) {
-		for (int col = 1; col < ncols - 1; col++) {
-			i00 = I2D(ncols, col, row);
-
-			temp_out[i00] = temp_in[i00] + alpha *
-				(d2tdx2_center(nrows, col, row, temp_in) +
-				 d2tdy2_center(nrows, col, row, temp_in));
-		}
-	}
-}
-
-void step_forward(int nrows, int ncols, float alpha, float* temp_in, float* temp_out)
-{
-	int i00;
-
-	for (int row = 0; row < nrows - 2; row++)
-	{
-		for (int col = 0; col < ncols - 2; col++)
-		{
-			i00  = I2D(ncols, col, row);
-
-			temp_out[i00] = temp_in[i00] + alpha *
-				(d2tdx2_forward(nrows, col, row, temp_in) +
-				 d2tdy2_forward(nrows, col, row, temp_in));
-		}
-	}
-}
-
-void step_backward(int nrows, int ncols, float alpha, float* temp_in, float* temp_out)
-{
-	int i00;
-
-	for (int row = 2; row < nrows; row++)
-	{
-		for (int col = 2; col < ncols; col++)
-		{
-			i00  = I2D(ncols, col, row);
-
-			temp_out[i00] = temp_in[I2D(ncols, col, row)] + alpha *
-				(d2tdx2_backward(nrows, col, row, temp_in) +
-				 d2tdy2_backward(nrows, col, row, temp_in));
-		}
-	}
+        // swap the temperature pointers, double-buffer-esque
+        temp_tmp = temp1_ref;
+        temp1_ref = temp2_ref;
+        temp2_ref = temp_tmp;
+    }
 }

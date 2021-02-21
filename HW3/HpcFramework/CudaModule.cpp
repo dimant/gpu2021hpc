@@ -1,6 +1,7 @@
 #include "CudaModule.h"
 
 #include <iostream>
+#include <filesystem>
 
 #include "util.h"
 
@@ -41,6 +42,12 @@ void CudaModule::Init()
 void CudaModule::Compile(const char* kernelFile)
 {
     setCwdToExeDir();
+
+    if (!std::filesystem::exists(kernelFile))
+    {
+        std::cerr << "Couldn't find file: " << kernelFile << std::endl;
+        exit(1);
+    }
 
     char* cubinResult;
     size_t cubinResultSize;
