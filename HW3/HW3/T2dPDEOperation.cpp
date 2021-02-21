@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 #include "T2dPDEOperation.h"
 
@@ -14,21 +15,25 @@ void T2dPDEOperation::AllocateHost()
 	t_temp_out = new float[nrows * ncols];
 }
 
-float random_temp()
+inline float random_temp()
 {
-	float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-	float t = (r * 40) + 80; // random temperature between 80C and 120C
+	//float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+	//float t = (r * 40) + 80; // random temperature between 80C and 120C
+	float t = (float)rand() / (float)(RAND_MAX / 100.0f);
 	return t;
 }
 
 void T2dPDEOperation::InitData()
 {
+	srand(time(NULL));
+
 	for (int i = 0; i < nrows * ncols; i++)
 	{
-		h_temp_in[i] = random_temp();
-		t_temp_in[i] = h_temp_in[i];
-		h_temp_out[i] = random_temp();
-		t_temp_out[i] = h_temp_out[i];
+		float t = random_temp();
+		h_temp_in[i] = t;
+		t_temp_in[i] = t;
+		h_temp_out[i] = t;
+		t_temp_out[i] = t;
 	}
 }
 
@@ -36,17 +41,35 @@ void T2dPDEOperation::VerifyResult()
 {
 	center_diff((int)steps, (int)ncols, (int)nrows, alpha, t_temp_in, t_temp_out);
 
-	// Output should always be stored in the h_temp_out and t_temp_in at this point
-	// we ensure h_temp_out has the output by copying correctly from the device
-	// we ensure t_temp_in has the output by passing the pointers by reference
 	float maxError = FLT_MIN;
+	float* t_temp = nullptr;
 
-	for (int i = 0; i < nrows * ncols; ++i) {
-		float delta = fabs(h_temp_out[i] - t_temp_in[i]);
+	if (steps % 2 == 0)
+	{
+		t_temp = t_temp_in;
+	}
+	else
+	{
+		t_temp = t_temp_out;
+	}
 
-		if (delta > maxError)
+	for (int row = 0; row < nrows; row++)
+	{
+		for (int col = 0; col < ncols; col++)
 		{
-			maxError = delta;
+			int idx = row * ncols + col;
+			float delta = fabs(h_temp_out[idx] - t_temp[idx]);
+
+			if (delta > maxError)
+			{
+				maxError = delta;
+
+				if (delta > 1.0e-30f)
+				{
+					printf("oops: %d %d\n", row, col);
+				}
+			}
+
 		}
 	}
 

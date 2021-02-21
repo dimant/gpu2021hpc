@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "finite_difference_ref.h"
 
 #define I2D(num, c, r) ((r)*(num)+(c))
@@ -28,18 +30,20 @@ void step_center_diff(int ni, int nj, float fact, float* temp_in, float* temp_ou
     }
 }
 
-void center_diff(int nstep, int ni, int nj, float tfac, float* temp1_ref, float* temp2_ref)
+void center_diff(int nstep, int ni, int nj, float tfac, float* temp_in, float* temp_out)
 {
-    float* temp_tmp;
+    float* left = temp_in;
+    float* right = temp_out;
+    float* swap = nullptr;
 
     // Execute the CPU-only reference version
     for (int istep = 0; istep < nstep; istep++)
     {
-        step_center_diff(ni, nj, tfac, temp1_ref, temp2_ref);
+        step_center_diff(ni, nj, tfac, left, right);
 
         // swap the temperature pointers, double-buffer-esque
-        temp_tmp = temp1_ref;
-        temp1_ref = temp2_ref;
-        temp2_ref = temp_tmp;
+        swap = left;
+        left = right;
+        right = swap;
     }
 }
