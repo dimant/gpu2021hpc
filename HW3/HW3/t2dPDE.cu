@@ -33,16 +33,20 @@ void t2dPDE_center_step(int ncols, int nrows, float alpha, float* temp_in, float
 }
 
 extern "C" __global__
-void t2dPDE_center(int nsteps, int ncols, int nrows, float alpha, float* temp_in, float* temp_out)
+void t2dPDE_center(int threads, int blocks,
+    int nsteps, int ncols, int nrows, float alpha, float* temp_in, float* temp_out)
 {
+    dim3 gridSize(blocks, blocks);
+    dim3 blockSize(threads, threads);
+
     float* left = temp_in;
     float* right = temp_out;
     float* swap = 0;
 
     for (int i = 0; i < nsteps; i++)
     {
-        t2dPDE_center_step(ncols, nrows, alpha, left, right);
-        __syncthreads();
+        t2dPDE_center_step<<<gridSize, blockSize>>>(ncols, nrows, alpha, left, right);
+        cudaDeviceSynchronize();
 
         swap = left;
         left = right;
