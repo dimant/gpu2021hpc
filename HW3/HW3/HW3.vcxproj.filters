@@ -27,6 +27,12 @@
     <ClCompile Include="ImageCuda.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="T2dPDEOperation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="finite_difference_ref.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="popl.h">
@@ -45,6 +51,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ImageCuda.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="T2dPDEOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="finite_difference_ref.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

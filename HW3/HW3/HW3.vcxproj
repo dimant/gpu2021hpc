@@ -114,18 +114,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="finite_difference_ref.cpp" />
     <ClCompile Include="ImageCuda.cpp" />
     <ClCompile Include="ImageOperation.cpp" />
     <ClCompile Include="ImgFilters.cpp" />
     <ClCompile Include="program.cpp" />
+    <ClCompile Include="T2dPDEOperation.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="finite_difference_ref.h" />
     <ClInclude Include="ImageCuda.h" />
     <ClInclude Include="ImageOperation.h" />
     <ClInclude Include="img_filters.h" />
     <ClInclude Include="popl.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="stb_image_write.h" />
+    <ClInclude Include="T2dPDEOperation.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="imageFilter.cu">

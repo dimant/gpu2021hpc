@@ -24,7 +24,6 @@ protected:
 	int* h_filter_sizes; // contains the size along X of filter at index i 
 		// (sqrt of total size for a square filter)
 
-protected:
 	std::vector<ImgFilter*>* filters;
 
 public:
