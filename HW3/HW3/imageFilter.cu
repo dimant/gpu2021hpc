@@ -1,4 +1,4 @@
-extern "C" __global__ void imageFilterSingle(
+__global__ void imageFilterSingle(
     float* d_output, float* d_input, float* d_filter,
     int num_row, int num_col, int filter_size)
 {
@@ -39,10 +39,14 @@ extern "C" __global__ void imageFilterSingle(
 }
 
 extern "C" __global__ void imageFilter(
+    int threads, int blocks,
     float* d_output, float* d_input,
     int num_row, int num_col,
     float* filters, int* filter_sizes, int nfilters)
 {
+    dim3 blockSize(threads, threads);
+    dim3 gridSize(blocks, blocks);
+
     int idx_x = blockDim.x * blockIdx.x + threadIdx.x;
     int idx_y = blockDim.y * blockIdx.y + threadIdx.y;
 
@@ -57,11 +61,10 @@ extern "C" __global__ void imageFilter(
         {
             int filterSize = filter_sizes[i];
 
-            imageFilterSingle(left, right, cursor, num_row, num_col, filterSize);
+            imageFilterSingle<<<gridSize, blockSize>>>(left, right, cursor, num_row, num_col, filterSize);
+            cudaDeviceSynchronize();
 
             cursor += filterSize * filterSize;
-
-            __syncthreads();
 
             swap = left;
             left = right;

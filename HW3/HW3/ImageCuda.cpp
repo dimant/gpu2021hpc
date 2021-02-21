@@ -24,11 +24,21 @@ void ImageCuda::CopyToDevice()
 
 void ImageCuda::Launch()
 {
-	dim3 blockSize(GetContext().work.threads.x, GetContext().work.threads.y);
-	dim3 gridSize(GetContext().work.blocks.x, GetContext().work.blocks.y);
+	dim3 blockSize(1);
+	dim3 gridSize(1);
 
 	int offset = 0;
 	char argBuffer[1024];
+
+	int ithreads = GetContext().work.threads.x;
+	ALIGN_UP(offset, __alignof(int));
+	memcpy(argBuffer + offset, &(ithreads), sizeof(ithreads));
+	offset += sizeof(ithreads);
+
+	int iblocks = GetContext().work.blocks.x;
+	ALIGN_UP(offset, __alignof(int));
+	memcpy(argBuffer + offset, &(iblocks), sizeof(iblocks));
+	offset += sizeof(iblocks);
 
 	ALIGN_UP(offset, __alignof(CUdeviceptr));
 	memcpy(argBuffer + offset, &(d_output_image), sizeof(d_output_image));

@@ -62,6 +62,7 @@ void cudaCompileKernel(
 
     compileParams[nCompileParams++] = "--fmad=false";
     compileParams[nCompileParams++] = optionGpuArchitecture.c_str();
+    compileParams[nCompileParams++] = "--relocatable-device-code=true";
 
     nvrtcProgram program;
 
