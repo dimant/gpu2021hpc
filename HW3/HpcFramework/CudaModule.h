@@ -16,12 +16,14 @@ class CudaModule
 private:
 	CUdevice cuDevice;
 	CUcontext cuContext;
+	CUlinkState cuLinkState;
 	CUmodule cuModule;
 	CUfunction cuFunction;
 
 public:
 	CudaModule() :
 		cuDevice(),
+		cuLinkState(nullptr),
 		cuContext(nullptr),
 		cuModule(nullptr),
 		cuFunction(nullptr)
@@ -30,6 +32,7 @@ public:
 
 	~CudaModule()
 	{
+		checkCudaError(cuLinkDestroy(cuLinkState));
 		checkCudaError(cuCtxDestroy(cuContext));
 	}
 

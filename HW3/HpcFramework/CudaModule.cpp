@@ -37,6 +37,7 @@ void CudaModule::Init()
     checkCudaError(cuDeviceGet(&cuDevice, 0));
 
     checkCudaError(cuCtxCreate(&cuContext, 0, cuDevice));
+    checkCudaError(cuLinkCreate(0, 0, 0, &cuLinkState));
 }
 
 void CudaModule::Compile(const char* kernelFile)
@@ -49,12 +50,10 @@ void CudaModule::Compile(const char* kernelFile)
         exit(1);
     }
 
-    char* cubinResult;
+    void* cubinResult;
     size_t cubinResultSize;
 
-    cudaCompileKernel(cuDevice, kernelFile, &cubinResult, &cubinResultSize);
+    cudaCompileKernel(cuDevice, cuLinkState, kernelFile, &cubinResult, &cubinResultSize);
 
     checkCudaError(cuModuleLoadData(&cuModule, cubinResult));
-
-    delete[] cubinResult;
 }

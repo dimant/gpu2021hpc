@@ -33,9 +33,11 @@ void __checkNvrtcError(nvrtcResult error, const char* file, const int line)
 
 void cudaCompileKernel(
     CUdevice cuDevice,
+    CUlinkState linkState,
     const char* kernelFile,
-    char** cubinResult,
-    size_t* cubinResultSize)
+    void** cubinResult,
+    size_t* cubinResultSize,
+    const char* cudadevrt)
 {
     std::string kernelSource = readFile(kernelFile);
     const char* kernelString = kernelSource.c_str();
@@ -87,14 +89,27 @@ void cudaCompileKernel(
 
     checkNvrtcError(compileError);
 
-    size_t codeSize;
-    checkNvrtcError(nvrtcGetCUBINSize(program, &codeSize));
+    std::cerr << std::endl << "Linking: " << kernelFile << std::endl;
+    
+    size_t ptxSize;
+    checkNvrtcError(nvrtcGetPTXSize(program, &ptxSize));
+    char* ptx = new char[ptxSize];
+    checkNvrtcError(nvrtcGetPTX(program, ptx));
+    // Destroy the program.
+    checkNvrtcError(nvrtcDestroyProgram(&program));
 
-    char* code = new char[codeSize];
-    checkNvrtcError(nvrtcGetCUBIN(program, code));
+    checkCudaError(cuLinkCreate(0, 0, 0, &linkState));
+    checkCudaError(cuLinkAddFile(linkState, CU_JIT_INPUT_LIBRARY, cudadevrt, 0, 0, 0));
+    checkCudaError(cuLinkAddData(linkState, CU_JIT_INPUT_PTX, (void*)ptx, ptxSize, kernelFile, 0, 0, 0));
+    
+    size_t cubinSize;
+    void* cubin;
+    checkCudaError(cuLinkComplete(linkState, &cubin, &cubinSize));
 
-    *cubinResult = code;
-    *cubinResultSize = codeSize;
+    std::cerr << " done." << std::endl;
+
+    *cubinResult = cubin;
+    *cubinResultSize = cubinSize;
 }
 
 void cudaMemoryTest()

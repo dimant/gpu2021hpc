@@ -10,9 +10,11 @@ void __checkCudaError(CUresult error, const char* file, const int line);
 
 void cudaCompileKernel(
     CUdevice cuDevice,
+    CUlinkState linkState,
     const char* kernelFile,
-    char** cubinResult,
-    size_t* cubinResultSize);
+    void** cubinResult,
+    size_t* cubinResultSize,
+    const char* cudadevrt = "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v11.2\\lib\\x64\\cudadevrt.lib");
 
 void cudaMemoryTest();
 
