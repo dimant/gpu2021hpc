@@ -37,14 +37,15 @@ void imageFilterCuda(std::string kernelName, std::string filterNames,
 	}
 }
 
-void t2PDECuda(std::string kernelName, int threads, int blocks, int steps, int nrows, int ncols, float alpha)
+void t2PDECuda(std::string kernelName, int threads, int blocks, int steps, int nrows, int ncols, float alpha,
+	const char* reference_impl)
 {
 	CudaModule cudaModule;
 	cudaModule.Init();
 
 	cudaModule.Compile("t2dPDE.cu");
 
-	T2dPDECuda  t2dPDEOperation((size_t)steps, nrows, ncols, alpha);
+	T2dPDECuda  t2dPDEOperation((size_t)steps, nrows, ncols, alpha, reference_impl);
 	CudaContext context = cudaModule.GetContext(kernelName.c_str());
 	context.work.threads.x = threads;
 	context.work.threads.y = threads;
@@ -75,6 +76,7 @@ int main(int argc, char** argv)
 	auto nrows_option = op.add<popl::Value<int>>("r", "rows", "Number of rows for test data.", 1024, &nrows);
 	auto ncols_option = op.add<popl::Value<int>>("c", "cols", "Number of columns for test data.", 1024, &ncols);
 	auto steps_option = op.add<popl::Value<int>>("s", "steps", "Number of steps for PDE solver.", 500, &steps);
+	auto reference_impl_option = op.add<popl::Value<std::string>>("d", "reference-impl", "Reference implementation to use for verifying PDE results (center or full)", "center");
 
 	// 8.418e-5 thermal diffusivity of silver, [m2/s]
 	auto alpha_option = op.add<popl::Value<float>>("a", "alpha", "Diffusivity factor for temperature.", 8.418e-5, &alpha);
@@ -112,7 +114,7 @@ int main(int argc, char** argv)
 		}
 		else if (kernelName.rfind("t2dPDE", 0) == 0)
 		{
-			t2PDECuda(kernelName, threads, blocks, steps, nrows, ncols, alpha);
+			t2PDECuda(kernelName, threads, blocks, steps, nrows, ncols, alpha, reference_impl_option->value().c_str());
 		}
 		else
 		{

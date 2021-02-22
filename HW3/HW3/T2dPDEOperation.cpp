@@ -39,7 +39,18 @@ void T2dPDEOperation::InitData()
 
 void T2dPDEOperation::VerifyResult()
 {
-	center_diff((int)steps, (int)ncols, (int)nrows, alpha, t_temp_in, t_temp_out);
+	if (std::string(reference_impl) == "center")
+	{
+		center_diff((int)steps, (int)ncols, (int)nrows, alpha, t_temp_in, t_temp_out);
+	}
+	else if (std::string(reference_impl) == "full")
+	{
+		full_diff((int)steps, (int)ncols, (int)nrows, alpha, t_temp_in, t_temp_out);
+	}
+	else
+	{
+		std::cerr << "Unknown reference implementation for PDE: " << reference_impl << std::endl;
+	}
 
 	float maxError = FLT_MIN;
 	float* t_temp = nullptr;
