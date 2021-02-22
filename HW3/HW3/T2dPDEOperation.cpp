@@ -17,9 +17,9 @@ void T2dPDEOperation::AllocateHost()
 
 inline float random_temp()
 {
-	//float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-	//float t = (r * 40) + 80; // random temperature between 80C and 120C
-	float t = (float)rand() / (float)(RAND_MAX / 100.0f);
+	float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+	float t = (r * 40) + 80; // random temperature between 80C and 120C
+	//float t = (float)rand() / (float)(RAND_MAX / 100.0f);
 	return t;
 }
 
@@ -74,11 +74,6 @@ void T2dPDEOperation::VerifyResult()
 			if (delta > maxError)
 			{
 				maxError = delta;
-
-				if (delta > 1.0e-30f)
-				{
-					printf("oops: %d %d\n", row, col);
-				}
 			}
 
 		}
