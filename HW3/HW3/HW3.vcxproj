@@ -107,6 +107,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>%(AdditionalDependencies);nvrtc.lib;cuda.lib;OpenCL.lib</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy $(Platform)\$(Configuration)\*.obj $(SolutionDir)$(Platform)\$(Configuration)\</Command>
+    </PostBuildEvent>    
   </ItemDefinitionGroup>
   <ItemGroup>
     <ProjectReference Include="..\HpcFramework\HpcFramework.vcxproj">
@@ -135,18 +138,18 @@
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="imageFilter.cu">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent>true</DeploymentContent>
       <FileType>Document</FileType>
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\canvas\Big-Gray-Lena_8bit.png">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent>true</DeploymentContent>
     </Image>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="t2dPDE.cu">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent>true</DeploymentContent>
       <FileType>Document</FileType>
     </CopyFileToFolders>
   </ItemGroup>
