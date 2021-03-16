@@ -1,0 +1,7 @@
+* load mnist data
+* load / save / init parameters
+- implement FC forward kernel
+- implement FC backward kernel
+- implement FC output backward kernel
+- implement gradient approximation
+- implement network architecture
