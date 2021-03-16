@@ -1,0 +1,25 @@
+
+
+// Examples of calling the cuda device activation functions in cuda kernels
+
+__global__ void nnTestKernelActivations(float* in, float* result)
+{
+    int idx = blockDim.x * blockIdx.x + threadIdx.x;
+    
+    int i = idx * 4;
+    result[i] = sigmoid(in[i]);
+    result[i+1] = sigmoidPrime(in[i+1]);
+    result[i + 2] = tanh(in[i+2]);
+    result[i + 3] = tanhPrime(in[i+3]);
+   
+}
+
+__global__ void nnTestSoftmax10(float* in, float* result)
+{
+    int idx = threadIdx.x;
+
+    int i = idx * 2;
+    result[i] = softmax10(&in[0],idx);
+    result[i + 1] = softmax10Prime(&in[0],idx,idx);
+
+}
