@@ -124,14 +124,16 @@ float* load_labels(std::string path)
 
     for (int label = 0; label < labels; label++)
     {
-        for (int klass = 0; klass < classes; klass)
+        for (int klass = 0; klass < classes; klass++)
         {
             if (klass == (int)data[label])
             {
                 result[label * classes + klass] = 1.0f;
             }
             else
+            {
                 result[label * classes + klass] = 0.0f;
+            }
         }
     }
 

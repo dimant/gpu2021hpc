@@ -80,12 +80,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <CudaCompile Include="fc_forward.cu" />
     <ClCompile Include="mnist_loader.cpp" />
     <ClCompile Include="param_loader.cpp" />
+    <ClCompile Include="program.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mnist_loader.h" />
     <ClInclude Include="param_loader.h" />
+    <ClInclude Include="popl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

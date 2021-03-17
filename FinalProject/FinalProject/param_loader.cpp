@@ -4,7 +4,7 @@
 
 #include "param_loader.h"
 
-void load_params(std::string path, const int& arrays, param_array* paramArrays)
+void load_params(std::string path, const size_t& arrays, param_array* param_arrays)
 {
 	std::ifstream istream(path, std::ios::binary | std::ios::in);
 
@@ -15,13 +15,13 @@ void load_params(std::string path, const int& arrays, param_array* paramArrays)
 
 	for (int i = 0; i < arrays; i++)
 	{
-		istream.read((char*)paramArrays[i].array, paramArrays[i].floats * sizeof(float));
+		istream.read((char*)param_arrays[i].array, param_arrays[i].floats * sizeof(float));
 	}
 
 	istream.close();
 }
 
-void save_params(std::string path, const int& arrays, param_array* paramArrays)
+void save_params(std::string path, const size_t& arrays, param_array* param_arrays)
 {
 	std::ofstream ostream(path, std::ios::binary | std::ios::out);
 
@@ -33,13 +33,25 @@ void save_params(std::string path, const int& arrays, param_array* paramArrays)
 
 	for (int i = 0; i < arrays; i++)
 	{
-		ostream.write((char*)paramArrays[i].array, paramArrays[i].floats * sizeof(float));
+		ostream.write((char*)param_arrays[i].array, param_arrays[i].floats * sizeof(float));
 	}
 
 	ostream.close();
 }
 
-void init_params(const int& arrays, param_array* paramArrays, int* layer_sizes)
+void init_param_array(param_array* param_array, int floats)
+{
+	param_array->array = new float[floats];
+	param_array->grad_array = new float[floats];
+}
+
+void destroy_param_array(param_array* pa)
+{
+	delete[] pa->array;
+	delete[] pa->grad_array;
+}
+
+void init_params(const size_t& arrays, param_array* param_arrays, int* layer_sizes)
 {
 	std::default_random_engine generator;
 
@@ -62,13 +74,13 @@ void init_params(const int& arrays, param_array* paramArrays, int* layer_sizes)
 
 			for (int j = 0; j < layer_sizes[array]; j++)
 			{
-				paramArrays[array].array[j] = normal(generator);
+				param_arrays[array].array[j] = normal(generator);
 			}
 		}
 		else
 		{
 			// bias - init to zeros
-			memset(paramArrays[array].array, 0, layer_sizes[array] * sizeof(float));
+			memset(param_arrays[array].array, 0, layer_sizes[array] * sizeof(float));
 		}
 	}
 }
