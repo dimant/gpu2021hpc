@@ -3,12 +3,7 @@
 #include <string>
 #include <fstream>
 
-struct data_dim
-{
-    int n;
-    int rows;
-    int cols;
-};
+#include "mnist_loader.h"
 
 int reverse_int(int i)
 {
@@ -65,7 +60,7 @@ void read_data(std::ifstream& istream, unsigned char** data, const data_dim dd)
     *data = _data;
 }
 
-float* load_images(std::string path)
+float* load_images(std::string path, data_dim& dd)
 {
     std::ifstream istream(path, std::ios::binary);
 
@@ -76,7 +71,6 @@ float* load_images(std::string path)
 
     consume_magic_number(istream, 2051);
 
-    data_dim dd;
     read_data_dim(istream, dd);
 
     unsigned char* data;
@@ -103,7 +97,7 @@ float* load_images(std::string path)
     return result;
 }
 
-float* load_labels(std::string path)
+float* load_labels(std::string path, size_t& labels)
 {
     std::ifstream istream(path, std::ios::binary);
 
@@ -115,7 +109,8 @@ float* load_labels(std::string path)
     consume_magic_number(istream, 2049);
 
     int classes = 10;
-    int labels = read_int(istream);
+    
+    labels = read_int(istream);
 
     unsigned char* data = new unsigned char[(size_t)labels];
     istream.read((char*)data, labels);

@@ -4,6 +4,8 @@
 
 #include "param_loader.h"
 
+#include "cudart_util.h"
+
 void load_params(std::string path, const size_t& arrays, param_array* param_arrays)
 {
 	std::ifstream istream(path, std::ios::binary | std::ios::in);
@@ -42,13 +44,16 @@ void save_params(std::string path, const size_t& arrays, param_array* param_arra
 void init_param_array(param_array* param_array, int floats)
 {
 	param_array->array = new float[floats];
+	cudaCheckError(cudaMallocManaged(&(param_array->array), floats * sizeof(float)));
+
 	param_array->grad_array = new float[floats];
+	cudaCheckError(cudaMallocManaged(&(param_array->grad_array), floats * sizeof(float)));
 }
 
 void destroy_param_array(param_array* pa)
 {
-	delete[] pa->array;
-	delete[] pa->grad_array;
+	cudaFree(pa->array);
+	cudaFree(pa->grad_array);
 }
 
 void init_params(const size_t& arrays, param_array* param_arrays, int* layer_sizes)
