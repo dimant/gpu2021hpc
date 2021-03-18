@@ -24,7 +24,7 @@ __device__ __host__ __forceinline__ float softmax10(float* fvec10, int ti)
     return (target / sum);
 }
 
-__global__ void fc_forward(float* X, float* W, float* b, float* Z, float* Y, int n, int activation)
+__global__ void fc_forward(const float* X, const float* W, const float* b, float* Z, float* Y, const int n, const int activation)
 {
     int wi = threadIdx.x;
 
@@ -48,3 +48,8 @@ __global__ void fc_forward(float* X, float* W, float* b, float* Z, float* Y, int
             break;
     }
 }
+
+// last layer: deltaL = (y hat - y) activation function'(previous layer activation)
+// any other layer: 
+// https://machinelearningmastery.com/implement-backpropagation-algorithm-scratch-python/
+// https://cloudacademy.com/course/data-machine-learning-gradient-descent/derivative-calculation/

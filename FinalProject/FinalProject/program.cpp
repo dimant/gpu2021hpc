@@ -117,8 +117,8 @@ int main(int argc, char** argv)
 	auto help_option = op.add<popl::Switch>("h", "help", "produce help message");
 	auto unit_test_option = op.add<popl::Switch>("u", "unit-test", "run unit tests");
 	auto data_dir_option = op.add<popl::Value<std::string>>("d", "data-dir", "Directory containing extracted MNIST data.");
-	auto save_init_option = op.add<popl::Value<std::string>>("i", "save-init", "Init weights, save to given file name.");
-	auto test_option = op.add<popl::Value<std::string>>("t", "test-net", "Test network using given weights");
+	auto save_init_option = op.add<popl::Value<std::string>>("i", "save-init", "Init weights, save to given file name. (requires -d)");
+	auto test_option = op.add<popl::Value<std::string>>("t", "test-net", "Test network using given weights (requires -d)");
 
 	op.parse(argc, argv);
 

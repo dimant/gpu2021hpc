@@ -9,5 +9,5 @@
 #define ACT_SOFTMAX   3
 #define ACT_SOFTMAX10 4
 
-__global__ void fc_forward(float* X, float* W, float* b, float* Z, float* Y, int n, int activation);
+__global__ void fc_forward(const float* X, const float* W, const float* b, float* Z, float* Y, const int n, const int activation);
 
